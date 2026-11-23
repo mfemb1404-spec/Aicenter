@@ -333,8 +333,9 @@ function fbCopy(txt, cb) {
   document.body.removeChild(t);
 }
 function dl(name, content, mime) {
-  const u = URL.createObjectURL(new Blob([content], { type: mime })), a = document.createElement('a');
-  a.href = u; a.download = name; document.body.appendChild(a); a.click(); document.body.removeChild(a); setTimeout(() => URL.revokeObjectURL(u), 900);
+  const blob = content instanceof Blob ? content : new Blob([content], { type: mime });
+  const u = URL.createObjectURL(blob), a = document.createElement('a');
+  a.href = u; a.download = name; document.body.appendChild(a); a.click(); document.body.removeChild(a); setTimeout(() => URL.revokeObjectURL(u), 2000);
 }
 async function gasPost(payload) {
   const u = (st.sync.gasUrl || '').trim();
@@ -348,6 +349,55 @@ function scheduleSync() {
   if (!st.sync.auto || !st.auth.code || !st.sync.gasUrl) return;
   clearTimeout(syncTimer);
   syncTimer = setTimeout(() => App.syncNow(true), 1600);
+}
+
+/* ---------- Genuine OOXML .docx Generator (Full RTL + IRMitra + Styles + Numbering) ---------- */
+const CT=(()=>{const t=new Uint32Array(256);for(let i=0;i<256;i++){let c=i;for(let k=0;k<8;k++)c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1);t[i]=c>>>0;}return t;})();
+const crc32=b=>{let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=CT[(c^b[i])&0xFF]^(c>>>8);return(c^0xFFFFFFFF)>>>0;};
+async function defl(b){if(typeof CompressionStream==="undefined"||b.length<64)return{d:b,m:0};try{return{d:new Uint8Array(await new Response(new Blob([b]).stream().pipeThrough(new CompressionStream("deflate-raw"))).arrayBuffer()),m:8};}catch{return{d:b,m:0};}}
+async function mkZip(es){
+  const enc=new TextEncoder(),loc=[],cen=[];let off=0;
+  for(const e of es){
+    const nb=enc.encode(e.n),raw=e.d instanceof Uint8Array?e.d:enc.encode(String(e.d)),cr=crc32(raw),{d,m}=await defl(raw);
+    const lh=new Uint8Array(30+nb.length),lv=new DataView(lh.buffer);lv.setUint32(0,0x04034b50,true);lv.setUint16(4,20,true);lv.setUint16(6,0x0800,true);lv.setUint16(8,m,true);lv.setUint16(12,0x5421,true);lv.setUint32(14,cr,true);lv.setUint32(18,d.length,true);lv.setUint32(22,raw.length,true);lv.setUint16(26,nb.length,true);lh.set(nb,30);loc.push(lh,d);
+    const ch=new Uint8Array(46+nb.length),cv=new DataView(ch.buffer);cv.setUint32(0,0x02014b50,true);cv.setUint16(4,20,true);cv.setUint16(6,20,true);cv.setUint16(8,0x0800,true);cv.setUint16(10,m,true);cv.setUint16(14,0x5421,true);cv.setUint32(16,cr,true);cv.setUint32(20,d.length,true);cv.setUint32(24,raw.length,true);cv.setUint16(28,nb.length,true);cv.setUint32(42,off,true);ch.set(nb,46);cen.push(ch);off+=lh.length+d.length;
+  }
+  const cd=cen.reduce((a,x)=>a+x.length,0),eo=new Uint8Array(22),ev=new DataView(eo.buffer);ev.setUint32(0,0x06054b50,true);ev.setUint16(8,es.length,true);ev.setUint16(10,es.length,true);ev.setUint32(12,cd,true);ev.setUint32(16,off,true);
+  return new Blob([...loc,...cen,eo],{type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+}
+const xe=s=>String(s||"").replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g,"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&apos;");
+const isTS=s=>/^[\s\|:\-]+$/.test(s)&&s.includes("|")&&s.includes("-"),tCs=s=>s.trim().replace(/^\||\|$/g,"").split("|").map(x=>x.trim());
+function oxR(txt,lnks,base=""){
+  const tks=[],rx=/(`[^`\n]+`)|(\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^)\s]+)\))|(\*\*\*[^*\n]+\*\*\*)|(\*\*[^*\n]+\*\*)|(\*[^*\s][^*\n]*?\*)|(~~[^~\n]+~~)/g;
+  let last=0,m;while((m=rx.exec(txt))!==null){if(m.index>last)tks.push({t:"p",v:txt.slice(last,m.index)});if(m[1])tks.push({t:"c",v:m[1].slice(1,-1)});else if(m[2])tks.push({t:"l",lb:m[3],u:m[4]});else if(m[5])tks.push({t:"bi",v:m[5].slice(3,-3)});else if(m[6])tks.push({t:"b",v:m[6].slice(2,-2)});else if(m[7])tks.push({t:"i",v:m[7].slice(1,-1)});else if(m[8])tks.push({t:"s",v:m[8].slice(2,-2)});last=rx.lastIndex;}
+  if(last<txt.length)tks.push({t:"p",v:txt.slice(last)});
+  const mk=(v,ex="",ltr=false)=>`<w:r><w:rPr>${ltr?"":"<w:rtl/>"}${base}${ex}</w:rPr><w:t xml:space="preserve">${xe(v)}</w:t></w:r>`;
+  return tks.map(k=>k.t==="p"?mk(k.v):k.t==="b"?mk(k.v,"<w:b/><w:bCs/>"):k.t==="i"?mk(k.v,"<w:i/><w:iCs/>"):k.t==="bi"?mk(k.v,"<w:b/><w:bCs/><w:i/><w:iCs/>"):k.t==="s"?mk(k.v,"<w:strike/>"):k.t==="c"?mk(k.v,`<w:rFonts w:ascii="Consolas" w:hAnsi="Consolas" w:cs="IRMitra"/><w:color w:val="881337"/><w:shd w:val="clear" w:color="auto" w:fill="F1F5F9"/>`,true):(()=>{const id="rIdL"+(lnks.length+1);lnks.push({id,u:k.u});return`<w:hyperlink r:id="${id}">${mk(k.lb,`<w:color w:val="1D4ED8"/><w:u w:val="single"/>`)}</w:hyperlink>`;})()).join("");
+}
+async function mkDocx(md){
+  const ls=String(md||"").replace(/\r\n/g,"\n").split("\n"),lnks=[],blk=[];let i=0,inC=false;
+  while(i<ls.length){
+    const raw=ls[i],tr=raw.trim();
+    if(tr.startsWith("```")){inC=!inC;i++;continue;}
+    if(inC){blk.push(`<w:p><w:pPr><w:pStyle w:val="MDCodeBlock"/><w:bidi/></w:pPr><w:r><w:rPr><w:rtl/></w:rPr><w:t xml:space="preserve">${xe(raw)}</w:t></w:r></w:p>`);i++;continue;}
+    if(!tr){i++;continue;}
+    if(tr.includes("|")&&i+1<ls.length&&isTS(ls[i+1].trim())){const rs=[tCs(tr)];let j=i+2;while(j<ls.length&&ls[j].trim().includes("|")){rs.push(tCs(ls[j]));j++;}const cs=rs[0].length||1;blk.push(`<w:tbl><w:tblPr><w:tblW w:w="5000" w:type="pct"/><w:bidiVisual/><w:tblBorders><w:top w:val="single" w:sz="6" w:color="94A3B8"/><w:bottom w:val="single" w:sz="6" w:color="94A3B8"/><w:left w:val="single" w:sz="6" w:color="94A3B8"/><w:right w:val="single" w:sz="6" w:color="94A3B8"/><w:insideH w:val="single" w:sz="4" w:color="CBD5E1"/><w:insideV w:val="single" w:sz="4" w:color="CBD5E1"/></w:tblBorders></w:tblPr>`+rs.map((r,ri)=>`<w:tr>`+Array.from({length:cs},(_,ci)=>`<w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="${ri===0?"EEF2F7":(ri%2===1?"F8FAFC":"FFFFFF")}"/></w:tcPr><w:p><w:pPr><w:pStyle w:val="MDBody"/><w:bidi/><w:jc w:val="right"/></w:pPr>${oxR(r[ci]||"",lnks,ri===0?`<w:b/><w:bCs/><w:color w:val="0F2C59"/>`:"")}</w:p></w:tc>`).join("")+`</w:tr>`).join("")+`</w:tbl>`);i=j;continue;}
+    if(/^(\*\*\*|---|___)$/.test(tr.replace(/\s+/g,""))){blk.push(`<w:p><w:pPr><w:pStyle w:val="MDHR"/></w:pPr></w:p>`);i++;continue;}
+    const hm=raw.match(/^\s{0,3}(#{1,4})\s+(.+)$/);if(hm){blk.push(`<w:p><w:pPr><w:pStyle w:val="Heading${hm[1].length}"/><w:bidi/></w:pPr>${oxR(hm[2].trim(),lnks)}</w:p>`);i++;continue;}
+    if(/^\s*>\s?/.test(raw)){blk.push(`<w:p><w:pPr><w:pStyle w:val="MDBlockquote"/><w:bidi/></w:pPr>${oxR(raw.replace(/^\s*(>\s?)+/,""),lnks)}</w:p>`);i++;continue;}
+    const bm=raw.match(/^([ \t]*)[*\-+•]\s+(.+)$/);if(bm){const sp=bm[1].replace(/\t/g,"    ").length;blk.push(`<w:p><w:pPr><w:pStyle w:val="MDBody"/><w:numPr><w:ilvl w:val="${sp<=1?0:(sp<=5?1:2)}"/><w:numId w:val="1"/></w:numPr><w:bidi/></w:pPr>${oxR(bm[2],lnks)}</w:p>`);i++;continue;}
+    const nm=raw.match(/^([ \t]*)[0-9۰-۹]+[.)]\s+(.+)$/);if(nm){const sp=nm[1].replace(/\t/g,"    ").length;blk.push(`<w:p><w:pPr><w:pStyle w:val="MDBody"/><w:numPr><w:ilvl w:val="${sp<=1?0:(sp<=5?1:2)}"/><w:numId w:val="2"/></w:numPr><w:bidi/></w:pPr>${oxR(nm[2],lnks)}</w:p>`);i++;continue;}
+    blk.push(`<w:p><w:pPr><w:pStyle w:val="MDBody"/><w:bidi/></w:pPr>${oxR(tr,lnks)}</w:p>`);i++;
+  }
+  const ct=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-officedocument.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/word/numbering.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml"/><Override PartName="/word/settings.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml"/><Override PartName="/word/fontTable.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.fontTable+xml"/></Types>`;
+  const rr=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
+  const dr=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering" Target="numbering.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml"/><Relationship Id="rId4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable" Target="fontTable.xml"/>${lnks.map(l=>`<Relationship Id="${l.id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${xe(l.u)}" TargetMode="External"/>`).join("")}</Relationships>`;
+  const stg=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:settings xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:defaultTabStop w:val="720"/><w:characterSpacingControl w:val="doNotCompress"/></w:settings>`;
+  const fnt=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:fonts xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:font w:name="IRMitra"><w:charset w:val="B2"/></w:font><w:font w:name="Tahoma"><w:charset w:val="B2"/></w:font><w:font w:name="Consolas"><w:charset w:val="00"/></w:font></w:fonts>`;
+  const sty=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="IRMitra" w:hAnsi="IRMitra" w:cs="IRMitra"/><w:sz w:val="26"/><w:szCs w:val="26"/><w:color w:val="1F2937"/><w:lang w:val="en-US" w:bidi="fa-IR"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:bidi/><w:spacing w:after="120" w:line="320" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="MDBody"><w:name w:val="MD Body"/><w:pPr><w:bidi/><w:jc w:val="right"/><w:spacing w:after="120" w:line="320" w:lineRule="auto"/></w:pPr><w:rPr><w:rFonts w:ascii="IRMitra" w:hAnsi="IRMitra" w:cs="IRMitra"/><w:sz w:val="26"/><w:szCs w:val="26"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:pPr><w:keepNext/><w:bidi/><w:jc w:val="right"/><w:spacing w:before="300" w:after="140"/><w:pBdr><w:bottom w:val="single" w:sz="6" w:space="4" w:color="CBD5E1"/></w:pBdr></w:pPr><w:rPr><w:rFonts w:ascii="IRMitra" w:hAnsi="IRMitra" w:cs="IRMitra"/><w:b/><w:bCs/><w:color w:val="0F2C59"/><w:sz w:val="36"/><w:szCs w:val="36"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:pPr><w:keepNext/><w:bidi/><w:jc w:val="right"/><w:spacing w:before="240" w:after="100"/><w:pBdr><w:bottom w:val="single" w:sz="4" w:space="4" w:color="E2E8F0"/></w:pBdr></w:pPr><w:rPr><w:rFonts w:ascii="IRMitra" w:hAnsi="IRMitra" w:cs="IRMitra"/><w:b/><w:bCs/><w:color w:val="1E3A8A"/><w:sz w:val="32"/><w:szCs w:val="32"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="Heading3"><w:name w:val="heading 3"/><w:pPr><w:keepNext/><w:bidi/><w:jc w:val="right"/><w:spacing w:before="180" w:after="80"/></w:pPr><w:rPr><w:rFonts w:ascii="IRMitra" w:hAnsi="IRMitra" w:cs="IRMitra"/><w:b/><w:bCs/><w:color w:val="0F5C76"/><w:sz w:val="29"/><w:szCs w:val="29"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="Heading4"><w:name w:val="heading 4"/><w:pPr><w:keepNext/><w:bidi/><w:jc w:val="right"/></w:pPr><w:rPr><w:rFonts w:ascii="IRMitra" w:hAnsi="IRMitra" w:cs="IRMitra"/><w:b/><w:bCs/><w:color w:val="334155"/><w:sz w:val="27"/><w:szCs w:val="27"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="MDBlockquote"><w:name w:val="MD Blockquote"/><w:pPr><w:bidi/><w:jc w:val="right"/><w:spacing w:before="100" w:after="140" w:line="320" w:lineRule="auto"/><w:ind w:left="260" w:right="260"/><w:shd w:val="clear" w:color="auto" w:fill="F6F8FA"/><w:pBdr><w:right w:val="single" w:sz="18" w:space="8" w:color="4F46E5"/></w:pBdr></w:pPr><w:rPr><w:rFonts w:ascii="IRMitra" w:hAnsi="IRMitra" w:cs="IRMitra"/><w:color w:val="1E293B"/><w:sz w:val="26"/><w:szCs w:val="26"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="MDCodeBlock"><w:name w:val="MD Code Block"/><w:pPr><w:bidi/><w:jc w:val="right"/><w:spacing w:before="60" w:after="60" w:line="300" w:lineRule="auto"/><w:ind w:left="140" w:right="140"/><w:shd w:val="clear" w:color="auto" w:fill="F8FAFC"/></w:pPr><w:rPr><w:rFonts w:ascii="IRMitra" w:hAnsi="IRMitra" w:cs="IRMitra"/><w:sz w:val="25"/><w:szCs w:val="25"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="MDHR"><w:name w:val="MD HR"/><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="6" w:space="1" w:color="CBD5E1"/></w:pBdr></w:pPr></w:style></w:styles>`;
+  const num=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:numbering xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:abstractNum w:abstractNumId="1">${[0,1,2].map((l,k)=>`<w:lvl w:ilvl="${l}"><w:start w:val="1"/><w:numFmt w:val="bullet"/><w:lvlText w:val="${["•","◦","▪"][k]}"/><w:pPr><w:ind w:left="${560+k*360}" w:hanging="300"/></w:pPr></w:lvl>`).join("")}</w:abstractNum><w:abstractNum w:abstractNumId="2">${[0,1,2].map(l=>`<w:lvl w:ilvl="${l}"><w:start w:val="1"/><w:numFmt w:val="decimal"/><w:lvlText w:val="%${l+1}."/><w:pPr><w:ind w:left="${600+l*360}" w:hanging="340"/></w:pPr></w:lvl>`).join("")}</w:abstractNum><w:num w:numId="1"><w:abstractNumId w:val="1"/></w:num><w:num w:numId="2"><w:abstractNumId w:val="2"/></w:num></w:numbering>`;
+  const doc=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><w:body>${blk.join("")}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1247" w:right="1247" w:bottom="1247" w:left="1247"/><w:bidi/></w:sectPr></w:body></w:document>`;
+  return await mkZip([{n:"[Content_Types].xml",d:ct},{n:"_rels/.rels",d:rr},{n:"word/_rels/document.xml.rels",d:dr},{n:"word/settings.xml",d:stg},{n:"word/fontTable.xml",d:fnt},{n:"word/styles.xml",d:sty},{n:"word/numbering.xml",d:num},{n:"word/document.xml",d:doc}]);
 }
 
 const NAV = [
@@ -458,7 +508,7 @@ function vHome() {
   </div>
 
   <div class="tiles">
-    ${can('studioUse')?`<a class="tile" href="${esc(audioUrl)}" style="text-decoration:none;color:inherit"><strong>🎙️ استودیو صوت و تقریر ↗</strong><span class="hint">پیاده‌سازی، روان‌سازی، خلاصه‌سازی، خروجی PDF/Word و اتصال به ایتا/بله/تلگرام</span></a>`:''}
+    ${can('studioUse')?`<a class="tile" href="${esc(audioUrl)}" style="text-decoration:none;color:inherit"><strong>🎙️ استودیو صوت و تقریر ↗</strong><span class="hint">پیاده‌سازی، روان‌سازی، خلاصه‌سازی، خروجی PDF/Word (.docx) و اتصال به ایتا/بله/تلگرام</span></a>`:''}
     ${can('tasks','view')?`<div class="tile" onclick="App.go('pipeline')"><strong>🚀 خط تولید و پروژه‌ها</strong><span class="hint">مدیریت پروژه‌های متعدد، مراحل اختصاصی، جابه‌جایی کارت‌ها و یادداشت پیشرفت</span></div>`:''}
     ${can('chat')?`<div class="tile" onclick="App.go('chat')"><strong>💬 چت سریع و فایل</strong><span class="hint">گفتگو با مدل‌های جدید همراه با پیوست فایل متنی، صوتی، PDF و تصویر</span></div>`:''}
     ${can('prompts','view')?`<div class="tile" onclick="App.go('prompts')"><strong>✨ خزانه پرامپت‌ها</strong><span class="hint">پرامپت‌های دسته‌بندی‌شده با تاریخچه نسخه‌ها و ارسال به بله/تلگرام/ایتا</span></div>`:''}
@@ -669,7 +719,7 @@ function vPrompts() {
   const canE = can('prompts','edit'), canD = can('prompts','delete'), canEx = can('export');
   return `
   <div class="ph"><div><h2>✨ خزانه و کتابخانه پرامپت‌ها</h2><p>پرامپت‌های دسته‌بندی‌شده با توضیحات کامل، تاریخچه نسخه‌ها و ارسال مستقیم</p></div>
-    <div class="row">${canEx?`<button class="btn" onclick="App.expDoc('md','prompts')">⬇ Markdown</button><button class="btn" onclick="App.expDoc('doc','prompts')">📄 Word</button><button class="btn" onclick="App.expDoc('pdf','prompts')">📕 PDF</button>`:''}${canE?`<button class="btn btn-p" onclick="App.mPrompt()">+ پرامپت جدید</button>`:''}</div></div>
+    <div class="row">${canEx?`<button class="btn" onclick="App.expDoc('md','prompts')">⬇ Markdown</button><button class="btn" onclick="App.expDoc('docx','prompts')">📄 Word (.docx)</button><button class="btn" onclick="App.expDoc('pdf','prompts')">📕 PDF</button>`:''}${canE?`<button class="btn btn-p" onclick="App.mPrompt()">+ پرامپت جدید</button>`:''}</div></div>
   <div class="fbar">
     <input class="inp" style="flex:1;min-width:190px" placeholder="جستجو در عنوان، دسته، متن یا تگ..." value="${esc(flt.pq)}" oninput="App.flt('pq',this.value)" />
     <select class="sel" onchange="App.flt('pc',this.value)"><option value="">همه دسته‌ها</option>${catsOf('prompts').map(c=>`<option ${flt.pc===c?'selected':''}>${esc(c)}</option>`).join('')}</select>
@@ -702,7 +752,7 @@ function vNotes() {
   const canE = can('notes','edit'), canD = can('notes','delete');
   return `
   <div class="ph"><div><h2>📝 دفترچه تجربیات علمی و فنی</h2><p>ثبت تمیز و ساختاریافته مسئله، تجربه و نتیجه بدون تداخل با عنوان</p></div>
-    <div class="row">${can('export')?`<button class="btn" onclick="App.expDoc('md','notes')">⬇ Markdown</button><button class="btn" onclick="App.expDoc('doc','notes')">📄 Word</button><button class="btn" onclick="App.expDoc('pdf','notes')">📕 PDF</button>`:''}${canE?`<button class="btn btn-p" onclick="App.mNote()">+ ثبت تجربه جدید</button>`:''}</div></div>
+    <div class="row">${can('export')?`<button class="btn" onclick="App.expDoc('md','notes')">⬇ Markdown</button><button class="btn" onclick="App.expDoc('docx','notes')">📄 Word (.docx)</button><button class="btn" onclick="App.expDoc('pdf','notes')">📕 PDF</button>`:''}${canE?`<button class="btn btn-p" onclick="App.mNote()">+ ثبت تجربه جدید</button>`:''}</div></div>
   <div class="fbar">
     <input class="inp" style="flex:1;min-width:190px" placeholder="جستجو در عنوان، مسئله، راه‌حل و نویسنده..." value="${esc(flt.nq)}" oninput="App.flt('nq',this.value)" />
     <select class="sel" onchange="App.flt('nc',this.value)"><option value="">همه دسته‌ها</option>${catsOf('notes').map(c=>`<option ${flt.nc===c?'selected':''}>${esc(c)}</option>`).join('')}</select>
@@ -724,7 +774,7 @@ function vWf() {
   const list = live(st.workflows), canE = can('workflows','edit'), canD = can('workflows','delete');
   return `
   <div class="ph"><div><h2>⚙️ فرآیندهای کاری و SOP</h2><p>تعریف گام‌های استاندارد اعم از اجرای پرامپت، کار با ابزار/نرم‌افزار، کدنویسی یا بازبینی انسانی</p></div>
-    <div class="row">${can('export')?`<button class="btn" onclick="App.expDoc('doc','workflows')">📄 Word</button><button class="btn" onclick="App.expDoc('pdf','workflows')">📕 PDF</button>`:''}${canE?`<button class="btn btn-p" onclick="App.mWf()">+ فرآیند جدید</button>`:''}</div></div>
+    <div class="row">${can('export')?`<button class="btn" onclick="App.expDoc('docx','workflows')">📄 Word (.docx)</button><button class="btn" onclick="App.expDoc('pdf','workflows')">📕 PDF</button>`:''}${canE?`<button class="btn btn-p" onclick="App.mWf()">+ فرآیند جدید</button>`:''}</div></div>
   ${!list.length ? `<div class="empty">فرآیندی تعریف نشده است.</div>` : `<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(440px,1fr))">${list.map(w=>`
     <article class="card">
       <div class="ch"><div><div class="ct">${esc(w.title)}</div><div class="row" style="margin-top:4px">${w.category?`<span class="b b-a">${esc(w.category)}</span>`:''}${w.target?`<span class="b b-i">🎯 ${esc(w.target)}</span>`:''}</div></div>
@@ -921,9 +971,9 @@ function vSet() {
     <div class="card"><div class="ct">📦 بکاپ محلی JSON</div>
       <button class="btn btn-p" onclick="App.expJson()">⬇️ دانلود بکاپ کامل (.json)</button>
       <button class="btn" onclick="$('jsonFile').click()">⬆️ بارگذاری و ادغام فایل JSON</button></div>
-    <div class="card"><div class="ct">📑 خروجی Word، PDF و Markdown</div>
+    <div class="card"><div class="ct">📑 خروجی Word (.docx)، PDF و Markdown</div>
       <select id="docScope" class="sel"><option value="all">کل مستندات</option><option value="prompts">پرامپت‌ها</option><option value="notes">تجربیات</option><option value="workflows">فرآیندها</option></select>
-      <div class="row"><button class="btn btn-p" onclick="App.expDoc('doc',$('docScope').value)">📄 Word</button><button class="btn btn-s" onclick="App.expDoc('pdf',$('docScope').value)">📕 PDF</button><button class="btn" onclick="App.expDoc('md',$('docScope').value)">⬇ Markdown</button></div></div>
+      <div class="row"><button class="btn btn-p" onclick="App.expDoc('docx',$('docScope').value)">📄 Word (.docx)</button><button class="btn btn-s" onclick="App.expDoc('pdf',$('docScope').value)">📕 PDF</button><button class="btn" onclick="App.expDoc('md',$('docScope').value)">⬇ Markdown</button></div></div>
   </div>` : ''}`;
 }
 
@@ -1426,7 +1476,6 @@ window.App = {
   labNext(){ st.lab.cur=st.lab.suggested; st.lab.ai=''; save(); render(); },
   labSave(){ const txt=st.lab.suggested.trim(); if(txt) this.mPrompt(null,{title:'پرامپت اصلاح‌شده',text:txt}); },
 
-  /* Messengers: Eitaa, Bale, Telegram */
   async sendDirect(ch, txt) {
     if (!txt?.trim()) return this.toast('متن خالی است','wr');
     const act = ch==='tg'?'sendTelegram':(ch==='bale'?'sendBale':'sendEitaa');
@@ -1566,29 +1615,55 @@ window.App = {
   },
   delR(id){ if(confirm('حذف شود؟')){const x=st.resources.find(r=>r.id===id);if(x){x.deletedAt=now();x.updatedAt=now();}save();render();scheduleSync();} },
   expJson(){ dl(`ai-backup-${now().slice(0,10)}.json`,JSON.stringify({stages:st.stages,projects:st.projects,tasks:st.tasks,ideas:st.ideas,prompts:st.prompts,notes:st.notes,workflows:st.workflows,resources:st.resources},null,2),'application/json;charset=utf-8'); },
-  expDoc(fmt,sc='all') {
+
+  async expDoc(fmt,sc='all') {
     const d=now().slice(0,10), ps=live(st.prompts), ns=live(st.notes), ws=live(st.workflows);
     const iP=sc==='all'||sc==='prompts', iN=sc==='all'||sc==='notes', iW=sc==='all'||sc==='workflows';
-    if(fmt==='md'){
-      let m=`# مستندات مرکز\n\n`;
-      if(iP)ps.forEach(p=>m+=`## ${p.title}\n\`\`\`\n${p.text}\n\`\`\`\n\n`);
-      if(iN)ns.forEach(n=>m+=`## ${n.title}\n${n.content}\n\n`);
-      if(iW)ws.forEach(w=>m+=`## ${w.title}\n${w.description||''}\n\n`);
-      dl(`docs-${d}.md`,'\uFEFF'+m,'text/markdown;charset=utf-8');
+    let md=`# مستندات اتاق فرمان هوش مصنوعی و فناوری مرکز\n\n`;
+    if(iP && ps.length){
+      md+=`## پرامپت‌ها (${ps.length})\n\n`;
+      ps.forEach(p=>{
+        md+=`### ${p.title} (${p.version||'v1.0'})\n`;
+        md+=`- **دسته:** ${p.category||'عمومی'} | **مدل:** ${p.model||'پیش‌فرض'}\n\n`;
+        if(p.notes) md+=`> 💡 ${p.notes.replace(/\n/g,'\n> ')}\n\n`;
+        md+=`\`\`\`\n${p.text}\n\`\`\`\n\n---\n\n`;
+      });
+    }
+    if(iN && ns.length){
+      md+=`## دفترچه تجربیات (${ns.length})\n\n`;
+      ns.forEach(n=>{
+        md+=`### ${n.title}\n`;
+        md+=`- **نویسنده:** ${n.author||'—'} | **دسته:** ${n.category||'عمومی'} | **تاریخ:** ${fDate(n.date||n.updatedAt)}\n\n`;
+        if(n.context) md+=`> **مسئله:** ${n.context}\n\n`;
+        md+=`${n.content}\n\n---\n\n`;
+      });
+    }
+    if(iW && ws.length){
+      md+=`## فرآیندهای کاری و SOP (${ws.length})\n\n`;
+      ws.forEach(w=>{
+        md+=`### ${w.title}\n`;
+        if(w.description) md+=`${w.description}\n\n`;
+        (w.steps||[]).forEach((s,idx)=>md+=`${idx+1}. **${s.title||s.stepType}** (${s.stepType||''})${s.note?` — ${s.note}`:''}\n`);
+        md+=`\n---\n\n`;
+      });
+    }
+
+    if(fmt==='md'){ dl(`docs-${d}.md`,'\uFEFF'+md,'text/markdown;charset=utf-8'); return; }
+    if(fmt==='docx'){
+      const blob = await mkDocx(md);
+      dl(`docs-${d}.docx`, blob, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+      this.toast('فایل Word واقعی (.docx) آماده و دانلود شد','ok');
       return;
     }
-    let b=`<h1 style="text-align:right;direction:rtl;color:#0f2c59">مستندات مرکز هوش مصنوعی</h1>`;
-    if(iP)ps.forEach(p=>b+=`<h3 style="text-align:right;direction:rtl">${esc(p.title)} (${esc(p.version)})</h3><p dir="rtl" style="text-align:right;direction:rtl;background:#f8fafc;padding:8px;border:1px solid #cbd5e1">${esc(p.text).replace(/\n/g,'<br>')}</p>`);
-    if(iN)ns.forEach(n=>b+=`<h3 style="text-align:right;direction:rtl">${esc(n.title)}</h3><p dir="rtl" style="text-align:right;direction:rtl">${esc(n.content).replace(/\n/g,'<br>')}</p>`);
-    if(iW)ws.forEach(w=>b+=`<h3 style="text-align:right;direction:rtl">${esc(w.title)}</h3><p dir="rtl" style="text-align:right;direction:rtl">${esc(w.description||'')}</p>`);
-    if(fmt==='pdf') {
-      const fr=document.createElement('iframe'); fr.style.cssText='position:fixed;width:0;height:0;border:0;'; document.body.appendChild(fr);
-      const doc=fr.contentWindow.document;
-      doc.open(); doc.write(`<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><style>@page{size:A4;margin:18mm}body{font-family:Vazirmatn,Tahoma,sans-serif;direction:rtl;text-align:right;line-height:1.9}</style></head><body>${b}</body></html>`); doc.close();
-      setTimeout(()=>{ fr.contentWindow.focus(); fr.contentWindow.print(); setTimeout(()=>fr.remove(),2000); },400);
-    } else {
-      dl(`docs-${d}.doc`,'\uFEFF<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" lang="fa" dir="rtl"><head><meta charset="utf-8"><style>body,p,h1,h3{direction:rtl;text-align:right;font-family:Tahoma,sans-serif;line-height:1.8}</style></head><body dir="rtl">'+b+'</body></html>','application/msword;charset=utf-8');
-    }
+    // خروجی PDF چاپی استاندارد
+    let htmlBody = '';
+    if(iP && ps.length){ htmlBody += `<h2>پرامپت‌ها</h2>` + ps.map(p=>`<h3>${esc(p.title)} (${esc(p.version)})</h3><p><b>دسته:</b> ${esc(p.category||'عمومی')} | <b>مدل:</b> ${esc(p.model||'—')}</p>${p.notes?`<blockquote>${esc(p.notes)}</blockquote>`:''}<pre>${esc(p.text)}</pre>`).join(''); }
+    if(iN && ns.length){ htmlBody += `<h2>دفترچه تجربیات</h2>` + ns.map(n=>`<h3>${esc(n.title)}</h3><p><b>نویسنده:</b> ${esc(n.author)} | <b>دسته:</b> ${esc(n.category)}</p>${n.context?`<blockquote>${esc(n.context)}</blockquote>`:''}<p>${esc(n.content).replace(/\n/g,'<br>')}</p>`).join(''); }
+    if(iW && ws.length){ htmlBody += `<h2>فرآیندهای کاری</h2>` + ws.map(w=>`<h3>${esc(w.title)}</h3><p>${esc(w.description||'')}</p><ol>${(w.steps||[]).map(s=>`<li><b>${esc(s.title||s.stepType)}</b>: ${esc(s.note||'')}</li>`).join('')}</ol>`).join(''); }
+    const fr=document.createElement('iframe'); fr.style.cssText='position:fixed;width:0;height:0;border:0;'; document.body.appendChild(fr);
+    const doc=fr.contentWindow.document;
+    doc.open(); doc.write(`<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><style>@page{size:A4;margin:18mm}body{font-family:Vazirmatn,Tahoma,sans-serif;direction:rtl;text-align:right;line-height:1.9}h1,h2,h3{color:#0f2c59}blockquote{border-right:4px solid #4f46e5;background:#f8fafc;padding:6pt 10pt;margin:6pt 0}pre{white-space:pre-wrap;background:#f8fafc;padding:8pt;border:1px solid #cbd5e1;font-family:inherit;direction:rtl;text-align:right}</style></head><body><h1>مستندات اتاق فرمان هوش مصنوعی</h1>${htmlBody}</body></html>`); doc.close();
+    setTimeout(()=>{ fr.contentWindow.focus(); fr.contentWindow.print(); setTimeout(()=>fr.remove(),2000); },450);
   }
 };
 document.addEventListener('DOMContentLoaded', () => App.init());
