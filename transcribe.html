@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>استودیو هوشمند صوت، تقریر و پژوهش دروس خارج</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--font:"Vazirmatn","IRANSans","IRMitra","B Mitra","Segoe UI",Tahoma,sans-serif;--pv-font:"IRMitra","B Mitra","Vazirmatn","B Nazanin",Tahoma,serif;--pv-size:16.5px;--pv-lh:1.95;--pv-hd:#0f2c59;--pv-align:justify;--tr:.16s ease}
+[data-theme="light"]{--bg:#f3f1eb;--sf:#ffffff;--s2:#f8f7f3;--bd:#e1dcd2;--bs:#c9c1b2;--pr:#0f4c3a;--ps:#e6f2ee;--nv:#0f2c59;--ns:#eef2f7;--ac:#a67321;--as:#fbf4e6;--tx:#1f2937;--mt:#5f6662;--dn:#b42318;--ds:#fef3f2;--ok:#067647;--os:#ecfdf3;--pvbg:#fffefb;--topbg:linear-gradient(135deg,#0b3327,#124e3c 55%,#0f2c59)}
+[data-theme="dark"]{--bg:#0d1117;--sf:#161b22;--s2:#1f2630;--bd:#2d3643;--bs:#3e4959;--pr:#2ea078;--ps:rgba(46,160,120,.16);--nv:#60a5fa;--ns:rgba(96,165,250,.15);--ac:#eab308;--as:rgba(234,179,8,.16);--tx:#e6edf3;--mt:#9da7b3;--dn:#f87171;--ds:rgba(248,113,113,.16);--ok:#4ade80;--os:rgba(74,222,128,.16);--pvbg:#131820;--topbg:linear-gradient(135deg,#091914,#102a22 55%,#0f1f3d)}
+[data-theme="warm"]{--bg:#f5efe3;--sf:#fbf7ee;--s2:#efe7d6;--bd:#ddd2bc;--bs:#c4b69b;--pr:#7c4418;--ps:#f2e2d2;--nv:#3f3021;--ns:#e8decb;--ac:#a36a1b;--as:#f9ecd5;--tx:#2c2217;--mt:#6b5b49;--dn:#a62626;--ds:#f9dfdf;--ok:#2b6b39;--os:#e0f1e4;--pvbg:#fcf9f1;--topbg:linear-gradient(135deg,#4f2a10,#6e3b17 55%,#3b2d22)}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font);background:var(--bg);color:var(--tx);line-height:1.75;font-size:14.5px;direction:rtl}
+.top{background:var(--topbg);color:#fff;padding:10px 14px 0;position:sticky;top:0;z-index:50;box-shadow:0 3px 14px rgba(0,0,0,.18)}
+.ti{max-width:1440px;margin:0 auto}
+.br{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding-bottom:8px}
+.br h1{margin:0;font-size:1.14rem;font-weight:800;display:flex;align-items:center;gap:8px}
+.nts{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.nt{background:rgba(255,255,255,.15);color:#fff;border:0;padding:7px 12px;border-radius:8px 8px 0 0;font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer;transition:var(--tr)}
+.nt:hover{background:rgba(255,255,255,.26)}.nt.active{background:var(--bg);color:var(--pr)}
+.w{max-width:1440px;margin:12px auto;padding:0 12px 44px}.v{display:none}.v.active{display:block}
+.eb,.c{background:var(--sf);border:1px solid var(--bd);border-radius:11px;padding:12px 14px;margin-bottom:11px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.eg1{display:grid;grid-template-columns:1.5fr 1.4fr .75fr .95fr .5fr .85fr;gap:7px;align-items:end}
+.eg2{display:flex;flex-wrap:wrap;gap:6px;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px dashed var(--bd)}
+@media(max-width:1150px){.eg1{grid-template-columns:1fr 1fr 1fr}}@media(max-width:640px){.eg1{grid-template-columns:1fr}}
+.g2{display:grid;grid-template-columns:460px 1fr;gap:12px;align-items:start}@media(max-width:1020px){.g2{grid-template-columns:1fr}}
+.ct{margin:0 0 9px;font-family:inherit;font-size:.94rem;font-weight:800;color:var(--nv);border-bottom:1px solid var(--bd);padding-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap}
+label{display:flex;align-items:center;gap:4px;font-size:.79rem;font-weight:700;margin-bottom:3px}
+input[type=text],input[type=password],input[type=number],input[type=color],select,textarea{width:100%;padding:6px 8px;border:1px solid var(--bs);border-radius:7px;font-family:inherit;font-size:.84rem;background:var(--sf);color:var(--tx);direction:rtl;text-align:right}
+textarea{unicode-bidi:plaintext}
+input[dir=ltr]{direction:ltr;text-align:left}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:7px}@media(max-width:600px){.r2{grid-template-columns:1fr}}
+.f{margin-bottom:8px}.h{font-size:.74rem;color:var(--mt);margin-top:2px}
+.b{display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:6px 10px;border:1px solid transparent;border-radius:7px;font-family:inherit;font-size:.81rem;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;transition:var(--tr)}.b:disabled{opacity:.45;cursor:not-allowed}
+.bp{background:var(--pr);color:#fff}.bn{background:var(--nv);color:#fff}.ba{background:var(--ac);color:#fff}.bs{background:var(--s2);border-color:var(--bs);color:var(--tx)}.bd{background:var(--dn);color:#fff}.bds{background:var(--ds);border-color:#fecdca;color:var(--dn)}
+.bsm{padding:4px 8px;font-size:.76rem}.bxs{padding:2px 6px;font-size:.71rem}
+.bg{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:999px;font-size:.72rem;font-weight:700;background:var(--ps);color:var(--pr)}
+.bok{background:var(--os);color:var(--ok)}.ber{background:var(--ds);color:var(--dn)}.bac{background:var(--as);color:#854d0e}.bnv{background:var(--ns);color:var(--nv)}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--s2);padding:3px;border-radius:8px;border:1px solid var(--bd);margin-bottom:8px}
+.seg button{border:0;background:transparent;padding:6px;border-radius:6px;font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--mt)}.seg button.active{background:var(--pr);color:#fff}
+.dz{border:2px dashed var(--bs);border-radius:9px;padding:12px;text-align:center;background:var(--s2);cursor:pointer;font-size:.81rem;color:var(--mt)}.dz.on,.dz:hover{border-color:var(--pr);background:var(--ps);color:var(--pr)}
+.sb{border:1px solid var(--bd);border-radius:8px;padding:7px 9px;margin-bottom:6px;background:var(--s2)}.sb.off{opacity:.52}
+.sc{display:flex;align-items:center;justify-content:space-between;gap:6px;font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer;margin:0 0 4px}.sc input[type=checkbox]{width:15px;height:15px;accent-color:var(--pr)}
+.pw{background:var(--bd);border-radius:999px;height:8px;overflow:hidden;margin:7px 0 4px}.pb{height:100%;width:0%;background:linear-gradient(90deg,var(--pr),#249673);transition:width .3s}
+.pls{display:flex;gap:4px;flex-wrap:wrap;margin:6px 0}.pl{padding:2px 8px;border-radius:999px;font-size:.72rem;font-weight:700;border:1px solid var(--bd);background:var(--s2);color:var(--mt)}
+.pl.run{background:var(--as);color:#854d0e}.pl.ok{background:var(--os);color:var(--ok)}.pl.er{background:var(--ds);color:var(--dn)}
+.lg-wrap{border:1px solid var(--bd);border-radius:9px;overflow:hidden;margin-top:8px}
+.lg-bar{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:5px 8px;background:var(--s2);border-bottom:1px solid var(--bd);font-size:.75rem;flex-wrap:wrap}
+.lg{background:#121716;color:#d6e6de;font-family:var(--font);font-size:.79rem;line-height:1.7;padding:9px 11px;min-height:220px;max-height:360px;resize:vertical;overflow-y:auto;white-space:pre-wrap;direction:rtl;text-align:right}
+.lg-err{color:#fca5a5;font-weight:700}.lg-wrn{color:#fde047}.lg-ok{color:#86efac}
+.stbs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--bd);padding-bottom:6px;margin-bottom:7px}
+.stb{padding:4px 9px;border-radius:7px;border:1px solid var(--bs);background:var(--s2);font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;color:var(--tx)}.stb.active{background:var(--nv);color:#fff;border-color:var(--nv)}
+.tb{display:flex;flex-wrap:wrap;gap:5px;justify-content:space-between;align-items:center;margin-bottom:7px;padding:6px 8px;background:var(--s2);border:1px solid var(--bd);border-radius:7px}
+.pv{border:1px solid var(--bd);border-radius:9px;padding:18px 22px;min-height:480px;max-height:73vh;overflow-y:auto;background:var(--pvbg);font-family:var(--pv-font);font-size:var(--pv-size);line-height:var(--pv-lh);text-align:var(--pv-align);direction:rtl}
+.pv h1{font-size:1.38em;color:var(--pv-hd);border-bottom:1.5px solid var(--bd);padding-bottom:3px;text-align:right}.pv h2{font-size:1.18em;color:var(--pv-hd);border-bottom:1px solid var(--bd);padding-bottom:2px;text-align:right}
+.pv h3{font-size:1.05em;color:var(--pr);text-align:right}.pv h4{font-size:1em;color:var(--mt);text-align:right}
+.pv blockquote{margin:7px 9px;padding:7px 12px;border-right:4px solid #3b82f6;background:var(--s2);border-radius:5px}
+.pv .cal{margin:7px 3px;padding:7px 12px;background:var(--ns);border:1px solid var(--bd);border-right:4px solid #0e7490;border-radius:6px}
+.pv .bsm{text-align:center;font-weight:700;color:var(--pv-hd);font-size:1.08em;margin-bottom:7px}
+.pv table,.tbl{width:100%;border-collapse:collapse;font-size:.81rem;direction:rtl}.pv th,.pv td,.tbl th,.tbl td{border:1px solid var(--bd);padding:6px 8px;text-align:right}.pv th,.tbl th{background:var(--s2);color:var(--nv)}
+.raw{width:100%;min-height:480px;font-family:var(--font);font-size:.86rem;line-height:1.8;direction:rtl;text-align:right;unicode-bidi:plaintext}
+.sl{max-height:220px;overflow-y:auto;border:1px solid var(--bd);border-radius:7px;background:var(--s2);padding:5px;margin-top:6px}
+.si{display:flex;align-items:center;justify-content:space-between;gap:5px;background:var(--sf);border:1px solid var(--bd);border-radius:6px;padding:6px 8px;margin-bottom:4px;font-size:.8rem}
+.plg{display:grid;grid-template-columns:280px 1fr;gap:12px}@media(max-width:860px){.plg{grid-template-columns:1fr}}
+.pi{display:flex;align-items:center;justify-content:space-between;gap:5px;padding:6px 8px;border:1px solid var(--bd);border-radius:7px;background:var(--s2);margin-bottom:4px;cursor:pointer;font-size:.8rem}.pi.sel{border-color:var(--pr);background:var(--ps);font-weight:700}
+.mb{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:999;padding:12px}
+.md{background:var(--sf);border:1px solid var(--bd);border-radius:12px;max-width:680px;width:100%;padding:16px;max-height:90vh;overflow-y:auto;direction:rtl}
+.dis{opacity:.5;pointer-events:none}
+.qbtn{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:var(--ns);color:var(--nv);border:1px solid var(--bs);font-size:.69rem;font-weight:800;cursor:pointer;flex-shrink:0}
+.qbtn:hover{background:var(--nv);color:#fff}
+.rec-bar{background:var(--as);border:1px solid var(--ac);border-radius:9px;padding:8px 12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:.83rem}
+.tbtn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);color:#fff;padding:3px 8px;border-radius:6px;font-size:.73rem;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.tbtn:hover{background:rgba(255,255,255,.28)}
+.tbtn.on{background:#fff;color:var(--pr)}
+details.opt{border:1px solid var(--bd);border-radius:8px;padding:6px 9px;background:var(--s2);margin-top:6px}
+details.opt summary{cursor:pointer;font-size:.8rem;font-weight:700;color:var(--nv)}
+.stop-big{background:var(--dn);color:#fff;font-weight:800;border:0;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(180,35,24,.45)}50%{box-shadow:0 0 0 6px rgba(180,35,24,0)}}
+</style>
+</head>
+<body>
+<div class="top"><div class="ti">
+  <div class="br">
+    <div><h1>🎙️ استودیو هوشمند صوت، تقریر و پژوهش <span class="bg" id="jsHealthBadge" style="background:#b42318;color:#fff;">در حال بارگذاری...</span></h1></div>
+    <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;">
+      <a href="index.html" id="aicLink" class="tbtn" title="بازگشت به اتاق فرمان مرکز">🏢 اتاق فرمان (Aicenter) ↗</a>
+      <button type="button" class="tbtn" id="teamBtn" onclick="openTeamModal()">🔐 اتصال تیمی / ورود</button>
+      <button type="button" class="tbtn" onclick="openStyleModal()">🎨 تم و استایل</button>
+      <button type="button" class="tbtn" onclick="openHelpModal('کلی')">❓ راهنما</button>
+      <span class="tbtn" id="topApiBadge" onclick="openKeyModal()" style="cursor:pointer;">کلیدها: ثبت نشده</span>
+      <span class="tbtn" id="profBadge" onclick="swPage('pr')" style="cursor:pointer;">پروفایل: استاندارد</span>
+    </div>
+  </div>
+  <div class="nts">
+    <button type="button" class="nt active" id="nav-af" onclick="swPage('af')">🎙️ میز کار و تبدیل صوت</button>
+    <button type="button" class="nt" id="nav-mu" onclick="swPage('mu')">📚 تقریر چندمرحله‌ای</button>
+    <button type="button" class="nt" id="nav-msg" onclick="swPage('msg')">📡 تلگرام، بله و ایتا</button>
+    <button type="button" class="nt" id="nav-pr" onclick="swPage('pr')">⚙️ مراحل، دسته‌ها و پرامپت‌ها</button>
+    <button type="button" class="nt" id="nav-hi" onclick="swPage('hi')">🗂️ سابقه کامل</button>
+    <button type="button" class="nt" id="nav-st" onclick="swPage('st')">📊 آمار و راهنما</button>
+  </div>
+</div></div>
+
+<div class="w">
+  <div id="recBanner" class="rec-bar" style="display:none;"></div>
+
+  <!-- نوار ابزار موتور هوش مصنوعی و فضای ذخیره‌سازی -->
+  <div class="eb">
+    <div class="eg1">
+      <div>
+        <label>کلید API <button type="button" class="b bs bxs" onclick="openKeyModal()">همه کلیدها</button><button type="button" class="qbtn" onclick="openHelpModal('api')">؟</button></label>
+        <div style="display:flex;gap:3px;">
+          <select id="pvSel" style="width:105px" onchange="onPvSel()"><option value="gemini">Gemini</option><option value="openrouter">OpenRouter</option><option value="openai">OpenAI</option></select>
+          <input type="password" id="apiKey" dir="ltr" placeholder="API Key..." oninput="onKey()"/>
+          <button type="button" class="b bs bsm" onclick="togKey()" title="نمایش/مخفی">👁️</button>
+          <button type="button" class="b bn bsm" onclick="testApi()">تست</button>
+        </div>
+      </div>
+      <div>
+        <label>موتور پیش‌فرض <button type="button" class="b bs bxs" onclick="fetchLiveModels()" id="btnFetchM">🔄 دریافت زنده</button><button type="button" class="b bs bxs" onclick="openModMgr()">+ دلخواه</button></label>
+        <select id="gModel" onchange="onModel()"></select>
+      </div>
+      <div><label>سطح تفکر <button type="button" class="qbtn" onclick="openHelpModal('thinking')">؟</button></label><select id="gThink" onchange="saveSet()"><option value="HIGH" selected>HIGH</option><option value="XHIGH">XHIGH</option><option value="MEDIUM">MEDIUM</option><option value="LOW">LOW</option></select></div>
+      <div id="tWrap">
+        <div style="display:flex;justify-content:space-between;font-size:.75rem;font-weight:700;"><span>دما: <span id="tLbl">پیش‌فرض</span></span><label style="margin:0;gap:3px;"><input type="checkbox" id="tDef" checked onchange="onTDef()" style="width:auto"/>پیش‌فرض</label></div>
+        <input type="range" id="tRange" min="0" max="2" step="0.1" value="0.4" oninput="onTRng()" style="width:100%"/><div id="tHint" class="h"></div>
+      </div>
+      <div><label>تایم‌اوت(د)</label><input type="number" id="gTimeout" min="1" max="25" value="6" onchange="saveSet()"/></div>
+      <div><label>دلار (تومان)</label><div style="display:flex;gap:3px;"><input type="number" id="usdRate" min="1000" step="500" value="70000" oninput="onUsd()"/><button type="button" class="b bs bsm" onclick="fetchUsd()" title="دریافت نرخ روز">↻</button></div></div>
+    </div>
+    <div class="eg2">
+      <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;">
+        <button type="button" class="b bs bsm" onclick="pickWorkDir()">📁 پوشه کاری کامپیوتر</button>
+        <button type="button" class="b bs bsm" id="btnDirSync" style="display:none;" onclick="loadFromDir()">⬇ بازیابی از پوشه</button>
+        <span class="bg" id="dirBadge">پوشه محلی: انتخاب نشده</span>
+        <button type="button" class="b bs bsm" onclick="syncTeamNow(false)" id="btnTeamSync" style="display:none;">🔄 همگام‌سازی تیمی</button>
+        <span class="bg bnv" id="teamSyncBadge" style="display:none;">حالت مستقل</span>
+      </div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;">
+        <button type="button" class="b bp bsm" id="btnGasDrive" onclick="saveCurToGasDrive()" style="display:none;">☁️ ذخیره سریع در Drive سرور</button>
+        <button type="button" class="b bn bsm" onclick="openGdModal()">☁️ Google Drive مستقیم</button>
+        <span class="bg" id="gdBadge">Drive: آماده</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- تب ۱: میز کار تبدیل صوت به متن و مراحل دلخواه -->
+  <section class="v active" id="page-af"><div class="g2">
+    <div>
+      <div class="c">
+        <div class="ct"><span>۱. ورودی صوت یا متن <button type="button" class="qbtn" onclick="openHelpModal('input')">؟</button></span><span class="bg" id="afInBadge">میز کار تازه</span></div>
+        <div class="f"><label>نام جلسه (برای سابقه و نام فایل‌ها)</label><input type="text" id="afTitle" placeholder="مثلاً: جلسه ۴۸ مکاسب - بیع فضولی" oninput="afState.title=this.value;"/></div>
+        <div class="seg"><button type="button" class="active" id="afBtnA" onclick="setAfMode('audio')">🎙️ ورودی صوت</button><button type="button" id="afBtnT" onclick="setAfMode('text')">📝 ورودی متن / Word</button></div>
+
+        <div id="afPanA">
+          <div class="dz" id="aDz" onclick="$('aFile').click()"><b>فایل صوتی را بکشید یا کلیک کنید</b><br/><span style="font-size:.72rem;">MP3, M4A, WAV, OGG, AAC, FLAC, WebM (یا دریافت مستقیم از تلگرام/بله)</span><input type="file" id="aFile" accept="audio/*,.mp3,.m4a,.wav,.ogg,.aac,.flac,.webm,.opus" style="display:none;"/></div>
+          <div id="aMeta" style="display:none;margin-top:7px;padding:7px;background:var(--s2);border:1px solid var(--bd);border-radius:7px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><b id="aName" style="font-size:.81rem"></b><button type="button" class="b bds bxs" onclick="clrAudio()">حذف صوت</button></div>
+            <div id="aStats" class="h"></div><audio id="aPlay" controls style="width:100%;height:32px;margin-top:5px;"></audio>
+          </div>
+
+          <div style="margin-top:7px;padding:8px;background:var(--s2);border:1px solid var(--bd);border-radius:8px;">
+            <div class="r2">
+              <div class="f"><label>تقسیم صوت <button type="button" class="qbtn" onclick="openHelpModal('split')">؟</button></label><select id="aSplit" onchange="$('aMergeWrap').style.display=this.value==='1'?'none':'block'"><option value="1" selected>بدون برش</option><option value="2">۲ قسمت</option><option value="3">۳ قسمت</option><option value="4">۴ قسمت</option><option value="auto">خودکار (هر ۲۵ دقیقه)</option></select></div>
+              <div class="f"><label>همپوشانی (ثانیه)</label><input type="number" id="aOvl" min="0" max="45" value="10"/></div>
+            </div>
+            <div class="f"><label>کیفیت برش</label><select id="aQual"><option value="original" selected>MP3 اصلی بدون افت کیفیت (سریع)</option><option value="wav16k">WAV مونو 16kHz (کم‌حجم)</option><option value="wav24k">WAV مونو 24kHz</option><option value="wavNative">WAV نرخ اصلی</option></select></div>
+            <label style="font-size:.78rem;gap:5px;cursor:pointer;margin-top:3px;"><input type="checkbox" id="aSilSplit" checked style="width:auto"/> برش هوشمند روی سکوت (جلوگیری از قطع کلمه وسط جمله)</label>
+            <div class="f" id="aMergeWrap" style="display:none;margin-top:5px;margin-bottom:0;"><label>اتصال متن تکه‌ها</label><select id="aMerge"><option value="smart" selected>هوشمند با AI (حذف تکرار همپوشان)</option><option value="simple">ساده پشت‌سرهم</option></select></div>
+            <div id="aChunks" style="margin-top:5px;display:none;"></div>
+          </div>
+
+          <details class="opt">
+            <summary>➕ امکانات اختیاری جلسه (بدون دست‌کاری پرامپت‌های اصلی شما)</summary>
+            <div class="h" style="margin-bottom:5px;">تا تیک نزنید، هیچ چیز به پرامپت شما اضافه نمی‌شود.</div>
+            <label style="font-size:.77rem;gap:5px;cursor:pointer;margin-bottom:4px;"><input type="checkbox" id="optUseGloss" style="width:auto"/> افزودن واژه‌نامه/نام علمای این جلسه به انتهای دستور:</label>
+            <textarea id="optGloss" rows="2" placeholder="مثلاً: میرزای نائینی، محقق عراقی، لا بشرط مقسمی، مرحوم تبریزی"></textarea>
+            <label style="font-size:.77rem;gap:5px;cursor:pointer;margin-top:5px;"><input type="checkbox" id="optUseTs" style="width:auto"/> افزودن دستور درج برچسب زمان تقریبی [mm:ss] سر مباحث جدید در متن خام</label>
+          </details>
+        </div>
+
+        <div id="afPanT" style="display:none;">
+          <div style="display:flex;gap:5px;margin-bottom:5px;flex-wrap:wrap;">
+            <button type="button" class="b bs bsm" onclick="$('afTxtFile').click()">📂 باز کردن Word / txt / md</button>
+            <button type="button" class="b bs bsm" onclick="$('afTxtIn').value='';updAfW();">پاک کردن</button>
+            <input type="file" id="afTxtFile" accept=".docx,.txt,.md" style="display:none;" onchange="loadAfTxt(this.files[0])"/>
+          </div>
+          <textarea id="afTxtIn" rows="7" placeholder="متن درس را اینجا وارد یا پیست کنید..." oninput="updAfW()"></textarea>
+          <div class="h" id="afTxtW">۰ کلمه</div>
+        </div>
+      </div>
+
+      <div class="c">
+        <div class="ct"><span>۲. مراحل خط تولید (کاملاً باز و قابل تغییر) <button type="button" class="qbtn" onclick="openHelpModal('stages')">؟</button></span><button type="button" class="b bs bxs" onclick="swPage('pr');selPrMode('stages')">⚙️ مدیریت مراحل و دسته‌ها</button></div>
+        <div id="dynStagesBox"></div>
+        <div style="display:flex;gap:5px;margin-top:9px;flex-wrap:wrap;">
+          <button type="button" class="b bp" style="flex:1;min-width:120px" id="btnAfGo" onclick="runAf(false)">▶ شروع عملیات</button>
+          <button type="button" class="b ba" id="btnAfRes" onclick="runAf(true)" style="display:none">↻ ادامه از توقف</button>
+          <button type="button" class="b stop-big" id="btnAfStp" onclick="stopAll()" style="display:none">⛔ توقف فوری</button>
+          <button type="button" class="b bs bsm" onclick="resetAfWorkspace(true)" title="پاک‌سازی میز کار برای جلسه جدید">🧹 جلسه تازه</button>
+        </div>
+        <div class="pw"><div class="pb" id="afPb"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:.79rem;font-weight:700;"><span id="afSt" style="color:var(--pr)">آماده</span><span id="afTm" style="color:var(--nv)"></span></div>
+        <div class="pls" id="afPills"></div>
+
+        <!-- پنل گزارش بزرگ و عیب‌یاب -->
+        <div class="lg-wrap">
+          <div class="lg-bar">
+            <strong>📋 گزارش لحظه‌ای و عیب‌یاب عملیات</strong>
+            <div style="display:flex;gap:4px;align-items:center;">
+              <label style="margin:0;font-size:.72rem;gap:3px;"><input type="checkbox" id="lgOnlyErr" onchange="rndLog('af')" style="width:auto"/> فقط خطاها</label>
+              <button type="button" class="b bs bxs" onclick="copyLog('af')">📋 کپی گزارش</button>
+              <button type="button" class="b bs bxs" onclick="clrLog('af')">پاک</button>
+            </div>
+          </div>
+          <div class="lg" id="afLog">آماده اجرای مراحل...</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="c">
+        <div class="ct">
+          <span>۳. پیش‌نمایش، ویرایش و خروجی‌ها <button type="button" class="qbtn" onclick="openHelpModal('export')">؟</button></span>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;">
+            <span class="bg" id="afOutB">۰ کلمه</span>
+            <button type="button" class="b ba bsm" onclick="dlAfZip()">📦 ZIP همه مراحل</button>
+          </div>
+        </div>
+        <div class="stbs" id="afOutTabs"></div>
+        <div class="tb">
+          <div style="display:flex;gap:4px;flex-wrap:wrap;">
+            <button type="button" class="b bs bsm" id="btnAfEd" onclick="togAfEd()">✏️ ویرایش</button>
+            <button type="button" class="b bn bsm" onclick="sendToMu()">➕ ارسال به چندمرحله‌ای</button>
+            <button type="button" class="b bs bsm" onclick="useAsIn()">↻ ورودی متن</button>
+            <button type="button" class="b bp bsm" onclick="openSendMsgModal('af')">📡 ارسال به پیام‌رسان</button>
+            <button type="button" class="b bs bsm" id="btnPushAic" style="display:none;" onclick="openPushAicModal()">🏢 ارسال به اتاق فرمان</button>
+          </div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;">
+            <button type="button" class="b bs bsm" onclick="cpAf()">📋 کپی</button>
+            <button type="button" class="b bs bsm" onclick="dlAf('txt')">.txt</button>
+            <button type="button" class="b bs bsm" onclick="dlAf('md')">.md</button>
+            <button type="button" class="b bp bsm" onclick="dlAf('docx')">📄 Word</button>
+            <button type="button" class="b ba bsm" onclick="dlAf('pdf')">📕 خروجی PDF</button>
+          </div>
+        </div>
+        <div id="afPrev" class="pv"><p style="color:var(--mt);text-align:center;margin-top:120px;">خروجی هر مرحله پس از اجرا اینجا با فونت و راست‌چینی استاندارد نمایش داده می‌شود.</p></div>
+        <textarea id="afEdit" class="raw" style="display:none;" oninput="onAfEditInput(this.value)"></textarea>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- تب ۲: تقریر چندمرحله‌ای -->
+  <section class="v" id="page-mu"><div class="g2">
+    <div>
+      <div class="c">
+        <div class="ct"><span>۱. جلسات ورودی <button type="button" class="qbtn" onclick="openHelpModal('multi')">؟</button></span><span class="bg" id="muStats">۰ جلسه</span></div>
+        <div class="dz" id="mDz" onclick="$('mFile').click()"><b>فایل‌های Word / txt / md</b> را بکشید یا کلیک کنید<input type="file" id="mFile" accept=".docx,.txt,.md" multiple style="display:none;"/></div>
+        <div style="display:flex;gap:4px;margin-top:6px;flex-wrap:wrap;"><button type="button" class="b bs bsm" onclick="openPM()">+ افزودن دستی</button><button type="button" class="b bs bsm" onclick="splitMu()">✂️ تفکیک جلسات فایل</button><button type="button" class="b bds bsm" onclick="clrMu()">پاک</button></div>
+        <div class="sl" id="muList"><div style="text-align:center;padding:10px;color:var(--mt);font-size:.8rem;">خالی است.</div></div>
+        <div id="muEst" class="h" style="margin-top:5px;padding:6px;background:var(--s2);border:1px solid var(--bd);border-radius:6px;">تا ۴ جلسه: تجمیع مستقیم • ۵+ جلسه: فیش موضوعی گام ۰ ← خروجی‌های انتخابی</div>
+      </div>
+      <div class="c">
+        <div class="ct"><span>۲. اجرای چندمرحله‌ای</span></div>
+        <div class="f"><label>روش اجرا</label><select id="muMode"></select></div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;">
+          <button type="button" class="b bp" style="flex:1" id="btnMuGo" onclick="runMu(false)">▶ شروع تقریر چندمرحله‌ای</button>
+          <button type="button" class="b ba" id="btnMuRes" onclick="runMu(true)" style="display:none">↻ ادامه</button>
+          <button type="button" class="b stop-big" id="btnMuStp" onclick="stopAll()" style="display:none">⛔ توقف فوری</button>
+        </div>
+        <div class="pw"><div class="pb" id="muPb"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:.79rem;font-weight:700;"><span id="muSt" style="color:var(--pr)">آماده</span><span id="muTm" style="color:var(--nv)"></span></div>
+        <div class="lg-wrap">
+          <div class="lg-bar"><strong>📋 گزارش چندمرحله‌ای</strong><div style="display:flex;gap:4px;"><label style="margin:0;font-size:.72rem;gap:3px;"><input type="checkbox" id="muOnlyErr" onchange="rndLog('mu')" style="width:auto"/> فقط خطاها</label><button type="button" class="b bs bxs" onclick="copyLog('mu')">📋 کپی</button></div></div>
+          <div class="lg" id="muLog" style="min-height:170px;">گزارش...</div>
+        </div>
+      </div>
+    </div>
+    <div><div class="c">
+      <div class="ct"><span>۳. خروجی چندمرحله‌ای</span><div style="display:flex;gap:5px;"><span class="bg" id="muOutB">۰ کلمه</span><button type="button" class="b ba bsm" onclick="dlMuZip()">📦 ZIP همه</button></div></div>
+      <div class="stbs" id="muOutTabs"></div>
+      <div class="tb">
+        <div style="display:flex;gap:4px;flex-wrap:wrap;"><select id="muIss" style="width:auto;min-width:140px;" onchange="rndMuOut()"><option value="ALL">متن کامل</option></select><button type="button" class="b bs bsm" onclick="muRaw=!muRaw;this.textContent=muRaw?'پیش‌نمایش':'ویرایش/Markdown';rndMuOut()">ویرایش/Markdown</button><button type="button" class="b bp bsm" onclick="openSendMsgModal('mu')">📡 ارسال به پیام‌رسان</button></div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;"><button type="button" class="b bs bsm" onclick="cpMu()">کپی</button><button type="button" class="b bs bsm" onclick="dlMu('txt')">.txt</button><button type="button" class="b bs bsm" onclick="dlMu('md')">.md</button><button type="button" class="b bp bsm" onclick="dlMu('docx')">📄 Word</button><button type="button" class="b ba bsm" onclick="dlMu('pdf')">📕 PDF</button></div>
+      </div>
+      <div id="muPrev" class="pv"><p style="color:var(--mt);text-align:center;margin-top:120px;">نتیجه اینجا نمایش داده می‌شود.</p></div>
+      <textarea id="muRaw" class="raw" style="display:none;" oninput="onMuRawInput(this.value)"></textarea>
+    </div></div>
+  </div></section>
+
+  <!-- تب ۳: تلگرام، بله و ایتا (دریافت صوت + دستور و ارسال) -->
+  <section class="v" id="page-msg">
+    <div class="g2">
+      <div class="c">
+        <div class="ct"><span>📥 صندوق صوت و دستورات از تلگرام / بله <button type="button" class="qbtn" onclick="openHelpModal('messenger')">؟</button></span></div>
+        <div id="msgAuthWarn" class="h" style="padding:8px;background:var(--as);border-radius:7px;margin-bottom:8px;">برای دریافت از تلگرام یا بله و ارسال مستقیم به ایتا، از دکمه <b>«🔐 اتصال تیمی / ورود»</b> به سرور مرکز (`Aicenter`) متصل شوید.</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
+          <button type="button" class="b bn bsm" id="btnFetchBale" onclick="fetchInbox('bale')">📥 دریافت از بله (بدون فیلترشکن)</button>
+          <button type="button" class="b bp bsm" id="btnFetchTg" onclick="fetchInbox('telegram')">📥 دریافت از تلگرام</button>
+          <button type="button" class="b bs bsm" id="btnAckInbox" onclick="ackCurInbox()" style="display:none;">✓ پاک کردن پیام‌های خوانده‌شده</button>
+        </div>
+        <div class="h" style="padding:7px;background:var(--s2);border:1px solid var(--bd);border-radius:7px;margin-bottom:8px;">
+          <b>راهنمای پیام دستوری در بله یا تلگرام:</b> صوت خود را به ربات بفرستید و در کپشن (توضیح) صوت بنویسید:<br/>
+          <code>#مراحل: خام، روان، خلاصه | #مقصد: ایتا، بله | #عنوان: جلسه ۴۹ مکاسب</code><br/>
+          سپس اینجا دکمه <b>«⚡ دانلود و اجرای خودکار»</b> را بزنید تا مراحل اجرا و خروجی مستقیم به مقصد ارسال شود!
+        </div>
+        <div id="inboxList" class="sl" style="max-height:420px;"><div class="h" style="text-align:center;padding:18px;">هنوز پیامی دریافت نشده است.</div></div>
+      </div>
+
+      <div class="c">
+        <div class="ct"><span>📤 ارسال دستی پیام یا فایل به ایتا / بله / تلگرام</span></div>
+        <div class="f"><label>مقصدها</label><div style="display:flex;gap:12px;flex-wrap:wrap;padding:6px 0;">
+          <label style="margin:0;cursor:pointer;"><input type="checkbox" id="qDstEitaa" checked style="width:auto"/> ✈️ ایتا</label>
+          <label style="margin:0;cursor:pointer;"><input type="checkbox" id="qDstBale" style="width:auto"/> 💬 بله</label>
+          <label style="margin:0;cursor:pointer;"><input type="checkbox" id="qDstTg" style="width:auto"/> 📨 تلگرام</label>
+        </div></div>
+        <div class="f"><label>آیدی چت سفارشی (اختیاری - اگر خالی باشد از کانال پیش‌فرض مرکز استفاده می‌شود)</label><input type="text" id="qCustomChat" dir="ltr" placeholder="مثلاً @channel یا شناسه عددی"/></div>
+        <div class="f"><label>متن پیام</label><textarea id="qSendTxt" rows="7" placeholder="متن دلخواه یا اطلاعیه برای ارسال..."></textarea></div>
+        <button type="button" class="b bp" onclick="sendQuickTextMsg()">🚀 ارسال پیام متنی</button>
+        <div id="qSendRes" class="h" style="margin-top:8px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- تب ۴: مدیریت آزاد مراحل، دسته‌بندی‌ها، پرامپت‌ها و پروفایل عمومی/اختصاصی -->
+  <section class="v" id="page-pr"><div class="plg">
+    <div>
+      <div class="c">
+        <div class="ct"><span>پروفایل (عمومی / اختصاصی) <button type="button" class="qbtn" onclick="openHelpModal('profiles')">؟</button></span></div>
+        <div class="f"><select id="pSel" onchange="chgProf()"></select></div>
+        <div id="profScopeBadge" class="h" style="margin-bottom:6px;"></div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px;">
+          <button type="button" class="b bp bsm" style="flex:1" onclick="savePr(true)">💾 ذخیره</button>
+          <button type="button" class="b bs bsm" onclick="newProf('personal')">+ اختصاصی</button>
+          <button type="button" class="b bn bsm" id="btnNewPubProf" onclick="newProf('public')">+ عمومی مرکز</button>
+          <button type="button" class="b bds bsm" onclick="delProf()">حذف</button>
+        </div>
+        <button type="button" class="b ba" style="width:100%;margin-bottom:5px;" onclick="dlBaked()">🎁 دانلود HTML آماده اشتراک</button>
+        <div style="display:flex;gap:4px;"><button type="button" class="b bs bsm" style="flex:1" onclick="expJson()">⬇ بکاپ .json</button><button type="button" class="b bs bsm" style="flex:1" onclick="$('impJ').click()">⬆ ورود .json</button><input type="file" id="impJ" accept=".json" style="display:none;" onchange="impJson(this.files[0])"/></div>
+        <button type="button" class="b bds bsm" style="width:100%;margin-top:5px;" onclick="rstProf()">↺ بازگردانی پیش‌فرض</button>
+      </div>
+
+      <div class="c">
+        <div class="ct"><span>بخش‌های تنظیمات پروفایل</span></div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <button type="button" class="b bp bsm" id="pm-prompts" onclick="selPrMode('prompts')">📝 دسته‌ها و پرامپت‌ها</button>
+          <button type="button" class="b bs bsm" id="pm-stages" onclick="selPrMode('stages')">🔀 مراحل خط تولید (افزودن/حذف)</button>
+          <button type="button" class="b bs bsm" id="pm-multi" onclick="selPrMode('multi')">📚 تنظیمات چندمرحله‌ای</button>
+        </div>
+      </div>
+
+      <div class="c" id="catSideCard">
+        <div class="ct"><span>دسته‌بندی‌ها</span><button type="button" class="b bp bxs" onclick="addCategory()">+ دسته جدید</button></div>
+        <div id="catButtonsBox" style="display:flex;flex-direction:column;gap:4px;"></div>
+      </div>
+    </div>
+
+    <div>
+      <!-- ویرایشگر پرامپت‌ها -->
+      <div class="c" id="pCardL">
+        <div class="ct">
+          <span id="pCatT">پرامپت‌ها</span>
+          <div style="display:flex;gap:4px;align-items:center;">
+            <button type="button" class="b bs bxs" id="btnImpAicP" style="display:none;" onclick="openImpAicPrompts()">⬇ ورود از Aicenter</button>
+            <button type="button" class="b bs bxs" onclick="renCategory()">✏️ تغییر نام دسته</button>
+            <button type="button" class="b bds bxs" onclick="delCategory()">حذف دسته</button>
+            <span class="bg bok" id="pSv">ذخیره خودکار</span>
+          </div>
+        </div>
+        <div class="r2" style="grid-template-columns:240px 1fr;gap:10px;">
+          <div><button type="button" class="b bp bsm" style="width:100%;margin-bottom:5px;" onclick="addPI()">+ پرامپت جدید</button><div id="pList"></div></div>
+          <div>
+            <div class="f"><label>نام پرامپت</label><div style="display:flex;gap:4px;"><input type="text" id="piT" oninput="updPI()"/><button type="button" class="b ba bsm" id="btnDefP" onclick="defPI()" title="پیش‌فرض این دسته">★</button><button type="button" class="b bds bsm" onclick="delPI()">حذف</button></div></div>
+            <div class="f"><label>موتور مخصوص (اختیاری)</label><select id="piEng" onchange="updPI()"></select></div>
+            <div class="f" style="margin:0"><label>متن دستور (پرامپت)</label><textarea id="piB" rows="12" oninput="updPI()"></textarea></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ویرایشگر مراحل خط تولید -->
+      <div class="c" id="pCardS" style="display:none;">
+        <div class="ct"><span>مدیریت مراحل خط تولید (کاملاً باز)</span><button type="button" class="b bp bsm" onclick="addStage()">+ افزودن مرحله جدید</button></div>
+        <div class="h" style="margin-bottom:8px;">می‌توانید مراحل جدید (مثلاً «خلاصه‌سازی»، «استخراج آیات» یا مدل دیگر) بسازید، ترتیب را عوض کنید یا مراحل قبلی را جایگزین نمایید.</div>
+        <div id="stagesEditorList"></div>
+      </div>
+
+      <!-- ویرایشگر چندمرحله‌ای -->
+      <div class="c" id="pCardM" style="display:none;">
+        <div class="ct"><span>مراحل و پرامپت‌های تقریر چندمرحله‌ای</span><div style="display:flex;align-items:center;gap:6px;"><label style="margin:0">تعداد در دسته:</label><input type="number" id="mBs" min="2" max="10" value="4" style="width:55px" onchange="updMP()"/><button type="button" class="b bp bxs" onclick="addMultiStep()">+ گام خروجی جدید</button></div></div>
+        <div class="stbs" id="mpTabs"></div>
+        <div id="mpStepMeta" style="display:none;margin-bottom:8px;" class="r2">
+          <div class="f"><label>نام این گام</label><input type="text" id="mpStepLbl" oninput="updMultiStepMeta()"/></div>
+          <div class="f"><label>ورودی این گام</label><select id="mpStepSrc" onchange="updMultiStepMeta()"><option value="raw">جلسات / فیش خام</option><option value="prev">خروجی گام قبلی</option></select></div>
+        </div>
+        <textarea id="mpBox" rows="13" oninput="updMP()"></textarea>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- تب ۵: سابقه کامل -->
+  <section class="v" id="page-hi"><div class="c">
+    <div class="ct"><span>🗂️ سابقه کامل تمام جلسات (موفق، متوقف‌شده و خطادار)</span><div style="display:flex;gap:4px;"><button type="button" class="b bs bsm" onclick="rndHist()">↻ بروزرسانی</button><button type="button" class="b bs bsm" onclick="expFullBackup()">💾 بکاپ کامل (.json)</button><button type="button" class="b bds bsm" onclick="clrHist()">پاک</button></div></div>
+    <div id="hiWrap"></div>
+  </div></section>
+
+  <!-- تب ۶: آمار و راهنمای جامع -->
+  <section class="v" id="page-st"><div class="r2" style="align-items:start;">
+    <div class="c"><div class="ct"><span>📊 آمار مصرف و هزینه</span><button type="button" class="b bds bxs" onclick="rstTok()">صفر کردن</button></div><div id="tokWrap" style="overflow-x:auto;"></div><div class="h" style="margin-top:6px"><a href="https://aistudio.google.com/usage" target="_blank" rel="noopener" style="color:var(--nv);font-weight:700;">↗ مشاهده سهمیه رایگان روزانه در AI Studio</a></div></div>
+    <div class="c"><div class="ct"><span>📖 راهنمای جامع سریع</span></div>
+      <div style="font-size:.84rem;line-height:1.85">
+        <p><b>۱. ارتباط با Aicenter و پروفایل عمومی:</b> از دکمه <b>«🔐 اتصال تیمی / ورود»</b> در بالای صفحه، لینک وب‌اپ Google Apps Script و کد دسترسی خودتان را وارد کنید تا پروفایل عمومی مرکز، دسترسی‌های مدیر، ارسال فایل به ایتا/بله/تلگرام و ذخیره درایو فعال شود. بدون ورود هم می‌توانید کاملاً مستقل کار کنید.</p>
+        <p><b>۲. آزادی کامل در دسته‌ها و مراحل:</b> در تب <b>«⚙️ مراحل، دسته‌ها و پرامپت‌ها»</b> می‌توانید دسته جدید (مثل خلاصه‌سازی) بسازید، مراحل را اضافه یا جایگزین کنید و خروجی PDF، Word، Markdown یا ZIP بگیرید.</p>
+        <p><b>۳. اتوماسیون پیام‌رسان‌ها:</b> فایل صوتی + دستور `#مراحل: ... | #مقصد: ایتا` را به ربات <b>بله</b> یا <b>تلگرام</b> بفرستید، سپس در تب <b>«📡 تلگرام، بله و ایتا»</b> با یک دکمه اجرا و به کانال ایتا/بله/تلگرام ارسال کنید.</p>
+      </div>
+    </div>
+  </div></section>
+</div>
+
+<!-- مودال‌ها -->
+<div class="mb" id="pMod"><div class="md"><h3 style="margin-top:0">افزودن دستی جلسه</h3><div class="f"><label>نام جلسه</label><input type="text" id="pmT"/></div><div class="f"><label>متن</label><textarea id="pmB" rows="7"></textarea></div><div style="display:flex;gap:5px;justify-content:flex-end;"><button type="button" class="b bs" onclick="$('pMod').style.display='none'">انصراف</button><button type="button" class="b bp" onclick="addPM()">افزودن</button></div></div></div>
+
+<div class="mb" id="kMod"><div class="md"><h3 style="margin-top:0">🔑 مدیریت کلیدهای API</h3><div class="f"><label>Google Gemini</label><input type="password" dir="ltr" id="mkGem"/></div><div class="f"><label>OpenRouter</label><input type="password" dir="ltr" id="mkOr"/></div><div class="f"><label>OpenAI</label><input type="password" dir="ltr" id="mkOai"/></div><div style="display:flex;gap:5px;justify-content:flex-end;"><button type="button" class="b bs" onclick="$('kMod').style.display='none'">بستن</button><button type="button" class="b bp" onclick="saveKeysModal()">ذخیره</button></div></div></div>
+
+<div class="mb" id="mMod"><div class="md"><h3 style="margin-top:0">🤖 مدیریت مدل‌های دلخواه</h3><div class="r2"><div class="f"><label>شناسه دقیق مدل</label><input type="text" dir="ltr" id="cmId" placeholder="gemini-4-hydrogen"/></div><div class="f"><label>نام نمایشی</label><input type="text" id="cmLb"/></div></div><div class="r2"><div class="f"><label>سرویس</label><select id="cmPv"><option value="gemini">Gemini</option><option value="openrouter">OpenRouter</option><option value="openai">OpenAI</option></select></div><div class="f"><label>سطح تفکر</label><select id="cmTh"><option value="none">ندارد</option><option value="LOW,MEDIUM,HIGH">تا HIGH</option><option value="LOW,MEDIUM,HIGH,XHIGH">تا XHIGH</option></select></div></div><div class="r2"><div class="f"><label>قیمت ورودی $/1M</label><input type="number" id="cmIp" step="0.01" value="1"/></div><div class="f"><label>قیمت خروجی $/1M</label><input type="number" id="cmOp" step="0.01" value="5"/></div></div><label style="display:flex;align-items:center;gap:5px;margin-bottom:7px;"><input type="checkbox" id="cmTmp" checked style="width:auto"/> پشتیبانی از دما (در Gemini 3.6+/4 خاموش بگذارید)</label><div style="display:flex;gap:5px;margin-bottom:8px;"><button type="button" class="b bp bsm" onclick="addCustModel()">+ ذخیره مدل</button><button type="button" class="b bs bsm" onclick="$('mMod').style.display='none'">بستن</button></div><div id="cmList" class="sl"></div></div></div>
+
+<div class="mb" id="gdMod"><div class="md"><h3 style="margin-top:0">☁️ اتصال مستقیم به Google Drive (OAuth)</h3><div id="gdWarn" class="h" style="padding:7px;background:var(--as);border-radius:7px;margin-bottom:7px;display:none;"></div><div class="h" style="margin-bottom:7px;">توجه: اگر به سرور `Aicenter` متصل باشید، دکمه <b>«☁️ ذخیره سریع در Drive سرور»</b> بدون نیاز به Client ID کار می‌کند.</div><div class="f"><label>Client ID</label><input type="text" dir="ltr" id="gdCid" oninput="lsSet('ts_gdcid',this.value.trim())"/></div><div class="h" style="margin-bottom:7px;">Redirect URI: <code id="gdRed"></code></div><div style="display:flex;gap:5px;flex-wrap:wrap;"><button type="button" class="b bn bsm" onclick="gdAuth()">🔑 ورود گوگل</button><button type="button" class="b bp bsm" id="btnGdUp" onclick="gdBackup()" disabled>⬆ ذخیره بکاپ در Drive</button><button type="button" class="b bs bsm" id="btnGdDn" onclick="gdRestore()" disabled>⬇ بازیابی از Drive</button><button type="button" class="b bs bsm" onclick="$('gdMod').style.display='none'">بستن</button></div><div id="gdMsg" class="h" style="margin-top:6px;"></div></div></div>
+
+<div class="mb" id="teamMod"><div class="md"><h3 style="margin-top:0">🔐 اتصال تیمی به سرور مرکز (Aicenter)</h3><div class="h" style="margin-bottom:8px;">با وارد کردن لینک وب‌اپ Google Apps Script و کد دسترسی اختصاصی خودتان، دسترسی‌های مدیر، پروفایل عمومی، ایتا/بله/تلگرام و درایو فعال می‌شوند.</div><div class="f"><label>لینک وب‌اپ Google Apps Script</label><input type="text" dir="ltr" id="tmGasUrl" placeholder="https://script.google.com/macros/s/.../exec"/></div><div class="f"><label>کد دسترسی (رمز عبور عضو یا مدیر)</label><input type="password" dir="ltr" id="tmCode"/></div><div id="tmStatus" class="h" style="margin-bottom:8px;"></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;"><button type="button" class="b bds bsm" onclick="teamLogout()">قطع اتصال (حالت مستقل)</button><button type="button" class="b bs" onclick="$('teamMod').style.display='none'">بستن</button><button type="button" class="b bp" onclick="teamLogin()">🔓 ورود و همگام‌سازی</button></div></div></div>
+
+<div class="mb" id="styleMod"><div class="md"><h3 style="margin-top:0">🎨 تم ظاهری و شخصی‌سازی استایل متن و Word</h3>
+  <div class="f"><label>تم صفحه</label><div class="seg" style="grid-template-columns:1fr 1fr 1fr;"><button type="button" id="th-light" onclick="setTheme('light')">☀️ روشن</button><button type="button" id="th-dark" onclick="setTheme('dark')">🌙 شب</button><button type="button" id="th-warm" onclick="setTheme('warm')">📜 کاغذی</button></div></div>
+  <div class="r2">
+    <div class="f"><label>فونت پیش‌نمایش و Word</label><select id="stFont" onchange="updStyle()"><option value="IRMitra">IRMitra (پیشنهادی کتابی)</option><option value="Vazirmatn">Vazirmatn (مدرن)</option><option value="B Nazanin">B Nazanin</option><option value="Tahoma">Tahoma</option></select></div>
+    <div class="f"><label>اندازه قلم پیش‌نمایش (px)</label><input type="number" id="stSize" min="13" max="22" value="16.5" step="0.5" oninput="updStyle()"/></div>
+    <div class="f"><label>سایز متن اصلی Word (pt)</label><input type="number" id="stWordPt" min="11" max="18" value="14" oninput="updStyle()"/></div>
+    <div class="f"><label>فاصله خطوط</label><input type="number" id="stLh" min="1.4" max="2.5" step="0.05" value="1.95" oninput="updStyle()"/></div>
+    <div class="f"><label>رنگ تیترها</label><input type="color" id="stHdCol" value="#0f2c59" oninput="updStyle()" style="height:36px;padding:2px;"/></div>
+    <div class="f"><label>چیدمان متن</label><select id="stAlign" onchange="updStyle()"><option value="justify">تراز دوطرفه (Justify)</option><option value="right">راست‌چین ساده</option></select></div>
+  </div>
+  <div style="display:flex;gap:6px;justify-content:flex-end;"><button type="button" class="b bs" onclick="rstStyle()">بازنشانی</button><button type="button" class="b bp" onclick="$('styleMod').style.display='none'">تایید</button></div>
+</div></div>
+
+<div class="mb" id="sendMsgMod"><div class="md"><h3 style="margin-top:0">📡 ارسال خروجی به ایتا / بله / تلگرام</h3>
+  <div class="f"><label>انتخاب پیام‌رسان‌های مقصد</label><div style="display:flex;gap:14px;flex-wrap:wrap;padding:5px 0;">
+    <label style="margin:0;cursor:pointer;"><input type="checkbox" id="smEitaa" checked style="width:auto"/> ✈️ ایتا</label>
+    <label style="margin:0;cursor:pointer;"><input type="checkbox" id="smBale" style="width:auto"/> 💬 بله</label>
+    <label style="margin:0;cursor:pointer;"><input type="checkbox" id="smTg" style="width:auto"/> 📨 تلگرام</label>
+  </div></div>
+  <div class="r2">
+    <div class="f"><label>نوع ارسال</label><select id="smType"><option value="docx">فایل Word (.docx) + کپشن</option><option value="text">متن کامل به عنوان پیام</option><option value="md">فایل Markdown (.md) + کپشن</option><option value="html">فایل چاپی قابل ذخیره PDF (.html)</option></select></div>
+    <div class="f"><label>آیدی چت سفارشی (اختیاری)</label><input type="text" id="smChatId" dir="ltr" placeholder="پیش‌فرض مرکز"/></div>
+  </div>
+  <div class="f"><label>تیتر / نام فایل</label><input type="text" id="smTitle"/></div>
+  <div class="f"><label>متن همراه / کپشن دلخواه</label><textarea id="smCaption" rows="4" placeholder="توضیح یا معرفی جلسه که همراه فایل/متن ارسال شود..."></textarea></div>
+  <label style="margin-bottom:8px;cursor:pointer;"><input type="checkbox" id="smPin" style="width:auto"/> 📌 سنجاق (Pin) در کانال ایتا</label>
+  <div id="smStatus" class="h" style="margin-bottom:8px;"></div>
+  <div style="display:flex;gap:6px;justify-content:flex-end;"><button type="button" class="b bs" onclick="$('sendMsgMod').style.display='none'">بستن</button><button type="button" class="b bp" id="btnSmSend" onclick="execSendMsgModal()">🚀 ارسال الان</button></div>
+</div></div>
+
+<div class="mb" id="pushAicMod"><div class="md"><h3 style="margin-top:0">🏢 ارسال مستقیم به اتاق فرمان (Aicenter)</h3>
+  <div class="f"><label>مقصد در Aicenter</label><select id="paKind" onchange="onPaKind()"><option value="worklog">گزارش پیشرفت روی یک کار موجود</option><option value="task">ثبت به عنوان کار جدید</option><option value="note">ثبت در دفترچه تجربیات</option><option value="prompt">ثبت در خزانه پرامپت‌ها</option></select></div>
+  <div class="f" id="paTaskWrap"><label>انتخاب کار در Aicenter</label><select id="paTask"></select></div>
+  <div class="f" id="paProjWrap" style="display:none;"><label>پروژه مرتبط (اختیاری)</label><select id="paProj"></select></div>
+  <div class="f"><label>عنوان</label><input type="text" id="paTitle"/></div>
+  <div class="f"><label>متن ارسالی</label><textarea id="paText" rows="6"></textarea></div>
+  <div style="display:flex;gap:6px;justify-content:flex-end;"><button type="button" class="b bs" onclick="$('pushAicMod').style.display='none'">بستن</button><button type="button" class="b bp" onclick="execPushAic()">🚀 ثبت در Aicenter</button></div>
+</div></div>
+
+<div class="mb" id="impAicMod"><div class="md"><h3 style="margin-top:0">⬇ ورود پرامپت از خزانه Aicenter</h3><div id="impAicList" class="sl" style="max-height:360px;"></div><div style="display:flex;justify-content:flex-end;margin-top:8px;"><button type="button" class="b bs" onclick="$('impAicMod').style.display='none'">بستن</button></div></div></div>
+
+<div class="mb" id="helpMod"><div class="md"><h3 id="helpTitle" style="margin-top:0">❓ راهنما</h3><div id="helpBody" style="font-size:.86rem;line-height:1.9;"></div><div style="display:flex;justify-content:flex-end;margin-top:10px;"><button type="button" class="b bp" onclick="$('helpMod').style.display='none'">متوجه شدم</button></div></div></div>
+
+<script id="baked-cfg" type="application/json">
+/*__BC_S__*/
+{"schemaVer":5,"activeProfileId":"pub_std","customModels":[],"usdRate":70000,"profiles":{"pub_std":{"id":"pub_std","name":"پروفایل عمومی استاندارد مرکز","scope":"public","ownerId":"","ownerName":"مرکز","updatedAt":"2026-01-01T00:00:00.000Z","data":{"categories":[{"id":"audio","name":"پیاده‌سازی صوت"},{"id":"smooth","name":"روان‌سازی متن"},{"id":"heading","name":"تیترگذاری و ساختار"},{"id":"taqrir","name":"تقریرنویسی"},{"id":"summary","name":"خلاصه‌سازی"}],"stages":[{"id":"st1","name":"متن خام","catId":"audio","enabled":true,"needsAudio":true,"model":""},{"id":"st2","name":"متن روان","catId":"smooth","enabled":true,"needsAudio":false,"model":""},{"id":"st3","name":"تیترگذاری","catId":"heading","enabled":true,"needsAudio":false,"model":""},{"id":"st4","name":"تقریر نهایی","catId":"taqrir","enabled":false,"needsAudio":false,"model":""}],"defaults":{"audio":"a1","smooth":"s1","heading":"h1","taqrir":"t1","summary":"sum1"},"prompts":{"audio":[{"id":"a1","engine":"","title":"پیاده‌سازی دقیق درس خارج","prompt":"صوت درس خارج را کامل و بدون خلاصه‌سازی پیاده کن؛ القاب حوزوی (امام، آقای حکیم، حاج شیخ) و عبارات عربی دقیق باشند."}],"smooth":[{"id":"s1","engine":"","title":"روان‌سازی وفادارانه","prompt":"متن خام را بدون حذف هیچ نکته علمی یا افزودن مطلب بیرونی، روان و با نقطه‌گذاری و پاراگراف‌بندی دقیق ویرایش کن."}],"heading":[{"id":"h1","engine":"","title":"تیترگذاری درختی","prompt":"متن را بدون تغییر محتوا با تیترهای Markdown (# تا ####)، بلوک > برای نصوص عربی، *ایتالیک* برای نام کتب و [**جمع‌بندی:** ...] مرتب کن."}],"taqrir":[{"id":"t1","engine":"","title":"تقریر جامع کلاسی","prompt":"متن را به تقریر کتابی و منظم با تیترهای (# تا ####)، حفظ دقیق القاب (امام، آقای حکیم، حاج شیخ)، نصوص در بلوک >، نام کتب با *ایتالیک* و [**جمع‌بندی:** ...] تبدیل کن."},{"id":"t2","engine":"","title":"تقریر استدلالی موسوعه","prompt":"تقریر استدلالی به سبک موسوعه بساز: تحریر محل نزاع، اقوال، جهات استدلالی، پاسخ اشکالات و [**جمع‌بندی:** ...]. بدون مطلب بیرونی."}],"summary":[{"id":"sum1","engine":"","title":"خلاصه ساختاریافته و نکات کلیدی","prompt":"خلاصه‌ای دقیق از این درس با ذکر: ۱. موضوع و محور بحث، ۲. رئوس استدلال‌ها و اقوال، ۳. نتیجه نهایی در بخش [**جمع‌بندی:** ...] تهیه کن."}]},"multi":{"batchSize":4,"p0":"محتوای علمی جلسات را بدون حذف، به تفکیک مسئله با قالب زیر استخراج کن:\n<<<ISSUE_START>>>\nID: شناسه\nTITLE: عنوان\n<<<CONTENT>>>\n[متن]\n<<<ISSUE_END>>>","steps":[{"id":"type1","name":"نوع ۱: جامع","src":"raw","prompt":"فیش‌ها/جلسات را به تقریر واحد جامع با حذف تکرار، تیتر (# تا ####)، حفظ القاب، بلوک > برای نصوص، *ایتالیک* برای کتب و [**جمع‌بندی:** ...] تبدیل کن."},{"id":"type2","name":"نوع ۲: موسوعه","src":"prev","prompt":"تقریر استدلالی سبک موسوعه بساز: محل نزاع، اقوال با *ایتالیک* کتب، جهات استدلالی، نصوص در بلوک > و [**جمع‌بندی:** ...]."},{"id":"custom","name":"شخصی","src":"raw","prompt":"متن را بدون مطلب بیرونی به نثری علمی، تیترگذاری‌شده و دارای [**جمع‌بندی:** ...] تنظیم کن."}]}}}}}
+/*__BC_E__*/
+</script>
+
+<script>
+"use strict";
+const SCHEMA_VER = 5;
+const $=id=>document.getElementById(id);
+try{$("jsHealthBadge").textContent="فعال ✓";$("jsHealthBadge").style.background="#067647";}catch{}
+
+const DEF_M=[
+  {id:"gemini-4-hydrogen",lb:"Gemini 4 Hydrogen (جدید/سریع)",pv:"gemini",tmp:false,lv:["LOW","MEDIUM","HIGH","XHIGH"],ip:1.5,op:7.5},
+  {id:"gemini-4-neon",lb:"Gemini 4 Neon",pv:"gemini",tmp:false,lv:["LOW","MEDIUM","HIGH","XHIGH"],ip:3,op:15},
+  {id:"gemini-4-carbon",lb:"Gemini 4 Carbon",pv:"gemini",tmp:false,lv:["LOW","MEDIUM","HIGH","XHIGH"],ip:6,op:24},
+  {id:"gemini-4-argon",lb:"Gemini 4 Argon",pv:"gemini",tmp:false,lv:["LOW","MEDIUM","HIGH","XHIGH"],ip:2,op:10},
+  {id:"gemini-3.8-flash",lb:"Gemini 3.8 Flash (رایگان)",pv:"gemini",tmp:false,lv:["LOW","MEDIUM","HIGH"],ip:.75,op:3.75},
+  {id:"gemini-3.6-flash",lb:"Gemini 3.6 Flash (رایگان/روزانه بالا)",pv:"gemini",tmp:false,lv:["LOW","MEDIUM","HIGH"],ip:.75,op:3.75},
+  {id:"gemini-3.5-flash-lite",lb:"Gemini 3.5 Flash-Lite (رایگان/سهمیه بالا)",pv:"gemini",tmp:true,lv:["LOW","MEDIUM","HIGH"],ip:.3,op:2.5},
+  {id:"gemini-3.1-flash-lite",lb:"Gemini 3.1 Flash-Lite (رایگان/سهمیه بالا)",pv:"gemini",tmp:true,lv:["LOW","MEDIUM","HIGH"],ip:.25,op:1.5},
+  {id:"gemini-3.5-transcribe",lb:"Gemini 3.5 Transcribe (تخصصی صوت)",pv:"gemini",tmp:true,lv:["LOW","MEDIUM","HIGH"],ip:.5,op:2.5},
+  {id:"gemini-3.1-pro-preview",lb:"Gemini 3.1 Pro Preview",pv:"gemini",tmp:false,lv:["LOW","MEDIUM","HIGH"],ip:2,op:12},
+  {id:"gemini-3-flash-preview",lb:"Gemini 3 Flash Preview (رایگان)",pv:"gemini",tmp:false,lv:["LOW","MEDIUM","HIGH"],ip:.5,op:3},
+  {id:"gemini-2.5-flash",lb:"Gemini 2.5 Flash (رایگان/صوت و متن)",pv:"gemini",tmp:true,lv:[],ip:.3,op:2.5},
+  {id:"gemini-2.5-pro",lb:"Gemini 2.5 Pro (رایگان)",pv:"gemini",tmp:true,lv:[],ip:1.25,op:10},
+  {id:"deepseek/deepseek-r1",lb:"DeepSeek R1 (OpenRouter)",pv:"openrouter",tmp:false,lv:[],ip:.55,op:2.19},
+  {id:"deepseek/deepseek-chat",lb:"DeepSeek V3 (OpenRouter)",pv:"openrouter",tmp:true,lv:[],ip:.27,op:1.1},
+  {id:"openai/gpt-4o",lb:"GPT-4o (OpenRouter)",pv:"openrouter",tmp:true,lv:[],ip:2.5,op:10}
+];
+
+let SNAP="",idb=null,bCfg=null,ab=null,tmI=null,afMode="audio",afFile=null,afTab="",afEd=false,muRaw=false,wDir=null,gdT=null;
+let keys={gemini:"",openrouter:"",openai:""};
+let app={schemaVer:SCHEMA_VER,activeProfileId:"pub_std",profiles:{},tok:{},customModels:[],liveModels:[],usdRate:70000,style:{theme:"light",font:"IRMitra",size:16.5,wordPt:14,lh:1.95,hdCol:"#0f2c59",align:"justify"}};
+let afState={id:"",title:"",inputTxt:"",outputs:{},done:{},chunks:[],cDone:0,tokens:0,costUsd:0,status:"ready"};
+let muSess=[],muTab="type1",muCache={id:"",iss:{},bDone:0,stepRes:{},fRes:{},tokens:0,costUsd:0};
+let curPrMode="prompts",curCat="audio",curPid="",curMpId="type1";
+let team={gasUrl:"",code:"",user:null,config:{},aic:{prompts:[],projects:[],tasks:[]},inbox:[],inboxOffset:0,inboxPlat:""};
+let logs={af:[],mu:[]},sendCtx="af";
+
+const cln=o=>JSON.parse(JSON.stringify(o)),uid=(p="id")=>p+"_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,6);
+const cw=s=>(String(s||"").trim().match(/\S+/g)||[]).length;
+const esc=s=>String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const dl=(b,n)=>{const u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000);};
+const allM=()=>{const m=new Map();DEF_M.forEach(x=>m.set(x.id,x));(app.liveModels||[]).forEach(x=>{if(!m.has(x.id))m.set(x.id,x);});(app.customModels||[]).forEach(x=>m.set(x.id,x));return[...m.values()];};
+const getSp=id=>allM().find(m=>m.id===id)||{id:id||"gemini-2.5-flash",lb:id||"Custom",pv:"gemini",tmp:!/gemini-4|gemini-3\.[68]|gemini-3\.1|gemini-3-flash/i.test(id||""),lv:/gemini-4/i.test(id||"")?["LOW","MEDIUM","HIGH","XHIGH"]:(/gemini-3/i.test(id||"")?["LOW","MEDIUM","HIGH"]:[]),ip:1,op:4};
+const fmtTm=u=>Math.round((u||0)*(app.usdRate||70000)).toLocaleString("fa-IR")+" ت";
+const lsG=k=>{try{return localStorage.getItem(k);}catch{return null;}},lsSet=(k,v)=>{try{localStorage.setItem(k,v);}catch{}};
+
+/* IndexedDB Storage (v7 with non-destructive fallback to v6) */
+function openDB(){return new Promise(r=>{try{if(!window.indexedDB)return r(null);const q=indexedDB.open("TaqrirDB_v7",1);q.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains("kv"))d.createObjectStore("kv");if(!d.objectStoreNames.contains("hist"))d.createObjectStore("hist",{keyPath:"id"});};q.onsuccess=e=>{idb=e.target.result;r(idb);};q.onerror=()=>r(null);}catch{r(null);}});}
+const getKv=k=>new Promise(r=>{if(!idb){try{const v=lsG("kv5_"+k);return r(v?JSON.parse(v):null);}catch{return r(null);}}try{const q=idb.transaction("kv","readonly").objectStore("kv").get(k);q.onsuccess=()=>r(q.result??null);q.onerror=()=>r(null);}catch{r(null);}});
+const saveKv=(k,v)=>{try{if(!idb){lsSet("kv5_"+k,JSON.stringify(v));return Promise.resolve(true);}return new Promise(r=>{const tx=idb.transaction("kv","readwrite");tx.objectStore("kv").put(v,k);tx.oncomplete=()=>r(true);tx.onerror=()=>r(false);});}catch{return Promise.resolve(false);}};
+const putHist=v=>{if(!idb){const h=JSON.parse(lsG("kv5_hist")||"[]").filter(x=>x.id!==v.id);h.push(v);lsSet("kv5_hist",JSON.stringify(h));return Promise.resolve(true);}return new Promise(r=>{try{const tx=idb.transaction("hist","readwrite");tx.objectStore("hist").put(v);tx.oncomplete=()=>r(true);tx.onerror=()=>r(false);}catch{r(false);}});};
+const allHist=()=>!idb?Promise.resolve(JSON.parse(lsG("kv5_hist")||"[]")):new Promise(r=>{try{const q=idb.transaction("hist","readonly").objectStore("hist").getAll();q.onsuccess=()=>r(q.result||[]);q.onerror=()=>r([]);}catch{r([]);}});
+const delHistDb=id=>!idb?Promise.resolve(lsSet("kv5_hist",JSON.stringify(JSON.parse(lsG("kv5_hist")||"[]").filter(x=>x.id!==id)))):new Promise(r=>{const tx=idb.transaction("hist","readwrite");tx.objectStore("hist").delete(id);tx.oncomplete=()=>r(true);});
+const clrHistDb=()=>!idb?Promise.resolve(lsSet("kv5_hist","[]")):new Promise(r=>{const tx=idb.transaction("hist","readwrite");tx.objectStore("hist").clear();tx.oncomplete=()=>r(true);});
+
+/* Safe Schema Migration from old versions (v4/v6 -> v5 unified) */
+function migrateLegacyProfile(oldProf, name, id) {
+  const cats=[{id:"audio",name:"پیاده‌سازی صوت"},{id:"smooth",name:"روان‌سازی متن"},{id:"heading",name:"تیترگذاری"},{id:"taqrir",name:"تقریرنویسی"},{id:"summary",name:"خلاصه‌سازی"}];
+  const stages=[{id:"st1",name:"متن خام",catId:"audio",enabled:true,needsAudio:true,model:""},{id:"st2",name:"متن روان",catId:"smooth",enabled:true,needsAudio:false,model:""},{id:"st3",name:"تیترگذاری",catId:"heading",enabled:true,needsAudio:false,model:""},{id:"st4",name:"تقریر نهایی",catId:"taqrir",enabled:false,needsAudio:false,model:""}];
+  const m=oldProf.multi||{};
+  return {
+    id:id||uid("pr"),name:name||"پروفایل قدیمی",scope:"personal",ownerId:team.user?.id||"",ownerName:team.user?.name||"کاربر",updatedAt:new Date().toISOString(),
+    data:{
+      categories:cats,stages,defaults:oldProf.defaults||{audio:"a1",smooth:"s1",heading:"h1",taqrir:"t1"},
+      prompts:{audio:oldProf.audio||[],smooth:oldProf.smooth||[],heading:oldProf.heading||[],taqrir:oldProf.taqrir||[],summary:cln(bCfg.profiles.pub_std.data.prompts.summary)},
+      multi:{batchSize:m.batchSize||4,p0:m.p0||bCfg.profiles.pub_std.data.multi.p0,steps:[
+        {id:"type1",name:"نوع ۱: جامع",src:"raw",prompt:m.p1||bCfg.profiles.pub_std.data.multi.steps[0].prompt},
+        {id:"type2",name:"نوع ۲: موسوعه",src:"prev",prompt:m.p2||bCfg.profiles.pub_std.data.multi.steps[1].prompt},
+        {id:"custom",name:"شخصی",src:"raw",prompt:m.custom||bCfg.profiles.pub_std.data.multi.steps[2].prompt}
+      ]}
+    }
+  };
+}
+async function migrateFromV6IfNeeded() {
+  try {
+    const req = indexedDB.open("TaqrirDB_v6",1);
+    const oldDb = await new Promise(r=>{req.onsuccess=e=>r(e.target.result);req.onerror=()=>r(null);req.onupgradeneeded=()=>{};});
+    if(!oldDb || !oldDb.objectStoreNames.contains("kv")) return;
+    const oldProf = await new Promise(r=>{try{const q=oldDb.transaction("kv","readonly").objectStore("kv").get("prof");q.onsuccess=()=>r(q.result);q.onerror=()=>r(null);}catch{r(null);}});
+    if(oldProf?.profiles){
+      Object.entries(oldProf.profiles).forEach(([nm,op])=>{
+        const id="mig_"+nm.replace(/\s+/g,"_");
+        if(!app.profiles[id]) app.profiles[id]=migrateLegacyProfile(op, nm+" (منتقل‌شده)", id);
+      });
+      await savePr();
+    }
+    if(oldDb.objectStoreNames.contains("hist")){
+      const oh = await new Promise(r=>{try{const q=oldDb.transaction("hist","readonly").objectStore("hist").getAll();q.onsuccess=()=>r(q.result||[]);q.onerror=()=>r([]);}catch{r([]);}});
+      for(const h of oh) await putHist(h);
+    }
+    oldDb.close();
+  } catch {}
+}
+
+document.addEventListener("DOMContentLoaded",async()=>{
+  SNAP="<!DOCTYPE html>\n"+document.documentElement.outerHTML;
+  if(location.hash.includes("access_token=")){
+    if(window.opener){window.opener.postMessage({type:"gd_tok",hash:location.hash},location.origin);window.close();return;}
+    gdT=new URLSearchParams(location.hash.slice(1)).get("access_token");history.replaceState(null,"",location.pathname+location.search);
+  }
+  window.addEventListener("message",e=>{if(e.origin===location.origin&&e.data?.type==="gd_tok"){gdT=new URLSearchParams(e.data.hash.slice(1)).get("access_token");updGdUI();}});
+  try{bCfg=JSON.parse($("baked-cfg").textContent.replace("/*__BC_S__*/","").replace("/*__BC_E__*/","").trim());}catch{bCfg={activeProfileId:"pub_std",customModels:[],usdRate:70000,profiles:{}};}
+
+  await openDB();
+  const savedProf = await getKv("prof5");
+  if(savedProf?.profiles && Object.keys(savedProf.profiles).length){
+    app.profiles = savedProf.profiles;
+    app.activeProfileId = savedProf.activeProfileId || Object.keys(app.profiles)[0];
+  } else {
+    app.profiles = cln(bCfg.profiles);
+    app.activeProfileId = bCfg.activeProfileId || Object.keys(app.profiles)[0];
+    await migrateFromV6IfNeeded();
+  }
+  app.customModels=(await getKv("cmod5"))||bCfg.customModels||[];
+  app.liveModels=(await getKv("lmod5"))||[];
+  app.tok=(await getKv("tok5"))||{};
+  app.usdRate=(await getKv("usd5"))||bCfg.usdRate||70000;$("usdRate").value=app.usdRate;
+  const stStyle = await getKv("style5"); if(stStyle) Object.assign(app.style, stStyle);
+  applyStyle();
+
+  try{const ks=JSON.parse(lsG("ts_keys")||"{}");keys={gemini:ks.gemini||"",openrouter:ks.openrouter||"",openai:ks.openai||""};}catch{}
+  const wh=await getKv("wdir");if(wh){wDir=wh;$("dirBadge").textContent="پوشه: "+wh.name;$("dirBadge").className="bg bok";$("btnDirSync").style.display="inline-flex";}
+
+  // خواندن خودکار اتصال Aicenter از localStorage مشترک روی همان دامنه
+  try {
+    const aicRaw = lsG("ilm_ai_cmd_v4");
+    if(aicRaw){
+      const aic = JSON.parse(aicRaw);
+      if(aic.sync?.gasUrl) team.gasUrl = aic.sync.gasUrl;
+      if(aic.auth?.code) team.code = aic.auth.code;
+      if(aic.auth?.user) team.user = aic.auth.user;
+      if(!keys.gemini && aic.api?.provider==="gemini" && aic.api?.key){ keys.gemini=aic.api.key; lsSet("ts_keys",JSON.stringify(keys)); }
+    }
+  } catch {}
+  if(!team.gasUrl) team.gasUrl = lsG("ts_gasUrl")||"";
+  if(!team.code) team.code = lsG("ts_gasCode")||"";
+
+  // نکته مهم رفرش: میز کار تازه و تمیز شروع می‌شود! اما کار ناتمام را در نوار بازیابی پیشنهاد می‌دهیم
+  const pausedAf = await getKv("af_paused");
+  const pausedMu = await getKv("mu_paused");
+  if(pausedAf?.paused || pausedMu?.paused){
+    const rb=$("recBanner"); rb.style.display="flex";
+    let btns="";
+    if(pausedAf?.paused) btns+=`<button type="button" class="b ba bsm" onclick="recoverWork('af')">↻ بازیابی جلسه ناتمام (${esc(pausedAf.title||'بدون نام')})</button>`;
+    if(pausedMu?.paused) btns+=`<button type="button" class="b bn bsm" onclick="recoverWork('mu')">↻ بازیابی چندمرحله‌ای ناتمام</button>`;
+    rb.innerHTML=`<span>⚠️ یک کار نیمه‌تمام از نشست قبلی ذخیره شده است (میز کار فعلی برای شروع تازه پاک است):</span><div style="display:flex;gap:5px;flex-wrap:wrap;">${btns}<button type="button" class="b bs bsm" onclick="dismissRecovery()">✕ بستن</button></div>`;
+  }
+
+  refMSel();
+  try{const s=JSON.parse(lsG("ts_set")||"{}");if(s.m&&getSp(s.m))$("gModel").value=s.m;if(s.th)$("gThink").value=s.th;if(typeof s.td==="boolean")$("tDef").checked=s.td;if(typeof s.tv==="number")$("tRange").value=s.tv;if(s.to)$("gTimeout").value=s.to;}catch{}
+  onModel(true);setupDrops();refProf();rndAfStagesUI();rndMuModesUI();rndPEd();rndMuSess();rndAfOut();rndMuOut();rndTok();rndHist();updGdUI();applyTeamUI();
+  if(team.gasUrl && team.code) syncTeamNow(true);
+});
+
+async function recoverWork(which){
+  if(which==="af"){const d=await getKv("af_paused");if(d){Object.assign(afState,d);$("afTitle").value=afState.title||"";if(afState.inputTxt){setAfMode("text");$("afTxtIn").value=afState.inputTxt;updAfW();}$("btnAfRes").style.display="inline-flex";rndAfOutTabs();const ks=Object.keys(afState.outputs||{});if(ks.length)swAfTab(ks[ks.length-1]);swPage("af");}}
+  else{const d=await getKv("mu_paused");if(d){muSess=d.sess||[];Object.assign(muCache,d.cache||{});$("btnMuRes").style.display="inline-flex";rndMuSess();refIss();rndMuOutTabs();rndMuOut();swPage("mu");}}
+  $("recBanner").style.display="none";
+}
+async function dismissRecovery(){await saveKv("af_paused",null);await saveKv("mu_paused",null);$("recBanner").style.display="none";}
+
+function resetAfWorkspace(confirmFirst){
+  if(confirmFirst && (Object.values(afState.outputs||{}).some(Boolean) || $("afTxtIn").value.trim()) && !confirm("میز کار فعلی پاک شود؟ (نسخه قبلی در سابقه موجود است)")) return;
+  afState={id:"",title:"",inputTxt:"",outputs:{},done:{},chunks:[],cDone:0,tokens:0,costUsd:0,status:"ready"};
+  $("afTitle").value="";$("afTxtIn").value="";updAfW();clrAudio();$("btnAfRes").style.display="none";
+  $("afPb").style.width="0%";$("afSt").textContent="آماده";$("afInBadge").textContent="میز کار تازه";$("afInBadge").className="bg";
+  logs.af=[];rndLog("af");rndAfStagesUI();rndAfOut();saveKv("af_paused",null);
+}
+
+const swPage=p=>["af","mu","msg","pr","hi","st"].forEach(x=>{$("page-"+x).classList.toggle("active",x===p);$("nav-"+x).classList.toggle("active",x===p);});
+const saveSet=()=>lsSet("ts_set",JSON.stringify({m:$("gModel").value,th:$("gThink").value,td:$("tDef").checked,tv:parseFloat($("tRange").value),to:parseInt($("gTimeout").value,10)||6}));
+const onPvSel=()=>$("apiKey").value=keys[$("pvSel").value]||"";
+const onKey=()=>{keys[$("pvSel").value]=$("apiKey").value.trim();lsSet("ts_keys",JSON.stringify(keys));updKeyB();};
+const updKeyB=()=>{const n=Object.values(keys).filter(Boolean).length,b=$("topApiBadge");b.textContent=n?`کلید API: ${n} فعال ✓`:"کلیدها: ثبت نشده";b.style.background=n?"rgba(6,118,71,.85)":"rgba(180,35,24,.8)";};
+const openKeyModal=()=>{$("mkGem").value=keys.gemini;$("mkOr").value=keys.openrouter;$("mkOai").value=keys.openai;$("kMod").style.display="flex";};
+const saveKeysModal=()=>{keys={gemini:$("mkGem").value.trim(),openrouter:$("mkOr").value.trim(),openai:$("mkOai").value.trim()};lsSet("ts_keys",JSON.stringify(keys));onPvSel();updKeyB();$("kMod").style.display="none";};
+const togKey=()=>$("apiKey").type=$("apiKey").type==="password"?"text":"password";
+
+/* Theme & Style Customizer */
+function applyStyle(){
+  const s=app.style;
+  document.documentElement.setAttribute("data-theme",s.theme||"light");
+  const r=document.documentElement.style;
+  r.setProperty("--pv-font",`"${s.font||'IRMitra'}","Vazirmatn",Tahoma,serif`);
+  r.setProperty("--pv-size",(s.size||16.5)+"px");
+  r.setProperty("--pv-lh",s.lh||1.95);
+  r.setProperty("--pv-hd",s.hdCol||"#0f2c59");
+  r.setProperty("--pv-align",s.align||"justify");
+  ["light","dark","warm"].forEach(t=>{const el=$("th-"+t);if(el)el.className=s.theme===t?"bp":"";});
+}
+function openStyleModal(){
+  const s=app.style;$("stFont").value=s.font||"IRMitra";$("stSize").value=s.size||16.5;$("stWordPt").value=s.wordPt||14;$("stLh").value=s.lh||1.95;$("stHdCol").value=s.hdCol||"#0f2c59";$("stAlign").value=s.align||"justify";
+  applyStyle();$("styleMod").style.display="flex";
+}
+function setTheme(t){app.style.theme=t;applyStyle();saveKv("style5",app.style);}
+function updStyle(){app.style.font=$("stFont").value;app.style.size=parseFloat($("stSize").value)||16.5;app.style.wordPt=parseInt($("stWordPt").value,10)||14;app.style.lh=parseFloat($("stLh").value)||1.95;app.style.hdCol=$("stHdCol").value;app.style.align=$("stAlign").value;applyStyle();saveKv("style5",app.style);}
+function rstStyle(){app.style={theme:"light",font:"IRMitra",size:16.5,wordPt:14,lh:1.95,hdCol:"#0f2c59",align:"justify"};openStyleModal();saveKv("style5",app.style);}
+
+/* Team Integration & Permissions (Aicenter Code.js) */
+const canSt=(perm,def=true)=>{if(!team.user)return def;if(team.user.role==="admin")return true;return!!(team.user.perms?.[perm]);};
+const gasCall=async payload=>{
+  if(!team.gasUrl) throw new Error("آدرس سرور Aicenter تنظیم نشده است.");
+  const r=await fetch(team.gasUrl,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+  const j=await r.json().catch(()=>({}));
+  if(!j.ok) throw new Error(j.error||"خطای سرور مرکز");
+  return j;
+};
+function openTeamModal(){
+  $("tmGasUrl").value=team.gasUrl||"";$("tmCode").value=team.code||"";
+  $("tmStatus").textContent=team.user?`متصل به عنوان: ${team.user.name} (${team.user.role==="admin"?"مدیر":"عضو"})`:"در حال حاضر در حالت مستقل کار می‌کنید.";
+  $("teamMod").style.display="flex";
+}
+async function teamLogin(){
+  const u=$("tmGasUrl").value.trim(),c=$("tmCode").value.trim();
+  if(!u||!c) return alert("لینک سرور و کد دسترسی الزامی است.");
+  $("tmStatus").textContent="⏳ در حال اتصال و همگام‌سازی...";
+  try{
+    team.gasUrl=u;team.code=c;lsSet("ts_gasUrl",u);lsSet("ts_gasCode",c);
+    await syncTeamNow(false);
+    $("teamMod").style.display="none";
+  }catch(e){$("tmStatus").textContent="❌ "+e.message;}
+}
+function teamLogout(){
+  team.code="";team.user=null;lsSet("ts_gasCode","");applyTeamUI();$("teamMod").style.display="none";
+}
+function applyTeamUI(){
+  const on=!!team.user, b=$("teamBtn");
+  if(on){
+    b.textContent=`👤 ${team.user.name}`;b.classList.add("on");
+    $("btnTeamSync").style.display="inline-flex";$("teamSyncBadge").style.display="inline-flex";$("teamSyncBadge").textContent=team.user.role==="admin"?"مدیر کل ✓":"عضو متصل ✓";
+    $("btnGasDrive").style.display=canSt("driveBackup")?"inline-flex":"none";
+    $("btnPushAic").style.display="inline-flex";$("btnImpAicP").style.display="inline-flex";$("msgAuthWarn").style.display="none";
+    $("nav-mu").style.display=canSt("studioMulti")?"":"none";
+    $("nav-st").style.display=canSt("studioStats")?"":"none";
+    $("btnNewPubProf").style.display=canSt("studioSharedEdit",false)?"":"none";
+    if(!canSt("studioUse",true)) alert("مدیر مرکز دسترسی شما به استودیو صوت را غیرفعال کرده است.");
+  }else{
+    b.textContent="🔐 اتصال تیمی / ورود";b.classList.remove("on");
+    $("btnTeamSync").style.display="none";$("teamSyncBadge").style.display="none";
+    $("btnGasDrive").style.display="none";$("btnPushAic").style.display="none";$("btnImpAicP").style.display="none";$("msgAuthWarn").style.display="block";
+    $("nav-mu").style.display="";$("nav-st").style.display="";$("btnNewPubProf").style.display="";
+  }
+  rndAfStagesUI();rndPEd();
+}
+async function syncTeamNow(silent){
+  if(!team.gasUrl||!team.code) return;
+  try{
+    const allP = Object.values(app.profiles);
+    const localHist = await allHist();
+    const res = await gasCall({
+      action:"studioSync",code:team.code,includeInlinePayloads:false,
+      profiles:allP.filter(p=>p.scope==="public"?canSt("studioSharedEdit",false):true),
+      history:localHist.filter(h=>!h.syncedOnly).slice(0,40)
+    });
+    team.user=res.user;team.config=res.config||{};team.aic=res.aicenter||{prompts:[],projects:[],tasks:[]};
+    if(Array.isArray(res.profiles)){
+      res.profiles.forEach(sp=>{
+        const loc=app.profiles[sp.id];
+        if(sp.deletedAt){delete app.profiles[sp.id];return;}
+        if(!loc || Date.parse(sp.updatedAt||0)>=Date.parse(loc.updatedAt||0)) app.profiles[sp.id]=sp;
+      });
+      if(!app.profiles[app.activeProfileId]) app.activeProfileId=Object.keys(app.profiles)[0];
+      await saveKv("prof5",{activeProfileId:app.activeProfileId,profiles:app.profiles});
+    }
+    if(Array.isArray(res.history)){
+      const locAll=await allHist();const locMap=new Map(locAll.map(x=>[x.id,x]));
+      for(const sh of res.history){
+        if(sh.deletedAt){await delHistDb(sh.id);continue;}
+        const loc=locMap.get(sh.id);
+        if(!loc) await putHist({...sh,syncedOnly:true});
+      }
+    }
+    applyTeamUI();refProf();rndAfStagesUI();rndMuModesUI();rndPEd();rndHist();
+    if(!silent) alert(`همگام‌سازی کامل شد ✓\nکاربر: ${team.user.name}`);
+  }catch(e){if(!silent)alert("خطای همگام‌سازی: "+e.message);}
+}
+
+/* Models & Live Fetch */
+function refMSel(){
+  const ms=allM(),o=ms.map(m=>`<option value="${esc(m.id)}">${esc(m.lb)} [${m.pv}]</option>`).join(""),pv=$("gModel").value;
+  $("gModel").innerHTML=o;if(ms.some(m=>m.id===pv))$("gModel").value=pv;
+  $("piEng").innerHTML=`<option value="">همه موتورها</option>`+o;
+  rndAfStagesUI();
+}
+function onModel(sk){
+  const sp=getSp($("gModel").value),w=$("tWrap");$("pvSel").value=sp.pv;onPvSel();updKeyB();
+  if(!sp.tmp){w.classList.add("dis");$("tLbl").textContent="قفل (مدل جدید)";$("tHint").textContent="بدون دما (ضد خطای 400)";}
+  else{w.classList.remove("dis");onTDef(true);$("tHint").textContent="دما فعال";}
+  updMuEst();if(!sk)saveSet();
+}
+const onTDef=sk=>{const d=$("tDef").checked;$("tRange").disabled=d;$("tLbl").textContent=d?"پیش‌فرض":$("tRange").value;if(!sk)saveSet();};
+const onTRng=()=>{$("tDef").checked=false;$("tRange").disabled=false;$("tLbl").textContent=$("tRange").value;saveSet();};
+const onUsd=()=>{app.usdRate=Math.max(1000,parseInt($("usdRate").value,10)||70000);saveKv("usd5",app.usdRate);rndTok();updMuEst();};
+async function fetchUsd(){try{const d=await(await fetch("https://apiv2.nobitex.ir/market/stats?srcCurrency=usdt&dstCurrency=rls")).json(),p=parseFloat(d?.stats?.["usdt-rls"]?.latest);if(p>100000){app.usdRate=Math.round(p/10);$("usdRate").value=app.usdRate;onUsd();return alert("نرخ دریافت شد: "+app.usdRate.toLocaleString("fa-IR"));}}catch{}alert("دریافت خودکار ناموفق بود؛ دستی وارد کنید.");}
+
+async function fetchLiveModels(){
+  const pv=$("pvSel").value, k=keys[pv];if(!k)return alert("ابتدا کلید API "+pv+" را وارد کنید.");
+  const b=$("btnFetchM");b.disabled=true;b.textContent="⏳...";
+  try{
+    let list=[];
+    if(pv==="gemini"){
+      const d=await(await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(k)}`)).json();
+      if(d.error)throw new Error(d.error.message);
+      list=(d.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes("generateContent")).map(m=>{const id=m.name.replace(/^models\//,"");return getSp(id);});
+    }else{
+      const ep=pv==="openrouter"?"https://openrouter.ai/api/v1/models":"https://api.openai.com/v1/models";
+      const d=await(await fetch(ep,{headers:{Authorization:"Bearer "+k}})).json();
+      list=(d.data||[]).slice(0,60).map(m=>({id:m.id,lb:m.name||m.id,pv,tmp:true,lv:[],ip:1,op:4}));
+    }
+    app.liveModels=list;await saveKv("lmod5",list);refMSel();alert(`✅ ${list.length} مدل زنده دریافت و اضافه شد.`);
+  }catch(e){alert("❌ "+e.message);}finally{b.disabled=false;b.textContent="🔄 دریافت زنده";}
+}
+const openModMgr=()=>{rndCM();$("mMod").style.display="flex";};
+function rndCM(){const ls=app.customModels||[];$("cmList").innerHTML=ls.length?ls.map((m,i)=>`<div class="si"><div><b>${esc(m.lb)}</b> (${esc(m.id)}) [${m.pv}]</div><div style="display:flex;gap:3px;"><button type="button" class="b bs bxs" onclick="edCM(${i})">ویرایش</button><button type="button" class="b bds bxs" onclick="delCM(${i})">حذف</button></div></div>`).join(""):`<div class="h" style="text-align:center">خالی</div>`;}
+function edCM(i){const m=app.customModels[i];if(!m)return;$("cmId").value=m.id;$("cmLb").value=m.lb;$("cmPv").value=m.pv;$("cmIp").value=m.ip;$("cmOp").value=m.op;$("cmTmp").checked=!!m.tmp;$("cmTh").value=m.lv?.length?m.lv.join(","):"none";}
+async function addCustModel(){const id=$("cmId").value.trim(),lb=$("cmLb").value.trim()||id,pv=$("cmPv").value,th=$("cmTh").value,ip=parseFloat($("cmIp").value)||0,op=parseFloat($("cmOp").value)||0,tmp=$("cmTmp").checked;if(!id)return alert("شناسه لازم است.");app.customModels=(app.customModels||[]).filter(x=>x.id!==id);app.customModels.push({id,lb,pv,tmp,lv:th==="none"?[]:th.split(","),ip,op});await saveKv("cmod5",app.customModels);refMSel();rndCM();$("gModel").value=id;onModel();}
+async function delCM(i){app.customModels.splice(i,1);await saveKv("cmod5",app.customModels);refMSel();rndCM();}
+
+/* Local Dir & Drive */
+async function pickWorkDir(){if(!window.showDirectoryPicker)return alert("فقط Chrome/Edge پشتیبانی می‌کنند.");try{wDir=await window.showDirectoryPicker({mode:"readwrite"});await saveKv("wdir",wDir);$("dirBadge").textContent="پوشه: "+wDir.name;$("dirBadge").className="bg bok";$("btnDirSync").style.display="inline-flex";}catch{}}
+async function ensDP(){if(!wDir)return;try{if(await wDir.queryPermission({mode:"readwrite"})!=="granted")await wDir.requestPermission({mode:"readwrite"});}catch{}}
+async function wrDir(n,d){if(!wDir)return;try{if(await wDir.queryPermission({mode:"readwrite"})!=="granted")return;const fh=await wDir.getFileHandle(n.replace(/[\\/:*?"<>|]/g,"_"),{create:true}),w=await fh.createWritable();await w.write(d);await w.close();}catch{}}
+async function loadFromDir(){if(!wDir)return;await ensDP();try{const d=JSON.parse(await(await(await wDir.getFileHandle("taqrir_backup.json")).getFile()).text());if(d.profiles){Object.assign(app.profiles,d.profiles);await savePr();refProf();rndAfStagesUI();rndPEd();}if(Array.isArray(d.history))for(const h of d.history)await putHist(h);rndHist();alert("بازیابی شد ✓");}catch{alert("فایل پشتیبانی در پوشه یافت نشد.");}}
+async function syncDir(){await wrDir("taqrir_backup.json",JSON.stringify({activeProfileId:app.activeProfileId,profiles:app.profiles,history:await allHist()},null,2));}
+async function saveCurToGasDrive(){
+  if(!team.gasUrl||!team.code) return openTeamModal();
+  const sn=ensT("جلسه"), t=afState.outputs?.[afTab]||getMuTx();
+  if(!t?.trim()) return alert("خروجی فعلی خالی است.");
+  try{
+    const doc=await mkDocx(t), b64=await toB64(doc);
+    const r=await gasCall({action:"saveFileToDrive",code:team.code,fileName:`${sn}.docx`,mimeType:"application/vnd.openxmlformats-officedocument.wordprocessingml.document",fileBase64:b64});
+    alert("✅ فایل Word در پوشه Google Drive مرکز ذخیره شد!\n"+r.fileUrl);
+  }catch(e){alert("❌ "+e.message);}
+}
+function openGdModal(){$("gdCid").value=lsG("ts_gdcid")||"";$("gdRed").textContent=location.origin+location.pathname;const f=location.protocol==="file:";$("gdWarn").style.display=f?"block":"none";if(f)$("gdWarn").innerHTML="⚠️ روی <code>file://</code> ورود گوگل مسدود است؛ فایل را روی HTTPS (GitHub Pages) باز کنید.";updGdUI();$("gdMod").style.display="flex";}
+function updGdUI(){const on=!!gdT;$("gdBadge").textContent=on?"Drive مستقیم: متصل ✓":"Drive مستقیم: آماده";$("gdBadge").className=on?"bg bok":"bg";if($("btnGdUp")){$("btnGdUp").disabled=!on;$("btnGdDn").disabled=!on;}}
+function gdAuth(){if(location.protocol==="file:")return alert("روی HTTPS اجرا کنید.");const c=$("gdCid").value.trim();if(!c)return alert("Client ID لازم است.");window.open(`https://accounts.google.com/o/oauth2/v2/auth?client_id=${encodeURIComponent(c)}&redirect_uri=${encodeURIComponent(location.origin+location.pathname)}&response_type=token&scope=${encodeURIComponent("https://www.googleapis.com/auth/drive.file")}`,"gd","width=500,height=600");}
+async function gdBackup(){if(!gdT)return;$("gdMsg").textContent="در حال ذخیره...";try{const pay=JSON.stringify({activeProfileId:app.activeProfileId,profiles:app.profiles,customModels:app.customModels,history:await allHist()}),sr=await(await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent("name='taqrir_studio_backup.json' and trashed=false")}`,{headers:{Authorization:"Bearer "+gdT}})).json(),fid=sr.files?.[0]?.id,b="gd_"+Date.now(),body=`--${b}\r\nContent-Type: application/json\r\n\r\n${JSON.stringify({name:"taqrir_studio_backup.json",mimeType:"application/json"})}\r\n--${b}\r\nContent-Type: application/json\r\n\r\n${pay}\r\n--${b}--`;const r=await fetch(fid?`https://www.googleapis.com/upload/drive/v3/files/${fid}?uploadType=multipart`:`https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart`,{method:fid?"PATCH":"POST",headers:{Authorization:"Bearer "+gdT,"Content-Type":`multipart/related; boundary=${b}`},body});if(!r.ok)throw new Error("HTTP "+r.status);$("gdMsg").textContent="✅ در Drive ذخیره شد.";}catch(e){$("gdMsg").textContent="❌ "+e.message;}}
+async function gdRestore(){if(!gdT)return;$("gdMsg").textContent="در حال بازیابی...";try{const sr=await(await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent("name='taqrir_studio_backup.json' and trashed=false")}`,{headers:{Authorization:"Bearer "+gdT}})).json(),fid=sr.files?.[0]?.id;if(!fid)return $("gdMsg").textContent="فایل یافت نشد.";const d=await(await fetch(`https://www.googleapis.com/drive/v3/files/${fid}?alt=media`,{headers:{Authorization:"Bearer "+gdT}})).json();if(d.profiles){app.profiles=d.profiles;app.activeProfileId=d.activeProfileId||Object.keys(d.profiles)[0];await savePr();refProf();rndAfStagesUI();rndPEd();}if(d.customModels){app.customModels=d.customModels;await saveKv("cmod5",app.customModels);refMSel();}if(Array.isArray(d.history))for(const h of d.history)await putHist(h);rndHist();$("gdMsg").textContent="✅ بازیابی شد.";}catch(e){$("gdMsg").textContent="❌ "+e.message;}}
+
+/* Diagnostics Logger */
+function addLog(which, msg, lvl="info"){
+  const t=new Date().toLocaleTimeString("fa-IR");
+  logs[which].push({t,msg,lvl});
+  rndLog(which);
+}
+function rndLog(which){
+  const box=$(which==="af"?"afLog":"muLog"), onlyErr=$(which==="af"?"lgOnlyErr":"muOnlyErr")?.checked;
+  const list=onlyErr?logs[which].filter(x=>x.lvl==="err"||x.lvl==="wrn"):logs[which];
+  if(!list.length){box.innerHTML=onlyErr?"خطایی ثبت نشده است ✓":"آماده...";return;}
+  box.innerHTML=list.map(x=>{
+    const cls=x.lvl==="err"?"lg-err":(x.lvl==="wrn"?"lg-wrn":(x.lvl==="ok"?"lg-ok":""));
+    return `<div class="${cls}">[${x.t}] ${esc(x.msg)}</div>`;
+  }).join("");
+  box.scrollTop=box.scrollHeight;
+}
+const clrLog=w=>{logs[w]=[];rndLog(w);};
+const copyLog=async w=>{await navigator.clipboard.writeText(logs[w].map(x=>`[${x.t}] ${x.msg}`).join("\n"));alert("گزارش کپی شد ✓");};
+
+/* AI Engine + Error Diagnostics */
+async function testApi(){const m=$("gModel").value,b=$("topApiBadge");b.textContent="تست...";b.style.background="#a67321";try{const r=await callAI({m,th:"LOW",sys:"",parts:[{text:"فقط بنویس: متصل"}],lbl:"تست",to:40000});b.textContent="متصل ✓";b.style.background="#067647";alert("✅ "+r.text);}catch(e){b.textContent="خطا ✕";b.style.background="#b42318";alert("❌ "+e.message);}}
+const mapTh=(sp,rq)=>(!sp.lv?.length)?null:(sp.lv.includes(rq)?rq:(rq==="XHIGH"&&sp.lv.includes("HIGH")?"HIGH":sp.lv[sp.lv.length-1]));
+function diagErr(st,msg,lbl){
+  if(st===429||/quota|rate|resource_exhausted/i.test(msg)) return `⛔ خطای سهمیه (429) در [${lbl}]: محدودیت رایگان/دقیقه‌ای مدل پر شد. راهکار: موتور دیگری انتخاب کنید یا ۳۰ ثانیه بعد «↻ ادامه» بزنید.\nجزئیات: ${msg}`;
+  if(st===401||st===403) return `🔑 خطای کلید API (${st}) در [${lbl}]: کلید نامعتبر است یا دسترسی ندارد.\nجزئیات: ${msg}`;
+  if(st===400) return `⚠️ خطای درخواست (400) در [${lbl}]: احتمالاً این مدل دما یا تنظیم تفکر فعلی را نمی‌پذیرد یا حجم ورودی زیاد است.\nجزئیات: ${msg}`;
+  if(/Failed to fetch|NetworkError/i.test(msg)) return `🌐 خطای اتصال اینترنت/فیلترشکن در [${lbl}]: ارتباط با سرور هوش مصنوعی برقرار نشد.`;
+  return `❌ خطا در [${lbl}]: ${msg}`;
+}
+const slp=(ms,sig)=>new Promise((res,rej)=>{if(sig?.aborted)return rej(new Error("توقف توسط کاربر"));const t=setTimeout(res,ms);sig?.addEventListener("abort",()=>{clearTimeout(t);rej(new Error("توقف توسط کاربر"));},{once:true});});
+const toB64=b=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(",")[1]||"");r.onerror=()=>rej(new Error("خطای خواندن فایل"));r.readAsDataURL(b);});
+
+async function upFA(k,blob,mime,name,sig,logFn){
+  logFn?.(`⬆️ آپلود فایل ${(blob.size/1048576).toFixed(1)}MB به سرور Gemini...`);
+  const b="t_"+Math.random().toString(36).slice(2),pre=new TextEncoder().encode(`--${b}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${JSON.stringify({file:{display_name:name}})}\r\n--${b}\r\nContent-Type: ${mime}\r\n\r\n`),post=new TextEncoder().encode(`\r\n--${b}--\r\n`);
+  const r=await fetch("https://generativelanguage.googleapis.com/upload/v1beta/files?uploadType=multipart",{method:"POST",headers:{"x-goog-api-key":k,"Content-Type":`multipart/related; boundary=${b}`},body:new Blob([pre,blob,post]),signal:sig});
+  const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(diagErr(r.status,d?.error?.message||"HTTP "+r.status,"آپلود فایل"));
+  let f=d.file||d,tr=0;while(f.state==="PROCESSING"&&tr<30){await slp(2500,sig);f=(await(await fetch(`https://generativelanguage.googleapis.com/v1beta/${f.name}`,{headers:{"x-goog-api-key":k},signal:sig})).json()).file||f;tr++;}
+  if(f.state==="FAILED")throw new Error("پردازش فایل صوتی در سرور Gemini ناموفق بود.");return{fileData:{mimeType:f.mimeType||mime,fileUri:f.uri}};
+}
+
+async function callAI({m,th,sys,parts,ac,lbl,logFn,to}){
+  const sp=getSp(m),k=keys[sp.pv];if(!k)throw new Error(`کلید ${sp.pv} وارد نشده است.`);
+  const mx=to||((parseInt($("gTimeout").value,10)||6)*60000);
+  for(let a=1;a<=4;a++){
+    if(ab?.signal.aborted)throw new Error("توقف توسط کاربر");
+    logFn?.(`⏳ [${lbl}] ← ارسال به ${sp.lb} (تلاش ${a}/4)...`);
+    const lc=new AbortController();let toF=false;const onA=()=>lc.abort();ab?.signal.addEventListener("abort",onA,{once:true});const tm=setTimeout(()=>{toF=true;lc.abort();},mx);
+    try{
+      let text="",inT=0,outT=0,thT=0;
+      if(sp.pv==="gemini"){
+        const fp=[...parts];if(ac)fp.unshift(ac.blob.size<=14*1024*1024?{inlineData:{mimeType:ac.mime,data:await toB64(ac.blob)}}:await upFA(k,ac.blob,ac.mime,ac.name,lc.signal,logFn));
+        const cfg={maxOutputTokens:65536},lv=mapTh(sp,th);if(lv)cfg.thinkingConfig={thinkingLevel:lv};if(sp.tmp&&!$("tDef").checked)cfg.temperature=parseFloat($("tRange").value);
+        const bd={contents:[{role:"user",parts:fp}],generationConfig:cfg};if(sys?.trim())bd.systemInstruction={parts:[{text:sys.trim()}]};
+        const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(m)}:generateContent`,{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":k},body:JSON.stringify(bd),signal:lc.signal});
+        const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(diagErr(r.status,d?.error?.message||"HTTP "+r.status,lbl));
+        const c=d?.candidates?.[0];text=(c?.content?.parts||[]).filter(p=>!p.thought&&typeof p.text==="string").map(p=>p.text).join("").trim();
+        if(!text)throw new Error(`خروجی خالی از مدل دریافت شد (${c?.finishReason||"بدون دلیل"})`);
+        const u=d?.usageMetadata;if(u){inT=u.promptTokenCount||0;outT=u.candidatesTokenCount||0;thT=u.thoughtsTokenCount||0;}
+      }else{
+        const or=sp.pv==="openrouter",ep=or?"https://openrouter.ai/api/v1/chat/completions":"https://api.openai.com/v1/chat/completions";
+        if(!or&&ac&&/whisper|transcribe/i.test(m)){
+          const fd=new FormData();fd.append("file",ac.blob,ac.name);fd.append("model",m);
+          const r=await fetch("https://api.openai.com/v1/audio/transcriptions",{method:"POST",headers:{Authorization:"Bearer "+k},body:fd,signal:lc.signal});
+          const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(diagErr(r.status,d?.error?.message||"HTTP "+r.status,lbl));text=(d.text||"").trim();
+        }else{
+          const uc=parts.filter(p=>p.text).map(p=>({type:"text",text:p.text}));
+          if(ac)uc.push({type:"input_audio",input_audio:{data:await toB64(ac.blob),format:ac.name.endsWith(".wav")?"wav":"mp3"}});
+          const ms=[];if(sys?.trim())ms.push({role:"system",content:sys.trim()});ms.push({role:"user",content:uc.length===1&&uc[0].type==="text"?uc[0].text:uc});
+          const bd={model:m,messages:ms};if(sp.tmp&&!$("tDef").checked)bd.temperature=parseFloat($("tRange").value);
+          const hd={"Content-Type":"application/json",Authorization:"Bearer "+k};if(or){hd["HTTP-Referer"]=location.href;hd["X-Title"]="Taqrir";}
+          const r=await fetch(ep,{method:"POST",headers:hd,body:JSON.stringify(bd),signal:lc.signal});
+          const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(diagErr(r.status,d?.error?.message||"HTTP "+r.status,lbl));
+          text=(d?.choices?.[0]?.message?.content||"").trim();if(!text)throw new Error("خروجی خالی");inT=d?.usage?.prompt_tokens||0;outT=d?.usage?.completion_tokens||0;
+        }
+      }
+      clearTimeout(tm);ab?.signal.removeEventListener("abort",onA);
+      // نگهبان تشخیص حلقه تکرار غیرعادی (فقط هشدار در گزارش، بدون دست‌کاری متن)
+      const repWarn=detectRepetition(text);
+      if(repWarn) logFn?.(`⚠️ هشدار عیب‌یاب در [${lbl}]: ${repWarn}`,"wrn");
+
+      const cost=((inT/1e6)*sp.ip)+(((outT+thT)/1e6)*sp.op),totT=inT+outT+thT;
+      if(!app.tok[m])app.tok[m]={r:0,i:0,o:0,t:0,tot:0,c:0};const s=app.tok[m];s.r++;s.i+=inT;s.o+=outT;s.t+=thT;s.tot+=totT;s.c=(s.c||0)+cost;
+      await saveKv("tok5",app.tok);rndTok();logFn?.(`✅ [${lbl}] تکمیل شد (${cw(text)} کلمه • $${cost.toFixed(4)} ≈ ${fmtTm(cost)})`,"ok");
+      return{text,totT,cost};
+    }catch(e){
+      clearTimeout(tm);ab?.signal.removeEventListener("abort",onA);
+      if(ab?.signal.aborted)throw new Error("توقف توسط کاربر");
+      const msg=toF?`⏱️ تایم‌اوت در [${lbl}] پس از ${Math.round(mx/60000)} دقیقه.`:e.message;
+      logFn?.(msg,"wrn");
+      if(/400|401|403|وارد نشده|نامعتبر/.test(msg)||a===4)throw new Error(msg);
+      logFn?.(`⏳ انتظار ${a*9} ثانیه برای تلاش مجدد...`,"info");
+      await slp(a*9000,ab?.signal);
+    }
+  }
+}
+
+function detectRepetition(txt){
+  const lines=txt.split(/\n+/).map(x=>x.trim()).filter(x=>x.length>20);
+  const cnt={};
+  for(const l of lines){cnt[l]=(cnt[l]||0)+1;if(cnt[l]>=6)return`عبارت «${l.slice(0,35)}...» بیش از ۶ بار پیاپی تکرار شده است؛ لطفاً خروجی را بررسی کنید.`;}
+  return "";
+}
+
+const stTm=id=>{spTm();const t0=Date.now(),el=$(id),f=()=>{const s=Math.floor((Date.now()-t0)/1000);if(el)el.textContent=`⏳ ${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;};f();tmI=setInterval(f,1000);};
+const spTm=id=>{if(tmI){clearInterval(tmI);tmI=null;}if(id&&$(id))$(id).textContent="";};
+const stopAll=()=>{if(ab){ab.abort();addLog("af","⛔ دستور توقف فوری صادر شد...","err");addLog("mu","⛔ دستور توقف فوری صادر شد...","err");}};
+
+/* Audio Processing + Silence-Aware Smart Split + Silence Guard */
+const infMime=f=>f.type?.startsWith("audio/")?(f.type==="audio/x-m4a"?"audio/mp4":f.type):({mp3:"audio/mp3",wav:"audio/wav",m4a:"audio/mp4",aac:"audio/aac",ogg:"audio/ogg",opus:"audio/ogg",flac:"audio/flac",webm:"audio/webm"}[(f.name.split(".").pop()||"").toLowerCase()]||"audio/mp3");
+const fSec=s=>`${String(Math.floor(Math.max(0,Math.round(s))/60)).padStart(2,"0")}:${String(Math.max(0,Math.round(s))%60).padStart(2,"0")}`;
+function pMp3(bs){let o=0;if(bs.length>10&&bs[0]===0x49&&bs[1]===0x44&&bs[2]===0x33)o=10+(((bs[6]&0x7f)<<21)|((bs[7]&0x7f)<<14)|((bs[8]&0x7f)<<7)|(bs[9]&0x7f));const b1T=[0,32,40,48,56,64,80,96,112,128,160,192,224,256,320,0],b2T=[0,8,16,24,32,40,48,56,64,80,96,112,128,144,160,0],sr1=[44100,48000,32000,0],sr2=[22050,24000,16000,0],sr25=[11025,12000,8000,0],fs=[];let tot=0;while(o+4<bs.length){if(bs[o]!==0xFF||(bs[o+1]&0xE0)!==0xE0){o++;continue;}const b1=bs[o+1],b2=bs[o+2],v=(b1>>3)&3,l=(b1>>1)&3,bi=(b2>>4)&15,si=(b2>>2)&3,pd=(b2>>1)&1;if(v===1||l!==1||bi===0||bi===15||si===3){o++;continue;}const br=(v===3?b1T[bi]:b2T[bi])*1000,sr=v===3?sr1[si]:(v===2?sr2[si]:sr25[si]),spf=v===3?1152:576,len=Math.floor((spf/8*br)/sr)+pd;if(len<24||o+len>bs.length)break;if(!fs.length&&o+len+2<bs.length&&(bs[o+len]!==0xFF||(bs[o+len+1]&0xE0)!==0xE0)){o++;continue;}const d=spf/sr;fs.push({s:o,e:o+len,ts:tot,te:tot+d});tot+=d;o+=len;}return{fs,tot};}
+function encWav(ab){const ch=ab.numberOfChannels,sr=ab.sampleRate,ln=ab.length,ds=ln*ch*2,buf=new ArrayBuffer(44+ds),v=new DataView(buf),ws=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i));};ws(0,"RIFF");v.setUint32(4,36+ds,true);ws(8,"WAVE");ws(12,"fmt ");v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,ch,true);v.setUint32(24,sr,true);v.setUint32(28,sr*ch*2,true);v.setUint16(32,ch*2,true);v.setUint16(34,16,true);ws(36,"data");v.setUint32(40,ds,true);const cs=Array.from({length:ch},(_,c)=>ab.getChannelData(c));let p=44;for(let i=0;i<ln;i++)for(let c=0;c<ch;c++){const s=Math.max(-1,Math.min(1,cs[c][i]));v.setInt16(p,s<0?s*0x8000:s*0x7FFF,true);p+=2;}return new Blob([buf],{type:"audio/wav"});}
+
+function findQuietCut(dec, targetSec){
+  const sr=dec.sampleRate, ch=dec.getChannelData(0);
+  const win=Math.floor(sr*0.25), start=Math.max(0,Math.floor((targetSec-18)*sr)), end=Math.min(ch.length-win,Math.floor((targetSec+18)*sr));
+  let bestT=targetSec, bestE=Infinity;
+  for(let i=start;i<end;i+=Math.floor(sr*0.15)){
+    let e=0;for(let j=0;j<win;j+=4){const v=ch[i+j];e+=v*v;}
+    if(e<bestE){bestE=e;bestT=(i+win/2)/sr;}
+  }
+  return bestT;
+}
+function checkSilenceWarn(dec, logFn){
+  const ch=dec.getChannelData(0), step=Math.max(1,Math.floor(ch.length/2000));
+  let peak=0;for(let i=0;i<ch.length;i+=step){const a=Math.abs(ch[i]);if(a>peak)peak=a;}
+  if(peak<0.005) logFn?.("⚠️ هشدار نگهبان صوت: سطح صدای این فایل بسیار پایین یا تقریباً بی‌صداست! لطفاً فایل صوتی را چک کنید.","wrn");
+}
+const mkRg=(t,sp,ov,dec,smartSil)=>{
+  const n=sp==="auto"?Math.max(1,Math.ceil(t/1500)):Math.max(1,parseInt(sp,10)||1);
+  if(n<=1||t<=25)return[{s:0,e:t}];
+  const g=t/n, cuts=[0];
+  for(let i=1;i<n;i++) cuts.push(smartSil&&dec?findQuietCut(dec,i*g):i*g);
+  cuts.push(t);
+  return Array.from({length:n},(_,i)=>({s:Math.max(0,cuts[i]-(i>0?ov:0)),e:cuts[i+1]}));
+};
+
+async function prepCh(file,sp,ov,qm,smartSil,logFn){
+  const mime=infMime(file),ext=(file.name.split(".").pop()||"").toLowerCase();
+  if(sp==="1"&&qm==="original")return[{blob:file,mime,name:file.name,lbl:"کامل",s:0,e:0}];
+  if(qm==="original"&&!smartSil&&(ext==="mp3"||mime==="audio/mp3")){
+    const bs=new Uint8Array(await file.arrayBuffer()),p=pMp3(bs);
+    if(p.fs.length>=20&&p.tot>5){
+      const rgs=mkRg(p.tot,sp,ov,null,false),out=[];
+      rgs.forEach((r,i)=>{const fs=p.fs.filter(f=>f.te>=r.s&&f.ts<=r.e);if(fs.length)out.push({blob:new Blob([bs.subarray(fs[0].s,fs[fs.length-1].e)],{type:"audio/mp3"}),mime:"audio/mp3",name:`part_${i+1}.mp3`,lbl:`تکه ${i+1}/${rgs.length}`,s:r.s,e:r.e});});
+      if(out.length)return out;
+    }
+  }
+  logFn("🎛️ رمزگشایی و برش صوت"+(smartSil?" (یافتن نقاط سکوت)":"")+"...");
+  const AC=window.AudioContext||window.webkitAudioContext,ctx=new AC(),dec=await ctx.decodeAudioData(await file.arrayBuffer()).finally(()=>ctx.close().catch(()=>{}));
+  checkSilenceWarn(dec,logFn);
+  const rgs=mkRg(dec.duration,sp,ov,dec,smartSil),eq=qm==="original"?"wav24k":qm,out=[];
+  for(let i=0;i<rgs.length;i++){
+    if(ab?.signal.aborted)throw new Error("توقف توسط کاربر");
+    const dur=Math.max(.5,rgs[i].e-rgs[i].s),sr=eq==="wav16k"?16000:(eq==="wav24k"?24000:dec.sampleRate),ch=eq==="wavNative"?Math.min(2,dec.numberOfChannels):1,Off=window.OfflineAudioContext||window.webkitOfflineAudioContext,oc=new Off(ch,Math.max(1,Math.ceil(dur*sr)),sr),src=oc.createBufferSource();
+    src.buffer=dec;src.connect(oc.destination);src.start(0,rgs[i].s,dur);
+    const b=encWav(await oc.startRendering());
+    out.push({blob:b,mime:"audio/wav",name:`part_${i+1}.wav`,lbl:`تکه ${i+1}/${rgs.length} (${fSec(rgs[i].s)} تا ${fSec(rgs[i].e)})`,s:r.s,e:r.e});
+  }
+  return out;
+}
+
+/* Dynamic Stages UI (Tab 1) */
+const getP=()=>{
+  const p=app.profiles[app.activeProfileId]||Object.values(app.profiles)[0];
+  if(!p.data.categories) return migrateLegacyProfile(p,p.name,p.id);
+  return p;
+};
+function rndAfStagesUI(){
+  const pd=getP().data, gm=$("gModel").value, box=$("dynStagesBox"), pills=$("afPills");
+  const allowedStages=team.user?.role==="member" && Array.isArray(team.user.perms?.studioAllowedStages) && team.user.perms.studioAllowedStages.length ? team.user.perms.studioAllowedStages : null;
+  const visibleStages = (pd.stages||[]).filter(st=>!allowedStages || allowedStages.includes(st.id));
+
+  box.innerHTML = visibleStages.map((st,idx)=>{
+    const disabledByMode = st.needsAudio && afMode==="text";
+    const on = st.enabled && !disabledByMode;
+    const cat = (pd.categories||[]).find(c=>c.id===st.catId) || pd.categories[0];
+    const pList = [...(pd.prompts[st.catId]||[])];
+    const eng = st.model || gm;
+    pList.sort((a,b)=>((b.engine===eng)?2:(!b.engine?1:0))-((a.engine===eng)?2:(!a.engine?1:0)));
+    const defId = pd.defaults?.[st.catId];
+    const selPid = st.promptId && pList.some(x=>x.id===st.promptId) ? st.promptId : (pList.find(x=>x.engine===eng)?.id || (defId&&pList.some(x=>x.id===defId)?defId:pList[0]?.id) || "");
+    st.promptId = selPid;
+
+    return `<div class="sb ${on?"":"off"}" id="sb_${st.id}">
+      <label class="sc">
+        <span><input type="checkbox" ${on?"checked":""} ${disabledByMode?"disabled":""} onchange="togStage('${st.id}',this.checked)"/> ${idx+1}. ${esc(st.name)} ${st.needsAudio?'<span class="bg bnv" style="font-size:.63rem">صوت</span>':''}</span>
+        <span class="bg" style="font-size:.66rem">${esc(cat?.name||"")}</span>
+      </label>
+      <div class="r2">
+        <select onchange="chgStageModel('${st.id}',this.value)" ${on?"":"disabled"}>
+          <option value="">پیروی از موتور بالا</option>
+          ${allM().map(m=>`<option value="${esc(m.id)}" ${st.model===m.id?"selected":""}>${esc(m.lb)}</option>`).join("")}
+        </select>
+        <select onchange="chgStagePrompt('${st.id}',this.value)" ${on?"":"disabled"}>
+          ${pList.map(p=>`<option value="${esc(p.id)}" ${selPid===p.id?"selected":""}>${p.engine===eng?"🎯 ":""}${p.id===defId?"★ ":""}${esc(p.title)}</option>`).join("") || `<option value="">(پرامپت خالی)</option>`}
+        </select>
+      </div>
+    </div>`;
+  }).join("");
+
+  pills.innerHTML = visibleStages.map((st,i)=>`<span class="pl" id="pl_${st.id}">${i+1}. ${esc(st.name)}</span>`).join("");
+  rndAfOutTabs();
+}
+function togStage(sid,val){const s=getP().data.stages.find(x=>x.id===sid);if(s){s.enabled=val;savePr();rndAfStagesUI();}}
+function chgStageModel(sid,val){const s=getP().data.stages.find(x=>x.id===sid);if(s){s.model=val;savePr();rndAfStagesUI();}}
+function chgStagePrompt(sid,val){const s=getP().data.stages.find(x=>x.id===sid);if(s){s.promptId=val;savePr();}}
+
+function rndAfOutTabs(){
+  const pd=getP().data, tabs=$("afOutTabs");
+  if(!afTab || !pd.stages.some(s=>s.id===afTab)) afTab=pd.stages[0]?.id||"";
+  tabs.innerHTML=(pd.stages||[]).map((s,i)=>`<button type="button" class="stb ${afTab===s.id?"active":""}" onclick="swAfTab('${s.id}')">${i+1}. ${esc(s.name)}</button>`).join("");
+}
+const swAfTab=id=>{afTab=id;rndAfOutTabs();rndAfOut();};
+
+const setAfMode=m=>{afMode=m;$("afBtnA").classList.toggle("active",m==="audio");$("afBtnT").classList.toggle("active",m==="text");$("afPanA").style.display=m==="audio"?"block":"none";$("afPanT").style.display=m==="text"?"block":"none";rndAfStagesUI();};
+function setupDrops(){const az=$("aDz"),af=$("aFile");af.onchange=e=>{if(e.target.files[0])ldAud(e.target.files[0]);};az.ondragover=e=>{e.preventDefault();az.classList.add("on");};az.ondragleave=()=>az.classList.remove("on");az.ondrop=e=>{e.preventDefault();az.classList.remove("on");if(e.dataTransfer.files[0])ldAud(e.dataTransfer.files[0]);};const mz=$("mDz"),mf=$("mFile");mf.onchange=e=>ldMuFiles(e.target.files);mz.ondragover=e=>{e.preventDefault();mz.classList.add("on");};mz.ondragleave=()=>mz.classList.remove("on");mz.ondrop=e=>{e.preventDefault();mz.classList.remove("on");ldMuFiles(e.dataTransfer.files);};}
+function ldAud(f){afFile=f;$("aMeta").style.display="block";$("aName").textContent=f.name;$("aPlay").src=URL.createObjectURL(f);if(!$("afTitle").value.trim())$("afTitle").value=f.name.replace(/\.[^.]+$/,"");$("afInBadge").textContent="صوت آماده ✓";$("afInBadge").className="bg bok";const a=new Audio();a.onloadedmetadata=()=>$("aStats").textContent=`${(f.size/1048576).toFixed(2)} MB`+(isFinite(a.duration)?` • ${fSec(a.duration)}`:"");a.src=$("aPlay").src;}
+const clrAudio=()=>{afFile=null;$("aFile").value="";$("aMeta").style.display="none";$("aPlay").src="";$("afInBadge").textContent="میز کار تازه";$("afInBadge").className="bg";};
+async function loadAfTxt(f){if(!f)return;try{const x=(f.name.split(".").pop()||"").toLowerCase();$("afTxtIn").value=x==="docx"?await exDocx(await f.arrayBuffer()):(await f.text()).trim();if(!$("afTitle").value.trim())$("afTitle").value=f.name.replace(/\.[^.]+$/,"");updAfW();}catch(e){alert(e.message);}}
+const updAfW=()=>$("afTxtW").textContent=`${cw($("afTxtIn").value).toLocaleString("fa-IR")} کلمه`;
+const ensT=(fb="جلسه")=>{let t=$("afTitle").value.trim()||afState.title?.trim();if(!t){t=(prompt("نام جلسه را وارد کنید:",fb)||fb).trim();$("afTitle").value=t;}afState.title=t;return t;};
+
+async function runAf(resm, overrideOpts=null){
+  await ensDP();
+  const pd=getP().data, gm=$("gModel").value, th=$("gThink").value;
+  let activeStages = pd.stages.filter(s=>s.enabled && !(s.needsAudio && afMode==="text"));
+  if(overrideOpts?.stageNames?.length){
+    activeStages = pd.stages.filter(s=>overrideOpts.stageNames.some(nm=>s.name.includes(nm)) && !(s.needsAudio && afMode==="text"));
+  }
+  if(!activeStages.length) return alert("حداقل یک مرحله را تیک بزنید.");
+  if(activeStages.some(s=>s.needsAudio) && !afFile) return alert("لطفاً فایل صوتی انتخاب کنید.");
+  const dt=$("afTxtIn").value.trim();
+  if(afMode==="text" && !dt) return alert("متن ورودی خالی است.");
+
+  const sn = overrideOpts?.title || ensT(afMode==="audio"?afFile.name.replace(/\.[^.]+$/,""):"متن");
+  if(!resm){
+    afState={id:uid("af"),title:sn,inputTxt:afMode==="text"?dt:"",outputs:{},done:{},chunks:[],cDone:0,tokens:0,costUsd:0,status:"running"};
+    logs.af=[];addLog("af",`🚀 شروع پردازش «${sn}» (${activeStages.length} مرحله)`);
+    pd.stages.forEach(s=>{const p=$("pl_"+s.id);if(p)p.className="pl";});
+  } else {
+    afState.title=sn;afState.status="running";addLog("af","↻ ادامه از نقطه توقف...");
+  }
+
+  ab=new AbortController();$("btnAfGo").disabled=true;$("btnAfRes").disabled=true;$("btnAfStp").style.display="inline-flex";$("btnAfRes").style.display="none";stTm("afTm");
+  let statusFinal="done";
+
+  try{
+    let curText = afState.inputTxt || dt || "";
+    const optGloss = $("optUseGloss")?.checked ? $("optGloss").value.trim() : "";
+    const optTs = $("optUseTs")?.checked;
+
+    for(let idx=0; idx<activeStages.length; idx++){
+      const stg=activeStages[idx], pl=$("pl_"+stg.id);
+      if(afState.done[stg.id]){
+        if(afState.outputs[stg.id]) curText=afState.outputs[stg.id];
+        if(pl)pl.className="pl ok";
+        continue;
+      }
+      if(pl)pl.className="pl run";
+      const modelId = stg.model || gm;
+      const pObj = (pd.prompts[stg.catId]||[]).find(x=>x.id===stg.promptId) || (pd.prompts[stg.catId]||[])[0];
+      let sysPrompt = pObj?.prompt || "";
+      if(optGloss) sysPrompt += `\n\n[واژه‌نامه و اسامی کلیدی این جلسه برای دقت املایی]: ${optGloss}`;
+      if(optTs && stg.needsAudio) sysPrompt += `\n\n[اختیاری]: سر مباحث جدید برچسب زمان تقریبی به صورت [mm:ss] درج کن.`;
+
+      if(stg.needsAudio){
+        $("afSt").textContent=`در حال اجرای ${stg.name}...`;
+        const sp=$("aSplit").value, ov=parseInt($("aOvl").value,10)||0, qm=$("aQual").value, mm=$("aMerge").value, sil=$("aSilSplit").checked;
+        const chs=await prepCh(afFile,sp,ov,qm,sil,(m,l)=>addLog("af",m,l));
+        const cb=$("aChunks");
+        if(chs.length>1){cb.style.display="block";cb.innerHTML=chs.map((c,i)=>`<button type="button" class="b bs bxs" style="margin:2px" onclick="window.__dlc(${i})">⬇ ${esc(c.name)}</button>`).join("");window.__dlc=i=>dl(chs[i].blob,`${sn} - ${chs[i].name}`);}else cb.style.display="none";
+
+        for(let i=afState.cDone;i<chs.length;i++){
+          const c=chs[i];
+          $("afSt").textContent=`${stg.name} (${i+1}/${chs.length})`;
+          $("afPb").style.width=`${Math.round(((idx + (i/chs.length))/activeStages.length)*100)}%`;
+          let ins=`این ${c.lbl} از صوت درس است. با دقت کامل پیاده کن.`;
+          if(i>0&&mm==="smart"&&afState.chunks[i-1]) ins=`ادامه صوت قبل با ${ov}ث همپوشانی.\nانتهای قبل:\n"""\n${afState.chunks[i-1].slice(-650)}\n"""\nتکرار همپوشان ابتدا را ننویس و از ادامه جمله پیاده کن.`;
+          const r=await callAI({m:modelId,th,sys:sysPrompt,parts:[{text:ins}],ac:c,lbl:`${stg.name} (${c.lbl})`,logFn:(m,l)=>addLog("af",m,l)});
+          afState.chunks[i]=r.text;afState.cDone=i+1;afState.tokens+=r.totT;afState.costUsd+=r.cost;
+          afState.outputs[stg.id]=afState.chunks.join(mm==="simple"?"\n\n---\n\n":"\n\n");
+          swAfTab(stg.id);await saveKv("af_paused",{...afState,paused:true});
+        }
+        curText=afState.outputs[stg.id];
+      } else {
+        $("afSt").textContent=`در حال اجرای ${stg.name}...`;
+        $("afPb").style.width=`${Math.round((idx/activeStages.length)*100)}%`;
+        const r=await callAI({m:modelId,th,sys:sysPrompt,parts:[{text:curText}],lbl:stg.name,logFn:(m,l)=>addLog("af",m,l)});
+        afState.outputs[stg.id]=r.text;curText=r.text;afState.tokens+=r.totT;afState.costUsd+=r.cost;
+        swAfTab(stg.id);await saveKv("af_paused",{...afState,paused:true});
+      }
+      afState.done[stg.id]=true;
+      if(pl)pl.className="pl ok";
+    }
+
+    $("afPb").style.width="100%";$("afSt").textContent=`✅ تمام شد! ($${afState.costUsd.toFixed(3)} ≈ ${fmtTm(afState.costUsd)})`;
+    afState.status="done";await saveKv("af_paused",null);
+    if(wDir){for(const stg of pd.stages){const t=afState.outputs[stg.id];if(t?.trim()){await wrDir(`${sn} - ${stg.name}.md`,t);await wrDir(`${sn} - ${stg.name}.docx`,await mkDocx(t));}}await syncDir();}
+    return curText;
+  }catch(e){
+    const isAbort = /توقف توسط کاربر/.test(e.message);
+    statusFinal = isAbort ? "stopped" : "error";
+    afState.status = statusFinal;
+    $("afSt").textContent=(isAbort?"⛔ متوقف شد":"❌ خطا")+": "+e.message;
+    addLog("af",e.message,isAbort?"wrn":"err");
+    $("btnAfRes").style.display="inline-flex";
+    pd.stages.forEach(s=>{const p=$("pl_"+s.id);if(p&&p.classList.contains("run"))p.className="pl er";});
+    await saveKv("af_paused",{...afState,paused:true});
+    if(!isAbort) throw e;
+  }finally{
+    spTm("afTm");$("btnAfGo").disabled=false;$("btnAfRes").disabled=false;$("btnAfStp").style.display="none";ab=null;
+    // ذخیره همیشگی در سابقه (حتی اگر متوقف یا خطادار باشد!)
+    if(afState.id){
+      const rec={
+        id:afState.id,kind:"af",kl:"تک‌جلسه‌ای",title:afState.title||sn,scope:"personal",
+        ownerId:team.user?.id||"",ownerName:team.user?.name||"شخصی",
+        ts:Date.now(),ds:new Date().toLocaleString("fa-IR"),m:getSp(gm).lb,
+        tok:afState.tokens,cost:afState.costUsd,status:statusFinal,
+        updatedAt:new Date().toISOString(),pay:cln(afState)
+      };
+      await putHist(rec);rndHist();
+    }
+  }
+}
+
+function getAfText(){return afState.outputs?.[afTab]||"";}
+function onAfEditInput(val){if(!afState.outputs)afState.outputs={};afState.outputs[afTab]=val;saveKv("af_paused",{...afState,paused:true});}
+function rndAfOut(){
+  const t=getAfText();
+  $("afOutB").textContent=cw(t)?`${cw(t).toLocaleString("fa-IR")} کلمه`:"۰ کلمه";
+  if(afEd){$("afPrev").style.display="none";$("afEdit").style.display="block";$("afEdit").value=t;}
+  else{$("afEdit").style.display="none";$("afPrev").style.display="block";$("afPrev").innerHTML=t?mdHtml(t):`<p style="color:var(--mt);text-align:center;margin-top:120px;">خروجی این مرحله فعلاً خالی است.</p>`;}
+}
+const togAfEd=()=>{afEd=!afEd;$("btnAfEd").textContent=afEd?"👁️ پیش‌نمایش":"✏️ ویرایش";rndAfOut();};
+const cpAf=async()=>{const t=getAfText();if(!t)return alert("خالی است.");await navigator.clipboard.writeText(t);alert("کپی شد ✓");};
+const getCurStageName=()=>getP().data.stages.find(s=>s.id===afTab)?.name||"خروجی";
+async function dlAf(ext){
+  const t=getAfText();if(!t)return alert("خالی است.");
+  const n=`${ensT()} - ${getCurStageName()}`;
+  if(ext==="txt")dl(new Blob(["\uFEFF"+t],{type:"text/plain;charset=utf-8"}),n+".txt");
+  else if(ext==="md")dl(new Blob(["\uFEFF"+t],{type:"text/markdown;charset=utf-8"}),n+".md");
+  else if(ext==="docx")dl(await mkDocx(t),n+".docx");
+  else if(ext==="pdf")exportPdfPrint(t,n);
+}
+async function dlAfZip(){
+  const sn=ensT(),pd=getP().data,es=[];
+  for(const stg of pd.stages){
+    const t=afState.outputs?.[stg.id];if(!t?.trim())continue;
+    es.push({n:`${sn} - ${stg.name}.md`,d:new TextEncoder().encode("\uFEFF"+t)});
+    es.push({n:`${sn} - ${stg.name}.docx`,d:new Uint8Array(await(await mkDocx(t)).arrayBuffer())});
+    es.push({n:`${sn} - ${stg.name} (چاپ PDF).html`,d:new TextEncoder().encode(buildPrintHtml(t,`${sn} - ${stg.name}`))});
+  }
+  if(!es.length)return alert("خروجی آماده نیست.");
+  dl(await mkZip(es),`${sn}.zip`);
+}
+const useAsIn=()=>{const t=getAfText();if(!t)return alert("خالی است.");setAfMode("text");$("afTxtIn").value=t;updAfW();};
+const sendToMu=()=>{const t=getAfText();if(!t)return alert("خالی است.");const i=detMeta(t,$("afTitle").value.trim()||`جلسه ${muSess.length+1}`);muSess.push({id:uid("s"),n:i.t,m:i.m,tx:t,w:cw(t)});rndMuSess();swPage("mu");};
+
+/* Multi-Stage (Tab 2 - Dynamic Steps) */
+function rndMuModesUI(){
+  const steps=getP().data.multi?.steps||[], sel=$("muMode"), prev=sel.value;
+  sel.innerHTML=`<option value="__all__">اجرای تمام مراحل تعریف‌شده (${steps.length} گام)</option>`
+    + steps.map(s=>`<option value="${esc(s.id)}">فقط: ${esc(s.name)} (تجمیعی)</option>`).join("")
+    + `<option value="__per_sess__">اجرای گام آخر به صورت تک‌جلسه‌ای</option>`;
+  if([...sel.options].some(o=>o.value===prev)) sel.value=prev;
+  rndMuOutTabs();
+}
+function rndMuOutTabs(){
+  const steps=getP().data.multi?.steps||[];
+  if(!muTab || (!steps.some(s=>s.id===muTab) && muTab!=="rawIssues")) muTab=steps[0]?.id||"rawIssues";
+  $("muOutTabs").innerHTML=steps.map(s=>`<button type="button" class="stb ${muTab===s.id?"active":""}" onclick="swMuTab('${s.id}')">${esc(s.name)}</button>`).join("")
+    +`<button type="button" class="stb ${muTab==="rawIssues"?"active":""}" onclick="swMuTab('rawIssues')">فیش گام ۰</button>`;
+}
+async function ldMuFiles(fl){for(const f of fl){const x=(f.name.split(".").pop()||"").toLowerCase(),b=f.name.replace(/\.(docx|txt|md)$/i,"");try{const t=x==="docx"?await exDocx(await f.arrayBuffer()):(await f.text()).trim(),i=detMeta(t,b);muSess.push({id:uid("s"),n:i.t,m:i.m,tx:t,w:cw(t)});}catch(e){alert(f.name+": "+e.message);}}$("mFile").value="";rndMuSess();}
+function detMeta(tx,fb){const ls=tx.split(/\r?\n/).map(l=>l.trim()).filter(Boolean).slice(0,10);let t=fb;for(const l of ls)if(/^(?:--\s*)?جلس[هۀ]\s*[\d۰-۹]+/.test(l)){t=l.replace(/^--\s*/,"").replace(/:$/,"").slice(0,48);break;}return{t,m:fb};}
+function splitMu(){if(!muSess.length)return alert("فایلی نیست.");const ns=[];let cnt=0;for(const s of muSess){const ls=s.tx.split(/\r?\n/),idx=[];for(let i=0;i<ls.length;i++){const t=ls[i].trim();if(/^(?:#{1,3}\s*)?(?:--\s*)?جلس[هۀ]\s*[\d۰-۹]+/.test(t)&&t.length<60&&(!idx.length||i-idx[idx.length-1]>4))idx.push(i);}if(idx.length<=1)ns.push(s);else{cnt+=idx.length;idx.forEach((st,k)=>{const ch=ls.slice(st,k+1<idx.length?idx[k+1]:ls.length).join("\n").trim();if(ch){const i=detMeta(ch,`${s.n}-${k+1}`);ns.push({id:uid("s"),n:i.t,m:i.m,tx:ch,w:cw(ch)});}});}}if(!cnt)return alert("سرعنوان جلسه یافت نشد.");muSess=ns;rndMuSess();}
+const openPM=()=>{$("pmT").value=`جلسه ${muSess.length+1}`;$("pmB").value="";$("pMod").style.display="flex";};
+const addPM=()=>{const t=$("pmT").value.trim()||`جلسه ${muSess.length+1}`,b=$("pmB").value.trim();if(!b)return alert("متن وارد کنید.");muSess.push({id:uid("s"),n:t,m:"دستی",tx:b,w:cw(b)});$("pMod").style.display="none";rndMuSess();};
+const mvMu=(i,d)=>{const n=i+d;if(n>=0&&n<muSess.length){[muSess[i],muSess[n]]=[muSess[n],muSess[i]];rndMuSess();}};
+const rmMu=id=>{muSess=muSess.filter(s=>s.id!==id);rndMuSess();};
+const clrMu=()=>{if(muSess.length&&confirm("پاک شوند؟")){muSess=[];rndMuSess();}};
+function rndMuSess(){$("muList").innerHTML=muSess.length?muSess.map((s,i)=>`<div class="si"><div style="min-width:0;flex:1"><b>${i+1}. ${esc(s.n)}</b><div class="h">${s.w.toLocaleString("fa-IR")} کلمه</div></div><div style="display:flex;gap:2px"><button type="button" class="b bs bxs" onclick="mvMu(${i},-1)">▲</button><button type="button" class="b bs bxs" onclick="mvMu(${i},1)">▼</button><button type="button" class="b bds bxs" onclick="rmMu('${s.id}')">✕</button></div></div>`).join(""):`<div class="h" style="text-align:center;padding:9px">خالی</div>`;updMuEst();}
+function updMuEst(){const w=muSess.reduce((a,s)=>a+s.w,0),t=Math.round(w*2.6);$("muStats").textContent=`${muSess.length} جلسه`;if(!muSess.length)return;const sp=getSp($("gModel").value),c=((t*1.8/1e6)*sp.ip)+((t*.7/1e6)*sp.op);$("muEst").innerHTML=`${muSess.length<=4?"تجمیع مستقیم":"فیش‌بندی + چندمرحله‌ای"} • تخمین ~$${c.toFixed(2)} (${fmtTm(c)})`;}
+const pIss=t=>{const rx=/<<<ISSUE_START>>>\s*ID:\s*([^\n]+)\s*TITLE:\s*([^\n]+)\s*<<<CONTENT>>>\s*([\s\S]*?)\s*<<<ISSUE_END>>>/g,o=[];let m;while((m=rx.exec(t))!==null)o.push({id:m[1].trim().replace(/[^a-zA-Z0-9_\-]/g,"_")||"i_"+(o.length+1),t:m[2].trim(),c:m[3].trim()});return o;};
+
+async function runMu(resm){
+  await ensDP();if(!muSess.length)return alert("حداقل یک جلسه اضافه کنید.");
+  const m=$("gModel").value,th=$("gThink").value,md=$("muMode").value,mp=getP().data.multi;
+  const steps=mp.steps||[];
+  const targetSteps = md==="__all__" ? steps : (md==="__per_sess__"?[steps[steps.length-1]]:steps.filter(s=>s.id===md));
+  if(!targetSteps.length) return alert("گامی تعریف نشده است.");
+
+  if(!resm){muCache={id:uid("mu"),iss:{},bDone:0,stepRes:{},fRes:{},tokens:0,costUsd:0};logs.mu=[];addLog("mu",`🚀 شروع تقریر چندمرحله‌ای (${muSess.length} جلسه)`);}
+  else addLog("mu","↻ ادامه...");
+
+  ab=new AbortController();$("btnMuGo").disabled=true;$("btnMuRes").disabled=true;$("btnMuStp").style.display="inline-flex";$("btnMuRes").style.display="none";stTm("muTm");
+  let statusFinal="done";
+  const tit=muSess[0]?`${muSess[0].n} (+${muSess.length})`:"چندمرحله‌ای";
+
+  try{
+    if(md==="__per_sess__"){
+      const stg=targetSteps[0], pts=[];
+      for(let i=0;i<muSess.length;i++){
+        $("muPb").style.width=`${Math.round((i/muSess.length)*95)}%`;
+        const r=await callAI({m,th,sys:stg.prompt,parts:[{text:`### ${muSess[i].n} ###\n${muSess[i].tx}`}],lbl:`${stg.name} - ${muSess[i].n}`,logFn:(x,l)=>addLog("mu",x,l)});
+        pts.push(r.text);muCache.tokens+=r.totT;muCache.costUsd+=r.cost;muCache.fRes[stg.id]=pts.join("\n\n***\n\n");
+        swMuTab(stg.id);await saveKv("mu_paused",{sess:muSess,cache:muCache,paused:true});
+      }
+    } else if(muSess.length<=4){
+      const comb=muSess.map(s=>`### ${s.n} ###\n${s.tx}`).join("\n\n===\n\n");
+      let prevTxt=comb;
+      for(let i=0;i<targetSteps.length;i++){
+        const stg=targetSteps[i];
+        $("muPb").style.width=`${Math.round((i/targetSteps.length)*90)}%`;
+        if(!muCache.fRes[stg.id]){
+          const inp=stg.src==="prev"?prevTxt:comb;
+          const r=await callAI({m,th,sys:stg.prompt,parts:[{text:inp}],lbl:stg.name,logFn:(x,l)=>addLog("mu",x,l)});
+          muCache.fRes[stg.id]=r.text;muCache.tokens+=r.totT;muCache.costUsd+=r.cost;
+          await saveKv("mu_paused",{sess:muSess,cache:muCache,paused:true});
+        }
+        prevTxt=muCache.fRes[stg.id];swMuTab(stg.id);
+      }
+    } else {
+      const bs=mp.batchSize||4,bts=[];for(let i=0;i<muSess.length;i+=bs)bts.push(muSess.slice(i,i+bs));
+      for(let b=muCache.bDone;b<bts.length;b++){
+        $("muPb").style.width=`${Math.round((b/(bts.length*2))*100)}%`;
+        const kn=Object.entries(muCache.iss).map(([id,x])=>`- ${id}: ${x.t}`).join("\n")||"ندارد";
+        const r=await callAI({m,th,sys:mp.p0,parts:[{text:`## مباحث قبلی:\n${kn}\n\n## دسته ${b+1}:\n${bts[b].map(s=>`### ${s.n} ###\n${s.tx}`).join("\n\n")}`}],lbl:`فیش گام ۰ (${b+1}/${bts.length})`,logFn:(x,l)=>addLog("mu",x,l)});
+        muCache.tokens+=r.totT;muCache.costUsd+=r.cost;const ps=pIss(r.text);
+        if(!ps.length)muCache.iss["b_"+(b+1)]={t:"بخش "+(b+1),c:[r.text]};
+        else ps.forEach(it=>{if(!muCache.iss[it.id])muCache.iss[it.id]={t:it.t,c:[]};muCache.iss[it.id].c.push(it.c);});
+        muCache.bDone=b+1;refIss();await saveKv("mu_paused",{sess:muSess,cache:muCache,paused:true});
+      }
+      const ents=Object.entries(muCache.iss);
+      for(let i=0;i<ents.length;i++){
+        const[iid,inf]=ents[i],raw=`# ${inf.t}\n\n`+inf.c.join("\n\n---\n\n");
+        let prevTxt=raw;
+        for(let si=0;si<targetSteps.length;si++){
+          const stg=targetSteps[si];
+          if(!muCache.stepRes[stg.id])muCache.stepRes[stg.id]={};
+          $("muPb").style.width=`${50+Math.round((((i*targetSteps.length)+si)/(ents.length*targetSteps.length))*48)}%`;
+          if(!muCache.stepRes[stg.id][iid]){
+            const inp=stg.src==="prev"?prevTxt:raw;
+            const r=await callAI({m,th,sys:stg.prompt,parts:[{text:inp}],lbl:`${stg.name} - ${inf.t}`,logFn:(x,l)=>addLog("mu",x,l)});
+            muCache.stepRes[stg.id][iid]=r.text;muCache.tokens+=r.totT;muCache.costUsd+=r.cost;
+            await saveKv("mu_paused",{sess:muSess,cache:muCache,paused:true});
+          }
+          prevTxt=muCache.stepRes[stg.id][iid];
+          muCache.fRes[stg.id]=ents.map(([id])=>muCache.stepRes[stg.id][id]).filter(Boolean).join("\n\n***\n\n");
+          swMuTab(stg.id);
+        }
+      }
+    }
+    $("muPb").style.width="100%";$("muSt").textContent=`✅ تمام ($${muCache.costUsd.toFixed(3)} ≈ ${fmtTm(muCache.costUsd)})`;
+    await saveKv("mu_paused",null);
+    if(wDir){for(const stg of steps){const t=muCache.fRes?.[stg.id];if(t?.trim()){await wrDir(`${tit} - ${stg.name}.md`,t);await wrDir(`${tit} - ${stg.name}.docx`,await mkDocx(t));}}await syncDir();}
+  }catch(e){
+    const isAbort=/توقف توسط کاربر/.test(e.message);
+    statusFinal=isAbort?"stopped":"error";
+    $("muSt").textContent=(isAbort?"⛔ متوقف شد":"❌ خطا")+": "+e.message;
+    addLog("mu",e.message,isAbort?"wrn":"err");
+    $("btnMuRes").style.display="inline-flex";
+    await saveKv("mu_paused",{sess:muSess,cache:muCache,paused:true});
+  }finally{
+    spTm("muTm");$("btnMuGo").disabled=false;$("btnMuRes").disabled=false;$("btnMuStp").style.display="none";ab=null;
+    if(muCache.id){
+      await putHist({id:muCache.id,kind:"mu",kl:"چندمرحله‌ای",title:tit,scope:"personal",ownerId:team.user?.id||"",ownerName:team.user?.name||"شخصی",ts:Date.now(),ds:new Date().toLocaleString("fa-IR"),m:getSp(m).lb,tok:muCache.tokens,cost:muCache.costUsd,status:statusFinal,updatedAt:new Date().toISOString(),pay:{sess:cln(muSess),cache:cln(muCache)}});
+      rndHist();
+    }
+  }
+}
+
+const refIss=()=>{const s=$("muIss"),p=s.value;s.innerHTML=`<option value="ALL">متن کامل</option>`+Object.entries(muCache.iss||{}).map(([id,x],i)=>`<option value="${esc(id)}">${i+1}. ${esc(x.t)}</option>`).join("");if([...s.options].some(o=>o.value===p))s.value=p;};
+const swMuTab=t=>{muTab=t;rndMuOutTabs();rndMuOut();};
+const getMuTx=()=>{
+  const s=$("muIss").value;
+  if(muTab==="rawIssues"){
+    if(s!=="ALL"&&muCache.iss?.[s])return`# ${muCache.iss[s].t}\n\n`+muCache.iss[s].c.join("\n\n---\n\n");
+    return Object.values(muCache.iss||{}).map(x=>`# ${x.t}\n\n`+x.c.join("\n\n---\n\n")).join("\n\n===\n\n");
+  }
+  return(s!=="ALL"&&muCache.stepRes?.[muTab]?.[s])||muCache.fRes?.[muTab]||"";
+};
+const onMuRawInput=val=>{if(muTab!=="rawIssues"){if(!muCache.fRes)muCache.fRes={};muCache.fRes[muTab]=val;}};
+const rndMuOut=()=>{const t=getMuTx();$("muOutB").textContent=cw(t)?`${cw(t).toLocaleString("fa-IR")} کلمه`:"۰ کلمه";if(muRaw){$("muPrev").style.display="none";$("muRaw").style.display="block";$("muRaw").value=t;}else{$("muRaw").style.display="none";$("muPrev").style.display="block";$("muPrev").innerHTML=t?mdHtml(t):`<p style="color:var(--mt);text-align:center;margin-top:120px;">خالی است.</p>`;}};
+const cpMu=async()=>{const t=getMuTx();if(!t)return alert("خالی است.");await navigator.clipboard.writeText(t);alert("کپی شد ✓");};
+async function dlMu(ext){
+  const t=getMuTx();if(!t)return alert("خالی است.");
+  const stg=getP().data.multi.steps.find(s=>s.id===muTab);const n="تقریر_"+(stg?.name||muTab);
+  if(ext==="txt")dl(new Blob(["\uFEFF"+t],{type:"text/plain;charset=utf-8"}),n+".txt");
+  else if(ext==="md")dl(new Blob(["\uFEFF"+t],{type:"text/markdown;charset=utf-8"}),n+".md");
+  else if(ext==="docx")dl(await mkDocx(t),n+".docx");
+  else if(ext==="pdf")exportPdfPrint(t,n);
+}
+async function dlMuZip(){
+  const es=[],steps=getP().data.multi.steps||[];
+  for(const s of steps){const t=muCache.fRes?.[s.id];if(!t?.trim())continue;es.push({n:s.name+".md",d:new TextEncoder().encode("\uFEFF"+t)});es.push({n:s.name+".docx",d:new Uint8Array(await(await mkDocx(t)).arrayBuffer())});es.push({n:s.name+" (چاپ PDF).html",d:new TextEncoder().encode(buildPrintHtml(t,s.name))});}
+  if(!es.length)return alert("خروجی آماده نیست.");dl(await mkZip(es),"تقریر_چندمرحله_ای.zip");
+}
+
+/* Messengers: Bale / Telegram / Eitaa + Command Parser Automation */
+async function fetchInbox(plat){
+  if(!team.gasUrl||!team.code) return openTeamModal();
+  const btn=$(plat==="bale"?"btnFetchBale":"btnFetchTg");btn.disabled=true;
+  try{
+    const r=await gasCall({action:plat==="bale"?"fetchBale":"fetchTelegram",code:team.code});
+    team.inbox=r.messages||[];team.inboxOffset=r.nextOffset||0;team.inboxPlat=plat;
+    $("btnAckInbox").style.display=team.inbox.length?"inline-flex":"none";
+    rndInbox();
+  }catch(e){alert("❌ "+e.message);}finally{btn.disabled=false;}
+}
+async function ackCurInbox(){
+  if(!team.inboxPlat)return;
+  await gasCall({action:team.inboxPlat==="bale"?"fetchBale":"fetchTelegram",code:team.code,ackOffset:team.inboxOffset});
+  team.inbox=[];rndInbox();$("btnAckInbox").style.display="none";
+}
+function parseVoiceCmd(txt){
+  const res={stages:[],dests:[],title:""};
+  const mSt=txt.match(/#?مراحل\s*[:：]\s*([^\n|]+)/);
+  if(mSt) res.stages=mSt[1].split(/[،,]/).map(x=>x.trim()).filter(Boolean);
+  const mDs=txt.match(/#?مقصد\s*[:：]\s*([^\n|]+)/);
+  if(mDs){
+    const s=mDs[1];
+    if(/ایتا/.test(s))res.dests.push("eitaa");
+    if(/بله/.test(s))res.dests.push("bale");
+    if(/تلگرام/.test(s))res.dests.push("telegram");
+  }
+  const mTi=txt.match(/#?عنوان\s*[:：]\s*([^\n|]+)/);
+  if(mTi) res.title=mTi[1].trim();
+  return res;
+}
+function rndInbox(){
+  const box=$("inboxList");
+  if(!team.inbox.length){box.innerHTML=`<div class="h" style="text-align:center;padding:18px;">پیام جدیدی دریافت نشده است.</div>`;return;}
+  box.innerHTML=team.inbox.map((m,i)=>{
+    const cmd=parseVoiceCmd(m.text||"");
+    return `<div class="si" style="flex-direction:column;align-items:stretch;">
+      <div style="display:flex;justify-content:space-between;gap:6px;"><b>${m.platform==="bale"?"💬 بله":"📨 تلگرام"} • ${esc(m.sender)}</b><span class="h">${new Date(m.date).toLocaleString("fa-IR")}</span></div>
+      ${m.media?`<div class="bg bnv" style="align-self:flex-start;margin:4px 0;">🎙️ ${esc(m.media.fileName)} (${(m.media.fileSize/1048576).toFixed(2)} MB)</div>`:""}
+      ${m.text?`<div style="white-space:pre-wrap;margin:4px 0;">${esc(m.text)}</div>`:""}
+      ${(cmd.stages.length||cmd.dests.length)?`<div class="h" style="color:var(--pr);">🤖 دستور شناسایی‌شده: مراحل=[${cmd.stages.join("، ")||"پیش‌فرض"}] • مقصد=[${cmd.dests.join("، ")||"فقط نمایش"}]</div>`:""}
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px;">
+        ${m.media?`<button type="button" class="b bs bsm" onclick="loadInboxAudio(${i},false)">⬇ بارگذاری در استودیو</button><button type="button" class="b bp bsm" onclick="loadInboxAudio(${i},true)">⚡ دانلود و اجرای خودکار دستور</button>`:`<button type="button" class="b bs bsm" onclick="loadInboxText(${i})">📝 ورود به عنوان متن</button>`}
+      </div>
+    </div>`;
+  }).join("");
+}
+function loadInboxText(i){const m=team.inbox[i];if(!m)return;setAfMode("text");$("afTxtIn").value=m.text;updAfW();swPage("af");}
+async function loadInboxAudio(i, autoRun){
+  const m=team.inbox[i];if(!m?.media)return;
+  try{
+    addLog("af",`⬇️ در حال دریافت فایل صوتی «${m.media.fileName}» از ${m.platform==="bale"?"بله":"تلگرام"}...`);
+    const act=m.platform==="bale"?"downloadBaleFile":"downloadTelegramFile";
+    const r=await gasCall({action:act,code:team.code,fileId:m.media.fileId,fileName:m.media.fileName,mimeType:m.media.mimeType});
+    const bin=atob(r.base64),arr=new Uint8Array(bin.length);for(let k=0;k<bin.length;k++)arr[k]=bin.charCodeAt(k);
+    const file=new File([arr],r.fileName,{type:r.mimeType});
+    setAfMode("audio");ldAud(file);
+    const cmd=parseVoiceCmd(m.text||"");
+    if(cmd.title) $("afTitle").value=cmd.title;
+    swPage("af");
+    if(autoRun){
+      const finalTxt = await runAf(false,{stageNames:cmd.stages,title:cmd.title||r.fileName.replace(/\.[^.]+$/,"")});
+      if(finalTxt && cmd.dests.length){
+        const docBlob=await mkDocx(finalTxt), b64=await toB64(docBlob), fname=($("afTitle").value||"گزارش")+".docx";
+        for(const d of cmd.dests){
+          const fAct=d==="eitaa"?"sendEitaaFile":(d==="bale"?"sendBaleFile":"sendTelegramFile");
+          await gasCall({action:fAct,code:team.code,fileName:fname,mimeType:"application/vnd.openxmlformats-officedocument.wordprocessingml.document",fileBase64:b64,caption:`✅ خروجی آماده شد: ${$("afTitle").value}`});
+          addLog("af",`📤 فایل خروجی خودکار به ${d} ارسال شد.`,"ok");
+        }
+      }
+    }
+  }catch(e){alert("❌ "+e.message);addLog("af",e.message,"err");}
+}
+
+async function sendQuickTextMsg(){
+  if(!team.gasUrl||!team.code) return openTeamModal();
+  const txt=$("qSendTxt").value.trim(), cid=$("qCustomChat").value.trim();
+  if(!txt)return alert("متن خالی است.");
+  const dst=[];if($("qDstEitaa").checked)dst.push("eitaa");if($("qDstBale").checked)dst.push("bale");if($("qDstTg").checked)dst.push("telegram");
+  if(!dst.length)return alert("حداقل یک مقصد انتخاب کنید.");
+  $("qSendRes").textContent="⏳ در حال ارسال...";
+  try{
+    for(const d of dst){
+      const act=d==="eitaa"?"sendEitaa":(d==="bale"?"sendBale":"sendTelegram");
+      await gasCall({action:act,code:team.code,text:txt,chatId:cid});
+    }
+    $("qSendRes").textContent="✅ با موفقیت ارسال شد.";
+  }catch(e){$("qSendRes").textContent="❌ "+e.message;}
+}
+
+function openSendMsgModal(ctx){
+  if(!team.gasUrl||!team.code) return openTeamModal();
+  sendCtx=ctx;
+  const t=ctx==="af"?getAfText():getMuTx();
+  if(!t?.trim())return alert("خروجی فعلی خالی است.");
+  $("smTitle").value=ctx==="af"?`${ensT()} - ${getCurStageName()}`:"تقریر چندمرحله‌ای";
+  $("smCaption").value=`📄 ${$("smTitle").value}\n(${cw(t).toLocaleString("fa-IR")} کلمه)`;
+  $("smStatus").textContent="";$("sendMsgMod").style.display="flex";
+}
+async function execSendMsgModal(){
+  const t=sendCtx==="af"?getAfText():getMuTx(), typ=$("smType").value, title=$("smTitle").value.trim()||"خروجی", cap=$("smCaption").value.trim(), cid=$("smChatId").value.trim(), pin=$("smPin").checked;
+  const dst=[];if($("smEitaa").checked)dst.push("eitaa");if($("smBale").checked)dst.push("bale");if($("smTg").checked)dst.push("telegram");
+  if(!dst.length)return alert("حداقل یک مقصد انتخاب کنید.");
+  $("btnSmSend").disabled=true;$("smStatus").textContent="⏳ در حال آماده‌سازی و ارسال...";
+  try{
+    let fileB64="",fname="",mime="";
+    if(typ==="docx"){const b=await mkDocx(t);fileB64=await toB64(b);fname=title+".docx";mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document";}
+    else if(typ==="md"){fileB64=await toB64(new Blob(["\uFEFF"+t],{type:"text/markdown"}));fname=title+".md";mime="text/markdown";}
+    else if(typ==="html"){fileB64=await toB64(new Blob([buildPrintHtml(t,title)],{type:"text/html"}));fname=title+" (چاپ PDF).html";mime="text/html";}
+
+    for(const d of dst){
+      if(typ==="text"){
+        const act=d==="eitaa"?"sendEitaa":(d==="bale"?"sendBale":"sendTelegram");
+        await gasCall({action:act,code:team.code,text:(cap?cap+"\n\n":"")+t,chatId:cid,title,pin});
+      }else{
+        const act=d==="eitaa"?"sendEitaaFile":(d==="bale"?"sendBaleFile":"sendTelegramFile");
+        await gasCall({action:act,code:team.code,fileBase64:fileB64,fileName:fname,mimeType:mime,caption:cap,chatId:cid,title,pin});
+      }
+    }
+    $("smStatus").textContent="✅ با موفقیت ارسال شد!";
+  }catch(e){$("smStatus").textContent="❌ "+e.message;}finally{$("btnSmSend").disabled=false;}
+}
+
+/* Push to Aicenter & Import Prompts from Aicenter */
+function openPushAicModal(){
+  if(!team.gasUrl||!team.code)return openTeamModal();
+  const t=getAfText();if(!t?.trim())return alert("خروجی فعلی خالی است.");
+  $("paTask").innerHTML=(team.aic.tasks||[]).map(x=>`<option value="${x.id}">${esc(x.title)} (${esc(x.assignee||"—")})</option>`).join("")||`<option value="">کاری یافت نشد</option>`;
+  $("paProj").innerHTML=`<option value="">ندارد</option>`+(team.aic.projects||[]).map(x=>`<option value="${x.id}">${esc(x.title)}</option>`).join("");
+  $("paTitle").value=`${$("afTitle").value||"جلسه"} - ${getCurStageName()}`;
+  $("paText").value=t;onPaKind();$("pushAicMod").style.display="flex";
+}
+function onPaKind(){const k=$("paKind").value;$("paTaskWrap").style.display=k==="worklog"?"block":"none";$("paProjWrap").style.display=(k==="task"||k==="note")?"block":"none";}
+async function execPushAic(){
+  try{
+    await gasCall({action:"pushToAicenter",code:team.code,targetKind:$("paKind").value,taskId:$("paTask").value,projectId:$("paProj").value,title:$("paTitle").value.trim(),text:$("paText").value});
+    alert("✅ با موفقیت در اتاق فرمان (Aicenter) ثبت شد!");$("pushAicMod").style.display="none";
+  }catch(e){alert("❌ "+e.message);}
+}
+function openImpAicPrompts(){
+  const ps=team.aic.prompts||[];
+  $("impAicList").innerHTML=ps.length?ps.map((p,i)=>`<div class="si"><div><b>${esc(p.title)}</b> <span class="bg">${esc(p.category||"")}</span><div class="h">${esc((p.text||"").slice(0,90))}...</div></div><button type="button" class="b bp bsm" onclick="impOneAic(${i})">+ افزودن به دسته فعلی</button></div>`).join(""):`<div class="h" style="text-align:center;padding:14px;">پرامپتی در خزانه Aicenter یافت نشد.</div>`;
+  $("impAicMod").style.display="flex";
+}
+function impOneAic(i){
+  const p=team.aic.prompts[i];if(!p)return;
+  const pd=getP().data;if(!pd.prompts[curCat])pd.prompts[curCat]=[];
+  const np={id:uid("p"),engine:p.model||"",title:p.title,prompt:p.text};
+  pd.prompts[curCat].push(np);curPid=np.id;savePr();rndPEd();$("impAicMod").style.display="none";alert("وارد شد ✓");
+}
+
+/* Tab 4: Open Profile, Categories, Stages & Prompts Editor */
+const savePr=async(notify)=>{
+  const p=getP();p.updatedAt=new Date().toISOString();
+  await saveKv("prof5",{activeProfileId:app.activeProfileId,profiles:app.profiles});
+  const s=$("pSv");if(s){s.textContent="ذخیره شد ✓";setTimeout(()=>s.textContent="ذخیره خودکار",900);}
+  if(notify && team.gasUrl && team.code) syncTeamNow(true);
+};
+const refProf=()=>{
+  const s=$("pSel"), ps=Object.values(app.profiles);
+  s.innerHTML=ps.map(p=>`<option value="${esc(p.id)}">${p.scope==="public"?"🌐 [عمومی] ":"👤 [اختصاصی] "}${esc(p.name)}</option>`).join("");
+  s.value=app.activeProfileId;
+  const cur=getP();
+  $("profBadge").textContent=(cur.scope==="public"?"🌐 ":"👤 ")+cur.name;
+  $("profScopeBadge").innerHTML=cur.scope==="public"?`<span class="bg bok">پروفایل عمومی مرکز (همگام با تیم)</span>`:`<span class="bg bnv">پروفایل اختصاصی شما</span>`;
+};
+const chgProf=()=>{app.activeProfileId=$("pSel").value;curPid="";refProf();rndAfStagesUI();rndMuModesUI();rndPEd();savePr();};
+const newProf=(scope)=>{
+  if(scope==="public" && team.user && !canSt("studioSharedEdit",false)) return alert("مجوز ساخت پروفایل عمومی ندارید.");
+  const n=prompt(scope==="public"?"نام پروفایل عمومی جدید:":"نام پروفایل اختصاصی جدید:");
+  if(!n?.trim())return;
+  const np=cln(getP());np.id=uid(scope==="public"?"pub":"per");np.name=n.trim();np.scope=scope;
+  np.ownerId=scope==="public"?"":(team.user?.id||"");np.ownerName=scope==="public"?"مرکز":(team.user?.name||"کاربر");np.updatedAt=new Date().toISOString();
+  app.profiles[np.id]=np;app.activeProfileId=np.id;refProf();rndAfStagesUI();rndMuModesUI();rndPEd();savePr(true);
+};
+const delProf=()=>{
+  const cur=getP();
+  if(cur.scope==="public" && team.user && !canSt("studioSharedEdit",false)) return alert("مجوز حذف پروفایل عمومی ندارید.");
+  if(Object.keys(app.profiles).length>1&&confirm("پروفایل حذف شود؟")){cur.deletedAt=new Date().toISOString();delete app.profiles[app.activeProfileId];app.activeProfileId=Object.keys(app.profiles)[0];refProf();rndAfStagesUI();rndMuModesUI();rndPEd();savePr(true);}
+};
+const rstProf=()=>{if(confirm("محتوای این پروفایل به استاندارد اولیه برگردد؟")){const cur=getP();cur.data=cln(bCfg.profiles.pub_std.data);curPid="";rndAfStagesUI();rndMuModesUI();rndPEd();savePr(true);}};
+
+function selPrMode(m){
+  curPrMode=m;
+  ["prompts","stages","multi"].forEach(x=>$("pm-"+x).className=x===m?"b bp bsm":"b bs bsm");
+  $("catSideCard").style.display=m==="prompts"?"block":"none";
+  $("pCardL").style.display=m==="prompts"?"block":"none";
+  $("pCardS").style.display=m==="stages"?"block":"none";
+  $("pCardM").style.display=m==="multi"?"block":"none";
+  rndPEd();
+}
+function rndPEd(){
+  const pr=getP(), pd=pr.data, ro=(pr.scope==="public" && team.user && !canSt("studioSharedEdit",false));
+  if(curPrMode==="stages"){rndStagesEditor(ro);return;}
+  if(curPrMode==="multi"){rndMultiEditor(ro);return;}
+
+  const allowedCats=team.user?.role==="member" && Array.isArray(team.user.perms?.studioAllowedCats) && team.user.perms.studioAllowedCats.length ? team.user.perms.studioAllowedCats : null;
+  const cats=(pd.categories||[]).filter(c=>!allowedCats || allowedCats.includes(c.id));
+  if(!cats.some(c=>c.id===curCat)) curCat=cats[0]?.id||pd.categories[0]?.id||"";
+
+  $("catButtonsBox").innerHTML=cats.map(c=>`<button type="button" class="b ${c.id===curCat?"bp":"bs"} bsm" onclick="curCat='${c.id}';curPid='';rndPEd();">${esc(c.name)}</button>`).join("");
+  const curC=pd.categories.find(c=>c.id===curCat);
+  $("pCatT").textContent="پرامپت‌های دسته: "+(curC?.name||"");
+  const ls=pd.prompts[curCat]||[], df=pd.defaults?.[curCat];
+  if(!curPid||!ls.some(x=>x.id===curPid))curPid=(df&&ls.some(x=>x.id===df))?df:(ls[0]?.id||"");
+
+  $("pList").innerHTML=ls.map(x=>`<div class="pi ${x.id===curPid?"sel":""}" onclick="curPid='${x.id}';rndPEd();"><div>${x.id===df?"★ ":""}${esc(x.title)}<div><span class="bg bnv" style="font-size:.63rem">${esc(x.engine||"همه موتورها")}</span></div></div></div>`).join("");
+  const c=ls.find(x=>x.id===curPid);
+  $("piT").value=c?c.title:"";$("piEng").value=c?(c.engine||""):"";$("piB").value=c?c.prompt:"";
+  $("piT").disabled=ro;$("piEng").disabled=ro;$("piB").disabled=ro;$("btnDefP").disabled=ro||!c||c.id===df;
+}
+function addCategory(){const n=prompt("نام دسته جدید (مثلاً: خلاصه‌سازی، استخراج روایات):");if(!n?.trim())return;const pd=getP().data,id=uid("cat");pd.categories.push({id,name:n.trim()});pd.prompts[id]=[{id:uid("p"),engine:"",title:"پرامپت جدید "+n.trim(),prompt:"دستورالعمل این دسته..."}];pd.defaults[id]=pd.prompts[id][0].id;curCat=id;curPid="";savePr();rndPEd();rndAfStagesUI();}
+function renCategory(){const pd=getP().data,c=pd.categories.find(x=>x.id===curCat);if(!c)return;const n=prompt("نام جدید دسته:",c.name);if(n?.trim()){c.name=n.trim();savePr();rndPEd();rndAfStagesUI();}}
+function delCategory(){const pd=getP().data;if(pd.categories.length<=1)return alert("حداقل یک دسته باید بماند.");if(!confirm("این دسته حذف شود؟"))return;pd.categories=pd.categories.filter(c=>c.id!==curCat);curCat=pd.categories[0].id;curPid="";savePr();rndPEd();rndAfStagesUI();}
+const addPI=()=>{const pd=getP().data;if(!pd.prompts[curCat])pd.prompts[curCat]=[];const it={id:uid("p"),engine:"",title:"پرامپت جدید",prompt:"دستور..."};pd.prompts[curCat].push(it);curPid=it.id;rndPEd();rndAfStagesUI();savePr();};
+const updPI=()=>{const pd=getP().data,it=(pd.prompts[curCat]||[]).find(x=>x.id===curPid);if(!it)return;it.title=$("piT").value;it.engine=$("piEng").value;it.prompt=$("piB").value;rndPEd();rndAfStagesUI();savePr();};
+const defPI=()=>{if(curPid){getP().data.defaults[curCat]=curPid;rndPEd();rndAfStagesUI();savePr();}};
+const delPI=()=>{const pd=getP().data,ls=pd.prompts[curCat]||[];if(ls.length>1&&confirm("حذف شود؟")){pd.prompts[curCat]=ls.filter(x=>x.id!==curPid);curPid=pd.prompts[curCat][0].id;pd.defaults[curCat]=curPid;rndPEd();rndAfStagesUI();savePr();}};
+
+/* Stages Editor */
+function rndStagesEditor(ro){
+  const pd=getP().data;
+  $("stagesEditorList").innerHTML=(pd.stages||[]).map((s,i)=>`<div class="si" style="flex-wrap:wrap;gap:6px;padding:9px;">
+    <b style="min-width:22px">${i+1}.</b>
+    <input type="text" style="flex:1;min-width:140px;" value="${esc(s.name)}" ${ro?"disabled":""} oninput="updStage(${i},'name',this.value)"/>
+    <select style="width:160px;" ${ro?"disabled":""} onchange="updStage(${i},'catId',this.value)">${pd.categories.map(c=>`<option value="${c.id}" ${s.catId===c.id?"selected":""}>دسته: ${esc(c.name)}</option>`).join("")}</select>
+    <label style="margin:0;font-size:.76rem;gap:3px;"><input type="checkbox" ${s.needsAudio?"checked":""} ${ro?"disabled":""} onchange="updStage(${i},'needsAudio',this.checked)" style="width:auto"/> ورودی صوت</label>
+    <div style="display:flex;gap:3px;">
+      <button type="button" class="b bs bxs" ${i===0||ro?"disabled":""} onclick="mvStage(${i},-1)">▲</button>
+      <button type="button" class="b bs bxs" ${i===pd.stages.length-1||ro?"disabled":""} onclick="mvStage(${i},1)">▼</button>
+      <button type="button" class="b bds bxs" ${pd.stages.length<=1||ro?"disabled":""} onclick="delStage(${i})">حذف</button>
+    </div>
+  </div>`).join("");
+}
+function addStage(){const pd=getP().data;pd.stages.push({id:uid("stg"),name:"مرحله جدید",catId:pd.categories[0]?.id||"summary",enabled:true,needsAudio:false,model:""});savePr();rndStagesEditor(false);rndAfStagesUI();}
+function updStage(i,k,v){getP().data.stages[i][k]=v;savePr();rndAfStagesUI();}
+function mvStage(i,d){const s=getP().data.stages,n=i+d;[s[i],s[n]]=[s[n],s[i]];savePr();rndStagesEditor(false);rndAfStagesUI();}
+function delStage(i){const s=getP().data.stages;if(s.length<=1)return;s.splice(i,1);savePr();rndStagesEditor(false);rndAfStagesUI();}
+
+/* Multi-Stage Editor */
+function rndMultiEditor(ro){
+  const m=getP().data.multi;
+  $("mBs").value=m.batchSize||4;
+  $("mpTabs").innerHTML=`<button type="button" class="stb ${curMpId==="p0"?"active":""}" onclick="swMp('p0')">گام ۰ (فیش‌بندی)</button>`
+    +(m.steps||[]).map(s=>`<button type="button" class="stb ${curMpId===s.id?"active":""}" onclick="swMp('${s.id}')">${esc(s.name)}</button>`).join("");
+  swMp(curMpId,ro);
+}
+function swMp(id,ro){
+  curMpId=id;const m=getP().data.multi;
+  if(id==="p0"){$("mpStepMeta").style.display="none";$("mpBox").value=m.p0||"";}
+  else{
+    const s=(m.steps||[]).find(x=>x.id===id)||m.steps[0];if(!s)return;curMpId=s.id;
+    $("mpStepMeta").style.display="grid";$("mpStepLbl").value=s.name;$("mpStepSrc").value=s.src||"raw";$("mpBox").value=s.prompt||"";
+  }
+  [...$("mpTabs").children].forEach(b=>b.classList.toggle("active",b.textContent===(id==="p0"?"گام ۰ (فیش‌بندی)":m.steps.find(x=>x.id===curMpId)?.name)));
+}
+function updMP(){
+  const m=getP().data.multi;m.batchSize=Math.max(2,parseInt($("mBs").value,10)||4);
+  if(curMpId==="p0")m.p0=$("mpBox").value;
+  else{const s=m.steps.find(x=>x.id===curMpId);if(s)s.prompt=$("mpBox").value;}
+  savePr();
+}
+function updMultiStepMeta(){const s=getP().data.multi.steps.find(x=>x.id===curMpId);if(!s)return;s.name=$("mpStepLbl").value;s.src=$("mpStepSrc").value;savePr();rndMuModesUI();rndMultiEditor();}
+function addMultiStep(){const m=getP().data.multi,id=uid("ms");m.steps.push({id,name:"گام جدید",src:"prev",prompt:"دستورالعمل گام جدید..."});curMpId=id;savePr();rndMuModesUI();rndMultiEditor();}
+
+const expJson=()=>dl(new Blob([JSON.stringify({schemaVer:SCHEMA_VER,activeProfileId:app.activeProfileId,customModels:app.customModels,usdRate:app.usdRate,style:app.style,profiles:app.profiles},null,2)],{type:"application/json"}),"taqrir_prompts_v5.json");
+async function impJson(f){if(!f)return;try{const d=JSON.parse(await f.text());if(d.profiles){Object.entries(d.profiles).forEach(([k,v])=>{app.profiles[k]=v.data?v:migrateLegacyProfile(v,k,k);});}if(d.activeProfileId&&app.profiles[d.activeProfileId])app.activeProfileId=d.activeProfileId;if(d.customModels){app.customModels=d.customModels;await saveKv("cmod5",app.customModels);refMSel();}if(d.usdRate){app.usdRate=d.usdRate;$("usdRate").value=d.usdRate;await saveKv("usd5",d.usdRate);}refProf();rndAfStagesUI();rndMuModesUI();rndPEd();await savePr();alert("وارد شد ✓");}catch(e){alert(e.message);}}
+function dlBaked(){const sm="/*__BC_S__*/",em="/*__BC_E__*/",si=SNAP.indexOf(sm),ei=SNAP.indexOf(em);if(si<0||ei<0)return alert("خطا");const sj=JSON.stringify({schemaVer:SCHEMA_VER,activeProfileId:app.activeProfileId,customModels:app.customModels,usdRate:app.usdRate,profiles:app.profiles}).replace(/<\/script/gi,"<\\/script");dl(new Blob([SNAP.slice(0,si+sm.length)+"\n"+sj+"\n"+SNAP.slice(ei)],{type:"text/html;charset=utf-8"}),"transcribe-ready.html");}
+
+/* History & Full Backup */
+async function rndHist(){
+  const all=(await allHist()).filter(x=>!x.deletedAt).sort((a,b)=>(b.ts||0)-(a.ts||0));
+  const stBadge=s=>s==="stopped"?`<span class="bg bac">متوقف‌شده</span>`:(s==="error"?`<span class="bg ber">خطادار</span>`:`<span class="bg bok">تکمیل ✓</span>`);
+  $("hiWrap").innerHTML=all.length?`<table class="tbl"><thead><tr><th>تاریخ</th><th>نوع</th><th>عنوان</th><th>وضعیت</th><th>توکن</th><th>هزینه</th><th>عملیات</th></tr></thead><tbody>${all.map(x=>`<tr><td>${esc(x.ds)}</td><td><span class="bg bnv">${esc(x.kl)}</span></td><td><b>${esc(x.title)}</b></td><td>${stBadge(x.status)}</td><td>${(x.tok||0).toLocaleString("fa-IR")}</td><td>$${(x.cost||0).toFixed(3)} (${fmtTm(x.cost||0)})</td><td style="white-space:nowrap"><button type="button" class="b bp bxs" onclick="opH('${x.id}')">باز کردن</button> <button type="button" class="b bs bxs" onclick="dlHW('${x.id}','docx')">Word</button> <button type="button" class="b ba bxs" onclick="dlHW('${x.id}','pdf')">PDF</button> <button type="button" class="b bds bxs" onclick="rmH('${x.id}')">حذف</button></td></tr>`).join("")}</tbody></table>`:`<div class="h" style="text-align:center;padding:18px">سابقه‌ای ثبت نشده است.</div>`;
+}
+async function ensureHistPayload(x){
+  if(x.pay) return x.pay;
+  if(x.hasRemotePayload && team.gasUrl && team.code){
+    const r=await gasCall({action:"studioGetPayload",code:team.code,id:x.id});
+    if(r.pay){x.pay=r.pay;await putHist(x);return r.pay;}
+  }
+  return null;
+}
+async function opH(id){
+  const x=(await allHist()).find(z=>z.id===id);if(!x)return;
+  const pay=await ensureHistPayload(x);if(!pay)return alert("متن این سابقه در دسترس نیست.");
+  if(x.kind==="af"){
+    afState=cln(pay);$("afTitle").value=afState.title||"";
+    const ks=Object.keys(afState.outputs||{});if(ks.length)afTab=ks[ks.length-1];
+    rndAfStagesUI();rndAfOut();swPage("af");
+  }else{
+    muSess=cln(pay.sess||[]);muCache=cln(pay.cache||{});
+    rndMuSess();refIss();const ks=Object.keys(muCache.fRes||{});if(ks.length)muTab=ks[ks.length-1];
+    rndMuOutTabs();rndMuOut();swPage("mu");
+  }
+}
+async function dlHW(id,ext){
+  const x=(await allHist()).find(z=>z.id===id);if(!x)return;
+  const pay=await ensureHistPayload(x);if(!pay)return alert("متن در دسترس نیست.");
+  let md="";
+  if(x.kind==="af"){const vals=Object.values(pay.outputs||{});md=vals[vals.length-1]||pay.taqrir||pay.headed||pay.smooth||pay.raw||"";}
+  else{const vals=Object.values(pay.cache?.fRes||{});md=vals[vals.length-1]||pay.cache?.f2||pay.cache?.f1||"";}
+  if(!md)return alert("خالی است.");
+  if(ext==="pdf")exportPdfPrint(md,x.title||"تقریر");else dl(await mkDocx(md),(x.title||"doc")+".docx");
+}
+const rmH=async id=>{if(confirm("حذف شود؟")){await delHistDb(id);rndHist();}},clrHist=async()=>{if(confirm("تمام سابقه پاک شود؟")){await clrHistDb();rndHist();}};
+async function expFullBackup(){const h=await allHist();dl(new Blob([JSON.stringify({schemaVer:SCHEMA_VER,profiles:app.profiles,customModels:app.customModels,history:h},null,2)],{type:"application/json"}),"taqrir_full_backup.json");}
+function rndTok(){let gu=0,gt=0;const rows=allM().map(sp=>{const s=app.tok[sp.id]||{r:0,i:0,o:0,t:0,tot:0,c:0},c=s.c??(((s.i/1e6)*sp.ip)+(((s.o+s.t)/1e6)*sp.op));gu+=c;gt+=s.tot;return`<tr><td><b>${esc(sp.lb)}</b></td><td>${s.r.toLocaleString("fa-IR")}</td><td>${s.i.toLocaleString("fa-IR")}</td><td>${s.o.toLocaleString("fa-IR")}</td><td>${s.tot.toLocaleString("fa-IR")}</td><td>$${c.toFixed(4)}</td><td>${fmtTm(c)}</td></tr>`;}).join("");$("tokWrap").innerHTML=`<table class="tbl"><thead><tr><th>مدل</th><th>تعداد</th><th>ورودی</th><th>خروجی</th><th>جمع</th><th>دلار</th><th>تومان</th></tr></thead><tbody>${rows}<tr style="background:var(--ps);font-weight:700;"><td colspan="4">جمع کل</td><td>${gt.toLocaleString("fa-IR")}</td><td>$${gu.toFixed(4)}</td><td>${fmtTm(gu)}</td></tr></tbody></table>`;}
+const rstTok=async()=>{if(confirm("صفر شود؟")){app.tok={};await saveKv("tok5",{});rndTok();}};
+
+/* PDF Clean Print Engine (Preserves Arabic Diacritics & Persian Ligatures 100%) */
+function buildPrintHtml(md, title){
+  const s=app.style, fnt=`"${s.font||'IRMitra'}","Vazirmatn","B Nazanin",Tahoma,serif`;
+  return `<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>${esc(title)}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    @page{size:A4;margin:18mm 16mm 18mm 16mm}
+    body{font-family:${fnt};font-size:${s.wordPt||14}pt;line-height:${s.lh||1.95};color:#111827;direction:rtl;text-align:${s.align||"justify"};margin:0}
+    h1{font-size:1.45em;color:${s.hdCol||"#0f2c59"};border-bottom:1.5px solid #cbd5e1;padding-bottom:4px;page-break-after:avoid;text-align:right}
+    h2{font-size:1.22em;color:${s.hdCol||"#173a6e"};border-bottom:1px solid #e2e8f0;padding-bottom:2px;page-break-after:avoid;text-align:right}
+    h3{font-size:1.08em;color:#0f5c76;page-break-after:avoid;text-align:right}
+    h4{font-size:1em;color:#334155;page-break-after:avoid;text-align:right}
+    p{margin:0 0 8pt 0}
+    blockquote{margin:8pt 10pt;padding:7pt 11pt;border-right:4px solid #3b82f6;background:#f8fafc;border-radius:4px;page-break-inside:avoid}
+    .cal{margin:8pt 4pt;padding:8pt 12pt;background:#f0f7ff;border:1px solid #bfdbfe;border-right:4px solid #0e7490;border-radius:5px;page-break-inside:avoid}
+    .bsm{text-align:center;font-weight:700;color:${s.hdCol||"#0f2c59"};font-size:1.12em;margin-bottom:10pt}
+    table{width:100%;border-collapse:collapse;margin:8pt 0;font-size:.9em;page-break-inside:avoid}th,td{border:1px solid #94a3b8;padding:5pt 7pt;text-align:right}th{background:#eef2f7}
+    ul,ol{padding-right:18pt}
+  </style></head><body>${mdHtml(md)}</body></html>`;
+}
+function exportPdfPrint(md, title){
+  const fr=document.createElement("iframe");
+  fr.style.cssText="position:fixed;right:0;bottom:0;width:0;height:0;border:0;";
+  document.body.appendChild(fr);
+  const doc=fr.contentWindow.document;
+  doc.open();doc.write(buildPrintHtml(md,title));doc.close();
+  setTimeout(()=>{fr.contentWindow.focus();fr.contentWindow.print();setTimeout(()=>fr.remove(),2000);},450);
+}
+
+/* Help Modal */
+const HELP_TEXTS={
+  "کلی":"این استودیو برای تبدیل صوت، پیاده‌سازی، روان‌سازی، خلاصه‌سازی و تقریرنویسی دروس خارج طراحی شده است.<br/>• می‌توانید <b>مستقل</b> کار کنید یا با دکمه «🔐 اتصال تیمی» به سرور <b>Aicenter</b> وصل شوید.<br/>• تمام مراحل، دسته‌بندی‌ها، فونت و رنگ‌ها کاملاً قابل تغییرند.<br/>• با هر رفرش میز کار تازه و خلوت باز می‌شود، اما کارهای ناتمام و تاریخچه همیشه در سابقه ذخیره هستند.",
+  "api":"کلید API گوگل جمینای (از aistudio.google.com) یا OpenRouter را وارد کنید. با دکمه «🔄 دریافت زنده» لیست جدیدترین مدل‌های اکانت شما دریافت می‌شود.",
+  "thinking":"در مدل‌های جدید Gemini 3 و Gemini 4 (مثل Hydrogen) می‌توانید عمق تفکر را بین LOW تا XHIGH تنظیم کنید. دما برای این مدل‌ها به صورت خودکار قفل می‌شود تا خطای 400 رخ ندهد.",
+  "input":"صوت جلسه را بکشید و رها کنید یا اگر متن خام دارید تب «متن / Word» را بزنید. می‌توانید مستقیماً فایل صوتی را از پیام‌رسان بله یا تلگرام هم دریافت کنید.",
+  "split":"برای فایل‌های بالای ۳۰ دقیقه، برش به چند تکه با ۱۰ ثانیه همپوشانی دقت را بالا می‌برد. گزینه «برش هوشمند روی سکوت» نزدیک‌ترین مکث استاد را پیدا می‌کند تا کلمه‌ای وسط جمله قطع نشود.",
+  "stages":"این مراحل قفل نیستند! از دکمه «⚙️ مدیریت مراحل و دسته‌ها» می‌توانید مراحل دلخواه مثل «خلاصه‌سازی» اضافه کنید، ترتیب را عوض کنید یا برای هر مرحله موتور و پرامپت جدا بگذارید.",
+  "export":"خروجی‌ها همگی راست‌چین هستند. برای گرفتن PDF بدون شکستگی حروف فارسی و اعراب عربی، روی دکمه «📕 خروجی PDF» بزنید و در پنجره چاپ گزینه Save as PDF را انتخاب کنید.",
+  "multi":"وقتی ۵ جلسه یا بیشتر دارید، سیستم ابتدا فیش‌های موضوعی (گام ۰) را استخراج و سپس هر مبحث را با پرامپت‌های تعریف‌شده به تقریر واحد تبدیل می‌کند.",
+  "messenger":"در بله یا تلگرام صوت را با کپشن دستوری (#مراحل: خام، روان، خلاصه | #مقصد: ایتا) بفرستید؛ سپس اینجا با یک کلیک دانلود و خودکار اجرا و به ایتا/بله/تلگرام ارسال کنید.",
+  "profiles":"<b>پروفایل عمومی مرکز</b> روی سرور همگام می‌شود تا همه اعضای مجاز آخرین پرامپت‌ها و مراحل را ببینند؛ <b>پروفایل اختصاصی</b> فقط متعلق به خود شماست."
+};
+function openHelpModal(k){$("helpTitle").textContent="❓ راهنما: "+k;$("helpBody").innerHTML=HELP_TEXTS[k]||HELP_TEXTS["کلی"];$("helpMod").style.display="flex";}
+
+/* ZIP & OOXML Word (Customizable Font/Size/Heading Color + Full RTL) */
+const CT=(()=>{const t=new Uint32Array(256);for(let i=0;i<256;i++){let c=i;for(let k=0;k<8;k++)c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1);t[i]=c>>>0;}return t;})();
+const crc=b=>{let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=CT[(c^b[i])&0xFF]^(c>>>8);return(c^0xFFFFFFFF)>>>0;};
+async function defl(b){if(typeof CompressionStream==="undefined"||b.length<64)return{d:b,m:0};try{return{d:new Uint8Array(await new Response(new Blob([b]).stream().pipeThrough(new CompressionStream("deflate-raw"))).arrayBuffer()),m:8};}catch{return{d:b,m:0};}}
+async function mkZip(es){
+  const enc=new TextEncoder(),loc=[],cen=[];let off=0;
+  for(const e of es){
+    const nb=enc.encode(e.n),raw=e.d instanceof Uint8Array?e.d:enc.encode(String(e.d)),cr=crc(raw),{d,m}=await defl(raw);
+    const lh=new Uint8Array(30+nb.length),lv=new DataView(lh.buffer);lv.setUint32(0,0x04034b50,true);lv.setUint16(4,20,true);lv.setUint16(6,0x0800,true);lv.setUint16(8,m,true);lv.setUint16(12,0x5421,true);lv.setUint32(14,cr,true);lv.setUint32(18,d.length,true);lv.setUint32(22,raw.length,true);lv.setUint16(26,nb.length,true);lh.set(nb,30);loc.push(lh,d);
+    const ch=new Uint8Array(46+nb.length),cv=new DataView(ch.buffer);cv.setUint32(0,0x02014b50,true);cv.setUint16(4,20,true);cv.setUint16(6,20,true);cv.setUint16(8,0x0800,true);cv.setUint16(10,m,true);cv.setUint16(14,0x5421,true);cv.setUint32(16,cr,true);cv.setUint32(20,d.length,true);cv.setUint32(24,raw.length,true);cv.setUint16(28,nb.length,true);cv.setUint32(42,off,true);ch.set(nb,46);cen.push(ch);off+=lh.length+d.length;
+  }
+  const cd=cen.reduce((a,x)=>a+x.length,0),eo=new Uint8Array(22),ev=new DataView(eo.buffer);ev.setUint32(0,0x06054b50,true);ev.setUint16(8,es.length,true);ev.setUint16(10,es.length,true);ev.setUint32(12,cd,true);ev.setUint32(16,off,true);
+  return new Blob([...loc,...cen,eo],{type:"application/zip"});
+}
+async function exDocx(ab){
+  const bs=new Uint8Array(ab),v=new DataView(ab);let eo=-1;for(let i=bs.length-22;i>=Math.max(0,bs.length-65557);i--)if(bs[i]===0x50&&bs[i+1]===0x4b&&bs[i+2]===0x05&&bs[i+3]===0x06){eo=i;break;}
+  if(eo<0)throw new Error("فایل Word نامعتبر است");const tot=v.getUint16(eo+10,true);let pos=v.getUint32(eo+16,true),dec=new TextDecoder("utf-8"),xt=null;
+  for(let e=0;e<tot;e++){if(pos+46>bs.length||v.getUint32(pos,true)!==0x02014b50)break;const m=v.getUint16(pos+10,true),cs=v.getUint32(pos+20,true),nl=v.getUint16(pos+28,true),el=v.getUint16(pos+30,true),cl=v.getUint16(pos+32,true),lh=v.getUint32(pos+42,true),fn=dec.decode(bs.subarray(pos+46,pos+46+nl));pos+=46+nl+el+cl;if(fn==="word/document.xml"){const st=lh+30+v.getUint16(lh+26,true)+v.getUint16(lh+28,true),sl=bs.subarray(st,st+cs);xt=m===0?dec.decode(sl):await new Response(new Blob([sl]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text();break;}}
+  if(!xt)throw new Error("document.xml یافت نشد");const xml=new DOMParser().parseFromString(xt,"application/xml"),ps=xml.getElementsByTagNameNS("*","p");
+  const wk=n=>{if(n.nodeType===3)return"";const l=n.localName;if(l==="del"||l==="instrText")return"";if(l==="t")return n.textContent||"";if(l==="tab")return"\t";if(l==="br"||l==="cr")return"\n";let a="";for(let c=n.firstChild;c;c=c.nextSibling)a+=wk(c);return a;};
+  return Array.from(ps,wk).join("\n").replace(/\n{3,}/g,"\n\n").trim();
+}
+const xe=s=>String(s||"").replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g,"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&apos;");
+function oxR(txt,lnks,base=""){
+  const wf=xe(app.style.font||"IRMitra"), tks=[],rx=/(`[^`\n]+`)|(\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^)\s]+)\))|(\*\*\*[^*\n]+\*\*\*)|(\*\*[^*\n]+\*\*)|(\*[^*\s][^*\n]*?\*)|(~~[^~\n]+~~)/g;
+  let last=0,m;while((m=rx.exec(txt))!==null){if(m.index>last)tks.push({t:"p",v:txt.slice(last,m.index)});if(m[1])tks.push({t:"c",v:m[1].slice(1,-1)});else if(m[2])tks.push({t:"l",lb:m[3],u:m[4]});else if(m[5])tks.push({t:"bi",v:m[5].slice(3,-3)});else if(m[6])tks.push({t:"b",v:m[6].slice(2,-2)});else if(m[7])tks.push({t:"i",v:m[7].slice(1,-1)});else if(m[8])tks.push({t:"s",v:m[8].slice(2,-2)});last=rx.lastIndex;}
+  if(last<txt.length)tks.push({t:"p",v:txt.slice(last)});
+  const mk=(v,ex="",ltr=false)=>`<w:r><w:rPr>${ltr?"":"<w:rtl/>"}${base}${ex}</w:rPr><w:t xml:space="preserve">${xe(v)}</w:t></w:r>`;
+  return tks.map(k=>k.t==="p"?mk(k.v):k.t==="b"?mk(k.v,"<w:b/><w:bCs/>"):k.t==="i"?mk(k.v,"<w:i/><w:iCs/>"):k.t==="bi"?mk(k.v,"<w:b/><w:bCs/><w:i/><w:iCs/>"):k.t==="s"?mk(k.v,"<w:strike/>"):k.t==="c"?mk(k.v,`<w:rFonts w:ascii="Consolas" w:hAnsi="Consolas" w:cs="${wf}"/><w:color w:val="881337"/><w:shd w:val="clear" w:color="auto" w:fill="F1F5F9"/>`,true):(()=>{const id="rIdL"+(lnks.length+1);lnks.push({id,u:k.u});return`<w:hyperlink r:id="${id}">${mk(k.lb,`<w:color w:val="1D4ED8"/><w:u w:val="single"/>`)}</w:hyperlink>`;})()).join("");
+}
+const isCal=t=>t.endsWith("]")&&(t.startsWith("[**")||t.startsWith("[جمع")||t.startsWith("[نکته:")||t.startsWith("[خلاصه:"));
+const isTS=s=>/^[\s\|:\-]+$/.test(s)&&s.includes("|")&&s.includes("-"),tCs=s=>s.trim().replace(/^\||\|$/g,"").split("|").map(x=>x.trim());
+
+async function mkDocx(md){
+  const wf=xe(app.style.font||"IRMitra"), wsz=Math.round((app.style.wordPt||14)*2), hc=xe((app.style.hdCol||"#0f2c59").replace("#","").toUpperCase()), jc=app.style.align==="right"?"right":"both";
+  const ls=String(md||"").replace(/\r\n/g,"\n").split("\n"),lnks=[],blk=[];let i=0,inC=false,sn=false;
+  while(i<ls.length){
+    const raw=ls[i],tr=raw.trim();if(tr.startsWith("```")){inC=!inC;i++;continue;}
+    if(inC){blk.push(`<w:p><w:pPr><w:pStyle w:val="MDCodeBlock"/></w:pPr><w:r><w:t xml:space="preserve">${xe(raw)}</w:t></w:r></w:p>`);i++;continue;}
+    if(!tr){i++;continue;}
+    if(tr.includes("|")&&i+1<ls.length&&isTS(ls[i+1].trim())){const rs=[tCs(tr)];let j=i+2;while(j<ls.length&&ls[j].trim().includes("|")){rs.push(tCs(ls[j]));j++;}const cs=rs[0].length||1;blk.push(`<w:tbl><w:tblPr><w:tblW w:w="5000" w:type="pct"/><w:bidiVisual/><w:tblBorders><w:top w:val="single" w:sz="6" w:color="94A3B8"/><w:bottom w:val="single" w:sz="6" w:color="94A3B8"/><w:left w:val="single" w:sz="6" w:color="94A3B8"/><w:right w:val="single" w:sz="6" w:color="94A3B8"/><w:insideH w:val="single" w:sz="4" w:color="CBD5E1"/><w:insideV w:val="single" w:sz="4" w:color="CBD5E1"/></w:tblBorders></w:tblPr>`+rs.map((r,ri)=>`<w:tr>`+Array.from({length:cs},(_,ci)=>`<w:tc><w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="${ri===0?"EEF2F7":(ri%2===1?"F8FAFC":"FFFFFF")}"/></w:tcPr><w:p><w:pPr><w:pStyle w:val="MDBody"/><w:bidi/><w:jc w:val="right"/></w:pPr>${oxR(r[ci]||"",lnks,ri===0?`<w:b/><w:bCs/><w:color w:val="${hc}"/>`:"")}</w:p></w:tc>`).join("")+`</w:tr>`).join("")+`</w:tbl>`);i=j;sn=true;continue;}
+    if(/^(\*\*\*|---|___)$/.test(tr.replace(/\s+/g,""))){blk.push(`<w:p><w:pPr><w:pStyle w:val="MDHR"/></w:pPr></w:p>`);i++;sn=true;continue;}
+    const hm=raw.match(/^\s{0,3}(#{1,4})\s+(.+)$/);if(hm){blk.push(`<w:p><w:pPr><w:pStyle w:val="Heading${hm[1].length}"/><w:bidi/></w:pPr>${oxR(hm[2].trim(),lnks)}</w:p>`);i++;sn=true;continue;}
+    if(/^\s*>\s?/.test(raw)){blk.push(`<w:p><w:pPr><w:pStyle w:val="MDBlockquote"/><w:bidi/></w:pPr>${oxR(raw.replace(/^\s*(>\s?)+/,""),lnks)}</w:p>`);i++;sn=true;continue;}
+    const bm=raw.match(/^([ \t]*)[*\-+•]\s+(.+)$/);if(bm){const sp=bm[1].replace(/\t/g,"    ").length;blk.push(`<w:p><w:pPr><w:pStyle w:val="MDBody"/><w:numPr><w:ilvl w:val="${sp<=1?0:(sp<=5?1:2)}"/><w:numId w:val="1"/></w:numPr><w:bidi/></w:pPr>${oxR(bm[2],lnks)}</w:p>`);i++;sn=true;continue;}
+    const nm=raw.match(/^([ \t]*)[0-9۰-۹]+[.)]\s+(.+)$/);if(nm){const sp=nm[1].replace(/\t/g,"    ").length;blk.push(`<w:p><w:pPr><w:pStyle w:val="MDBody"/><w:numPr><w:ilvl w:val="${sp<=1?0:(sp<=5?1:2)}"/><w:numId w:val="2"/></w:numPr><w:bidi/></w:pPr>${oxR(nm[2],lnks)}</w:p>`);i++;sn=true;continue;}
+    if(isCal(tr)){blk.push(`<w:p><w:pPr><w:pStyle w:val="MDCallout"/><w:bidi/></w:pPr>${oxR(tr,lnks)}</w:p>`);i++;sn=true;continue;}
+    if(!sn&&(tr.includes("بسم الله")||tr==="بسمه تعالی")){blk.push(`<w:p><w:pPr><w:pStyle w:val="MDBody"/><w:bidi/><w:jc w:val="center"/></w:pPr>${oxR(tr,lnks,`<w:b/><w:bCs/><w:color w:val="${hc}"/><w:sz w:val="${wsz+4}"/><w:szCs w:val="${wsz+4}"/>`)}</w:p>`);i++;sn=true;continue;}
+    blk.push(`<w:p><w:pPr><w:pStyle w:val="MDBody"/><w:bidi/></w:pPr>${oxR(tr,lnks)}</w:p>`);sn=true;i++;
+  }
+  const ct=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-officedocument.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/word/numbering.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml"/><Override PartName="/word/settings.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.settings+xml"/><Override PartName="/word/fontTable.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.fontTable+xml"/></Types>`;
+  const rr=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
+  const dr=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering" Target="numbering.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml"/><Relationship Id="rId4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable" Target="fontTable.xml"/>${lnks.map(l=>`<Relationship Id="${l.id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${xe(l.u)}" TargetMode="External"/>`).join("")}</Relationships>`;
+  const stg=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:settings xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:defaultTabStop w:val="720"/><w:characterSpacingControl w:val="doNotCompress"/></w:settings>`;
+  const fnt=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:fonts xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:font w:name="${wf}"><w:charset w:val="B2"/></w:font><w:font w:name="Consolas"><w:charset w:val="00"/></w:font></w:fonts>`;
+  const sty=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="${wf}" w:hAnsi="${wf}" w:cs="${wf}"/><w:sz w:val="${wsz}"/><w:szCs w:val="${wsz}"/><w:color w:val="1F2937"/><w:lang w:val="en-US" w:bidi="fa-IR"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:bidi/><w:spacing w:after="120" w:line="331" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="MDBody"><w:name w:val="MD Body"/><w:pPr><w:bidi/><w:jc w:val="${jc}"/><w:spacing w:after="120" w:line="331" w:lineRule="auto"/></w:pPr><w:rPr><w:rFonts w:ascii="${wf}" w:hAnsi="${wf}" w:cs="${wf}"/><w:sz w:val="${wsz}"/><w:szCs w:val="${wsz}"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:pPr><w:keepNext/><w:bidi/><w:jc w:val="right"/><w:spacing w:before="300" w:after="140"/><w:pBdr><w:bottom w:val="single" w:sz="6" w:space="4" w:color="CBD5E1"/></w:pBdr></w:pPr><w:rPr><w:rFonts w:ascii="${wf}" w:hAnsi="${wf}" w:cs="${wf}"/><w:b/><w:bCs/><w:color w:val="${hc}"/><w:sz w:val="${wsz+11}"/><w:szCs w:val="${wsz+11}"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:pPr><w:keepNext/><w:bidi/><w:jc w:val="right"/><w:spacing w:before="240" w:after="100"/><w:pBdr><w:bottom w:val="single" w:sz="4" w:space="4" w:color="E2E8F0"/></w:pBdr></w:pPr><w:rPr><w:rFonts w:ascii="${wf}" w:hAnsi="${wf}" w:cs="${wf}"/><w:b/><w:bCs/><w:color w:val="${hc}"/><w:sz w:val="${wsz+6}"/><w:szCs w:val="${wsz+6}"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="Heading3"><w:name w:val="heading 3"/><w:pPr><w:keepNext/><w:bidi/><w:jc w:val="right"/><w:spacing w:before="180" w:after="80"/></w:pPr><w:rPr><w:rFonts w:ascii="${wf}" w:hAnsi="${wf}" w:cs="${wf}"/><w:b/><w:bCs/><w:color w:val="0F5C76"/><w:sz w:val="${wsz+3}"/><w:szCs w:val="${wsz+3}"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="Heading4"><w:name w:val="heading 4"/><w:pPr><w:keepNext/><w:bidi/><w:jc w:val="right"/></w:pPr><w:rPr><w:rFonts w:ascii="${wf}" w:hAnsi="${wf}" w:cs="${wf}"/><w:b/><w:bCs/><w:color w:val="334155"/><w:sz w:val="${wsz+1}"/><w:szCs w:val="${wsz+1}"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="MDBlockquote"><w:name w:val="MD Blockquote"/><w:pPr><w:bidi/><w:jc w:val="${jc}"/><w:spacing w:before="100" w:after="140" w:line="331" w:lineRule="auto"/><w:ind w:left="280" w:right="280"/><w:shd w:val="clear" w:color="auto" w:fill="F6F8FA"/><w:pBdr><w:right w:val="single" w:sz="18" w:space="8" w:color="3B82F6"/></w:pBdr></w:pPr><w:rPr><w:rFonts w:ascii="${wf}" w:hAnsi="${wf}" w:cs="${wf}"/><w:color w:val="1E293B"/><w:sz w:val="${wsz}"/><w:szCs w:val="${wsz}"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="MDCallout"><w:name w:val="MD Callout"/><w:pPr><w:bidi/><w:jc w:val="${jc}"/><w:spacing w:before="100" w:after="160" w:line="324" w:lineRule="auto"/><w:ind w:left="140" w:right="140"/><w:shd w:val="clear" w:color="auto" w:fill="F0F7FF"/><w:pBdr><w:top w:val="single" w:sz="4" w:space="5" w:color="BFDBFE"/><w:left w:val="single" w:sz="4" w:space="8" w:color="BFDBFE"/><w:bottom w:val="single" w:sz="4" w:space="5" w:color="BFDBFE"/><w:right w:val="single" w:sz="18" w:space="8" w:color="0E7490"/></w:pBdr></w:pPr><w:rPr><w:rFonts w:ascii="${wf}" w:hAnsi="${wf}" w:cs="${wf}"/><w:color w:val="0F172A"/><w:sz w:val="${wsz-1}"/><w:szCs w:val="${wsz-1}"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="MDCodeBlock"><w:name w:val="MD Code Block"/><w:pPr><w:jc w:val="left"/><w:shd w:val="clear" w:color="auto" w:fill="F6F8FA"/></w:pPr><w:rPr><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/><w:sz w:val="19"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="MDHR"><w:name w:val="MD HR"/><w:pPr><w:pBdr><w:bottom w:val="single" w:sz="6" w:space="1" w:color="CBD5E1"/></w:pBdr></w:pPr></w:style></w:styles>`;
+  const num=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:numbering xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:abstractNum w:abstractNumId="1">${[0,1,2].map((l,k)=>`<w:lvl w:ilvl="${l}"><w:start w:val="1"/><w:numFmt w:val="bullet"/><w:lvlText w:val="${["•","◦","▪"][k]}"/><w:pPr><w:ind w:left="${560+k*360}" w:hanging="300"/></w:pPr></w:lvl>`).join("")}</w:abstractNum><w:abstractNum w:abstractNumId="2">${[0,1,2].map(l=>`<w:lvl w:ilvl="${l}"><w:start w:val="1"/><w:numFmt w:val="decimal"/><w:lvlText w:val="%${l+1}."/><w:pPr><w:ind w:left="${600+l*360}" w:hanging="340"/></w:pPr></w:lvl>`).join("")}</w:abstractNum><w:num w:numId="1"><w:abstractNumId w:val="1"/></w:num><w:num w:numId="2"><w:abstractNumId w:val="2"/></w:num></w:numbering>`;
+  const doc=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><w:body>${blk.join("")}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1247" w:right="1247" w:bottom="1247" w:left="1247"/><w:bidi/></w:sectPr></w:body></w:document>`;
+  return await mkZip([{n:"[Content_Types].xml",d:ct},{n:"_rels/.rels",d:rr},{n:"word/_rels/document.xml.rels",d:dr},{n:"word/settings.xml",d:stg},{n:"word/fontTable.xml",d:fnt},{n:"word/styles.xml",d:sty},{n:"word/numbering.xml",d:num},{n:"word/document.xml",d:doc}]);
+}
+
+function mdHtml(md){
+  const ls=esc(md).split(/\r?\n/),h=[];let iL=false,iO=false,iQ=false,iC=false,sn=false,i=0;
+  const fmt=s=>s.replace(/`([^`\n]+)`/g,"<code>$1</code>").replace(/\*\*\*(.+?)\*\*\*/g,"<strong><em>$1</em></strong>").replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/\*([^*\s][^*\n]*?)\*/g,"<em>$1</em>").replace(/~~(.+?)~~/g,"<del>$1</del>");
+  const cls=()=>{if(iL){h.push("</ul>");iL=false;}if(iO){h.push("</ol>");iO=false;}if(iQ){h.push("</blockquote>");iQ=false;}};
+  while(i<ls.length){
+    const raw=ls[i],l=raw.trim();if(l.startsWith("```")){cls();h.push(!iC?"<pre><code>":"</code></pre>");iC=!iC;i++;continue;}
+    if(iC){h.push(raw+"\n");i++;continue;}if(!l){cls();i++;continue;}
+    if(l.includes("|")&&i+1<ls.length&&isTS(ls[i+1].trim())){cls();const rs=[tCs(l)];let j=i+2;while(j<ls.length&&ls[j].trim().includes("|")){rs.push(tCs(ls[j]));j++;}h.push("<table><thead><tr>"+rs[0].map(c=>`<th>${fmt(c)}</th>`).join("")+"</tr></thead><tbody>"+rs.slice(1).map(r=>"<tr>"+rs[0].map((_,ci)=>`<td>${fmt(r[ci]||"")}</td>`).join("")+"</tr>").join("")+"</tbody></table>");i=j;sn=true;continue;}
+    if(/^(\*\*\*|---|___)$/.test(l.replace(/\s+/g,""))){cls();h.push("<hr/>");i++;sn=true;continue;}
+    if(l.startsWith("&gt;")){if(iL||iO)cls();if(!iQ){h.push("<blockquote>");iQ=true;}h.push(`<p>${fmt(l.replace(/^(&gt;\s*)+/,""))}</p>`);i++;sn=true;continue;}else if(iQ){h.push("</blockquote>");iQ=false;}
+    const hm=l.match(/^(#{1,4})\s+(.+)$/);if(hm){cls();h.push(`<h${hm[1].length}>${fmt(hm[2])}</h${hm[1].length}>`);i++;sn=true;continue;}
+    const bm=l.match(/^[-*+•]\s+(.+)$/);if(bm){if(iO){h.push("</ol>");iO=false;}if(!iL){h.push("<ul>");iL=true;}h.push(`<li>${fmt(bm[1])}</li>`);i++;sn=true;continue;}else if(iL){h.push("</ul>");iL=false;}
+    const nm=l.match(/^[0-9۰-۹]+[.)]\s+(.+)$/);if(nm){if(!iO){h.push("<ol>");iO=true;}h.push(`<li>${fmt(nm[1])}</li>`);i++;sn=true;continue;}else if(iO){h.push("</ol>");iO=false;}
+    if(isCal(l)){h.push(`<div class="cal">${fmt(l)}</div>`);i++;sn=true;continue;}
+    if(!sn&&(l.includes("بسم الله")||l==="بسمه تعالی")){h.push(`<div class="bsm">${fmt(l)}</div>`);i++;sn=true;continue;}
+    h.push(`<p>${fmt(l)}</p>`);sn=true;i++;
+  }
+  cls();if(iC)h.push("</code></pre>");return h.join("\n");
+}
+</script>
+</body>
+</html>
