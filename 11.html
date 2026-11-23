@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>اتاق فرمان دانش، پرامپت و خط تولید هوش مصنوعی</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{--font:'Vazirmatn',system-ui,Tahoma,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;--r-sm:6px;--r-md:10px;--r-lg:14px;--sw:260px;--th:60px;--tr:.16s ease}
+[data-theme="light"]{--bg:#f7f8fa;--side:#fff;--surf:#fff;--sub:#f1f5f9;--hov:#e8eef5;--code:#f8fafc;--t1:#0f172a;--t2:#475569;--t3:#64748b;--bd:#e2e8f0;--bd2:#cbd5e1;--ac:#4f46e5;--ac2:#4338ca;--acs:#eef2ff;--act:#4338ca;--ok:#15803d;--oks:#dcfce7;--wr:#b45309;--wrs:#fef3c7;--er:#b91c1c;--ers:#fee2e2;--in:#0369a1;--ins:#e0f2fe;--sh1:0 1px 2px rgba(15,23,42,.05);--sh2:0 6px 18px rgba(15,23,42,.08);--sh3:0 18px 40px rgba(15,23,42,.15)}
+[data-theme="dark"]{--bg:#0d1117;--side:#131820;--surf:#161b22;--sub:#1f2630;--hov:#252e3a;--code:#0f141b;--t1:#e6edf3;--t2:#a8b3c1;--t3:#7d8590;--bd:#28313d;--bd2:#3b4656;--ac:#6366f1;--ac2:#818cf8;--acs:rgba(99,102,241,.16);--act:#a5b4fc;--ok:#4ade80;--oks:rgba(34,197,94,.15);--wr:#fbbf24;--wrs:rgba(245,158,11,.15);--er:#f87171;--ers:rgba(239,68,68,.15);--in:#38bdf8;--ins:rgba(56,189,248,.15);--sh1:0 1px 3px rgba(0,0,0,.3);--sh2:0 8px 24px rgba(0,0,0,.42);--sh3:0 20px 50px rgba(0,0,0,.6)}
+[data-theme="warm"]{--bg:#f7f2e8;--side:#f1e9db;--surf:#fbf8f1;--sub:#efe6d5;--hov:#e7dcc8;--code:#f4ede0;--t1:#2d2318;--t2:#5c4b39;--t3:#826f5b;--bd:#dfd3be;--bd2:#cbbba0;--ac:#9a4a1a;--ac2:#7c3912;--acs:#f5e2d3;--act:#8a3f14;--ok:#2f6b3c;--oks:#dff0e2;--wr:#9a6209;--wrs:#f9ebc8;--er:#a62b2b;--ers:#f7dddd;--in:#1d5b79;--ins:#dcecf3;--sh1:0 1px 2px rgba(45,35,24,.06);--sh2:0 6px 18px rgba(45,35,24,.09);--sh3:0 18px 40px rgba(45,35,24,.15)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);line-height:1.65;font-size:14px}
+a{color:var(--act);text-decoration:none}a:hover{text-decoration:underline}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.shell{display:flex;min-height:100vh}
+.sidebar{width:var(--sw);background:var(--side);border-left:1px solid var(--bd);display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;z-index:40;transition:transform var(--tr)}
+.brand{height:var(--th);padding:0 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--bd)}
+.logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--ac),#7c3aed);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;flex-shrink:0}
+.brand h1{font-size:13.5px;font-weight:800;line-height:1.25}.brand span{font-size:11px;color:var(--t3);display:block}
+.nav{padding:12px 10px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:3px}
+.nav-lbl{font-size:11px;font-weight:700;color:var(--t3);padding:9px 10px 3px}
+.nav-btn{display:flex;align-items:center;gap:9px;padding:8px 11px;border-radius:var(--r-sm);border:none;background:transparent;color:var(--t2);cursor:pointer;text-align:right;width:100%;font-weight:500;transition:var(--tr)}
+.nav-btn:hover{background:var(--hov);color:var(--t1)}.nav-btn.active{background:var(--acs);color:var(--act);font-weight:700}
+.nav-btn svg{width:17px;height:17px;flex-shrink:0}
+.nav-cnt{margin-right:auto;font-size:11px;background:var(--sub);color:var(--t3);padding:1px 7px;border-radius:99px;font-weight:700}
+.nav-btn.active .nav-cnt{background:var(--ac);color:#fff}
+.side-ft{padding:12px;border-top:1px solid var(--bd);display:flex;flex-direction:column;gap:8px}
+.themes{display:grid;grid-template-columns:repeat(3,1fr);background:var(--sub);padding:3px;border-radius:var(--r-sm);gap:3px}
+.th-btn{border:none;background:transparent;color:var(--t2);padding:5px 2px;border-radius:5px;font-size:11.5px;cursor:pointer}
+.th-btn.active{background:var(--surf);color:var(--t1);box-shadow:var(--sh1);font-weight:700}
+.upill{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--t2);background:var(--sub);padding:6px 9px;border-radius:var(--r-sm)}
+.main{flex:1;margin-right:var(--sw);display:flex;flex-direction:column;min-width:0}
+.top{height:var(--th);background:var(--surf);border-bottom:1px solid var(--bd);padding:0 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:30}
+.m-tgl{display:none;background:transparent;border:1px solid var(--bd);border-radius:var(--r-sm);width:36px;height:36px;align-items:center;justify-content:center;cursor:pointer}
+.gsearch{position:relative;flex:1;max-width:460px}
+.gsearch input{width:100%;background:var(--sub);border:1px solid transparent;border-radius:var(--r-md);padding:7px 34px 7px 12px;font-size:13px;outline:none}
+.gsearch input:focus{background:var(--surf);border-color:var(--ac);box-shadow:0 0 0 3px var(--acs)}
+.gsearch svg{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--t3);width:16px;height:16px;pointer-events:none}
+.gs-res{position:absolute;top:calc(100% + 5px);right:0;left:0;background:var(--surf);border:1px solid var(--bd);border-radius:var(--r-md);box-shadow:var(--sh3);max-height:360px;overflow-y:auto;z-index:60;display:none}
+.gs-res.open{display:block}
+.gs-item{padding:9px 12px;border-bottom:1px solid var(--bd);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.gs-item:hover{background:var(--hov)}.gs-item:last-child{border-bottom:none}
+.top-act{margin-right:auto;display:flex;align-items:center;gap:8px}
+.sync-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;font-size:12px;background:var(--sub);color:var(--t2);border:1px solid var(--bd);cursor:pointer}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block}.dot.w{background:var(--wr)}.dot.e{background:var(--er)}
+.wrap{padding:22px 24px 44px;max-width:1360px;width:100%;margin:0 auto}
+.banner{background:var(--acs);border:1px solid var(--bd);border-right:4px solid var(--ac);border-radius:var(--r-md);padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px}
+.ph{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.ph h2{font-size:20px;font-weight:800}.ph p{color:var(--t2);font-size:13px;margin-top:2px}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:7px 13px;border-radius:var(--r-sm);border:1px solid var(--bd);background:var(--surf);color:var(--t1);font-weight:500;font-size:13px;cursor:pointer;transition:var(--tr);white-space:nowrap}
+.btn:hover{background:var(--hov);border-color:var(--bd2)}.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn-p{background:var(--ac);border-color:var(--ac);color:#fff}.btn-p:hover{background:var(--ac2);border-color:var(--ac2)}
+.btn-s{background:var(--acs);border-color:transparent;color:var(--act)}
+.btn-d{background:var(--ers);border-color:transparent;color:var(--er)}
+.btn-sm{padding:5px 10px;font-size:12px}.btn-xs{padding:3px 8px;font-size:11.5px}
+.fbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:16px;background:var(--surf);padding:11px 13px;border-radius:var(--r-md);border:1px solid var(--bd)}
+.inp,.sel,.ta{background:var(--surf);border:1px solid var(--bd);border-radius:var(--r-sm);padding:7px 10px;font-size:13px;outline:none}
+.inp:focus,.sel:focus,.ta:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--acs)}
+.ta{width:100%;resize:vertical;line-height:1.75}
+.fg2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:11px}
+.fg label{font-size:12.5px;font-weight:600;color:var(--t2)}.hint{font-size:11.5px;color:var(--t3)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:14px}
+.card{background:var(--surf);border:1px solid var(--bd);border-radius:var(--r-md);padding:15px;box-shadow:var(--sh1);display:flex;flex-direction:column;gap:10px;transition:var(--tr)}
+.card:hover{border-color:var(--bd2);box-shadow:var(--sh2)}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.ct{font-size:15px;font-weight:700;line-height:1.4}
+.b{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:99px;font-size:11.5px;font-weight:600;background:var(--sub);color:var(--t2)}
+.b-a{background:var(--acs);color:var(--act)}.b-ok{background:var(--oks);color:var(--ok)}.b-w{background:var(--wrs);color:var(--wr)}.b-e{background:var(--ers);color:var(--er)}.b-i{background:var(--ins);color:var(--in)}
+.pre{background:var(--code);border:1px solid var(--bd);border-radius:var(--r-sm);padding:10px 12px;font-size:12.5px;line-height:1.75;white-space:pre-wrap;max-height:145px;overflow-y:auto}
+.cf{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding-top:9px;border-top:1px solid var(--bd);margin-top:auto}
+.meta{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--t3)}
+.kanban{display:flex;gap:13px;overflow-x:auto;padding-bottom:12px;align-items:flex-start}
+.kcol{min-width:295px;width:295px;flex-shrink:0;background:var(--sub);border:1px solid var(--bd);border-radius:var(--r-md);padding:11px;display:flex;flex-direction:column;gap:9px}
+.kch{display:flex;align-items:center;justify-content:space-between;padding-bottom:7px;border-bottom:1px solid var(--bd);font-weight:700;font-size:13.5px}
+.pbar{height:7px;background:var(--sub);border-radius:99px;overflow:hidden}.pfill{height:100%;background:var(--ac);border-radius:99px}
+.chkbox{display:flex;flex-direction:column;gap:5px;background:var(--code);border:1px solid var(--bd);border-radius:var(--r-sm);padding:8px 10px}
+.chk{display:flex;align-items:center;gap:7px;font-size:12px;cursor:pointer}.chk input{accent-color:var(--ac);width:15px;height:15px}.chk.done span{text-decoration:line-through;color:var(--t3)}
+.wstep{display:flex;align-items:flex-start;gap:11px;background:var(--code);border:1px solid var(--bd);border-radius:var(--r-sm);padding:10px 12px}
+.snum{width:25px;height:25px;border-radius:50%;background:var(--ac);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;flex-shrink:0}
+.lab3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:14px}
+.msw{display:inline-flex;background:var(--sub);border:1px solid var(--bd);border-radius:var(--r-md);padding:3px;gap:3px}
+.mbtn{border:none;background:transparent;padding:6px 12px;border-radius:var(--r-sm);font-size:12.5px;font-weight:600;color:var(--t2);cursor:pointer}
+.mbtn.active{background:var(--surf);color:var(--act);box-shadow:var(--sh1)}
+.qimp{background:linear-gradient(135deg,var(--surf),var(--acs));border:1px dashed var(--ac);border-radius:var(--r-md);padding:14px;margin-bottom:16px}
+.twrap{overflow-x:auto;border:1px solid var(--bd);border-radius:var(--r-md);background:var(--surf)}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px 11px;text-align:right;border-bottom:1px solid var(--bd)}th{background:var(--sub);font-weight:700;color:var(--t2);font-size:12px}tr:last-child td{border-bottom:none}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--surf);border:1px solid var(--bd);border-radius:var(--r-md);padding:12px}.kpi small{font-size:12px;color:var(--t3)}.kpi b{display:block;font-size:19px;margin-top:3px}
+.cbox{background:var(--code);border:1px solid var(--bd);border-radius:var(--r-md);padding:13px;font-family:var(--mono);font-size:12px;direction:ltr;text-align:left;overflow-x:auto;max-height:330px;white-space:pre;line-height:1.5}
+.mbg{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:100;padding:14px}
+.mbg.open{display:flex}
+.mdl{background:var(--surf);border:1px solid var(--bd);border-radius:var(--r-lg);box-shadow:var(--sh3);width:100%;max-width:720px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden}
+.mdl.lg{max-width:900px}
+.mh{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}.mh h3{font-size:15.5px;font-weight:700}
+.mb{padding:16px 18px;overflow-y:auto;flex:1}.mf{padding:12px 18px;border-top:1px solid var(--bd);display:flex;justify-content:flex-end;gap:8px;background:var(--sub)}
+.diff2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.da{background:var(--oks);padding:1px 4px;border-radius:3px}.dd{background:var(--ers);padding:1px 4px;border-radius:3px}
+.toasts{position:fixed;bottom:18px;left:18px;z-index:200;display:flex;flex-direction:column;gap:8px;max-width:370px}
+.toast{background:var(--surf);color:var(--t1);border:1px solid var(--bd);border-right:4px solid var(--ac);border-radius:var(--r-md);padding:10px 14px;box-shadow:var(--sh3);font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.toast.ok{border-right-color:var(--ok)}.toast.er{border-right-color:var(--er)}.toast.wr{border-right-color:var(--wr)}
+.hsec{background:var(--surf);border:1px solid var(--bd);border-radius:var(--r-md);padding:18px;margin-bottom:14px}
+.hsec h3{font-size:15.5px;font-weight:800;margin-bottom:9px;color:var(--act)}
+.hlist{padding-right:19px;display:flex;flex-direction:column;gap:7px;color:var(--t2)}.hlist strong{color:var(--t1)}
+.empty{text-align:center;padding:40px 18px;background:var(--surf);border:1px dashed var(--bd2);border-radius:var(--r-md);color:var(--t3)}
+.ovl{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:35}
+.stabs{display:flex;gap:6px;border-bottom:1px solid var(--bd);margin-bottom:16px;overflow-x:auto;padding-bottom:7px}
+.stbtn{border:none;background:transparent;padding:6px 13px;border-radius:var(--r-sm);font-weight:600;font-size:13px;color:var(--t2);cursor:pointer;white-space:nowrap}
+.stbtn.active{background:var(--acs);color:var(--act)}
+@media(max-width:1024px){.lab3,.diff2{grid-template-columns:1fr}}
+@media(max-width:860px){.sidebar{transform:translateX(100%)}.sidebar.open{transform:translateX(0)}.ovl.open{display:block}.main{margin-right:0}.m-tgl{display:inline-flex}.fg2,.grid{grid-template-columns:1fr}.wrap{padding:14px 12px 36px}.top{padding:0 10px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div id="ovl" class="ovl" onclick="App.side(false)"></div>
+  <aside id="side" class="sidebar">
+    <div class="brand"><div class="logo">ع</div><div><h1>اتاق فرمان هوش مصنوعی</h1><span>مدیریت دانش و خط تولید علمی</span></div></div>
+    <nav id="nav" class="nav"></nav>
+    <div class="side-ft">
+      <div class="upill"><span id="uLbl">👤 عضو تیم</span><button class="btn btn-xs" onclick="App.go('settings','profile')">تغییر</button></div>
+      <div class="themes">
+        <button class="th-btn" data-th="light" onclick="App.theme('light')">☀️ روشن</button>
+        <button class="th-btn" data-th="dark" onclick="App.theme('dark')">🌙 شب</button>
+        <button class="th-btn" data-th="warm" onclick="App.theme('warm')">📜 کاغذی</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <button class="m-tgl" onclick="App.side(true)" aria-label="منو">☰</button>
+      <div class="gsearch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="gsInp" type="search" placeholder="جستجوی سریع سراسری در کل سامانه..." oninput="App.gSearch(this.value)" onfocus="App.gSearch(this.value)" />
+        <div id="gsRes" class="gs-res"></div>
+      </div>
+      <div class="top-act">
+        <button class="sync-pill" onclick="App.go('settings','sync')"><span class="dot" id="sDot"></span><span id="sTxt">ذخیره محلی فعال</span></button>
+        <button class="btn btn-p btn-sm" onclick="App.mPrompt()">+ پرامپت جدید</button>
+      </div>
+    </header>
+    <main class="wrap"><div id="sBan"></div><div id="root"></div></main>
+  </div>
+</div>
+
+<div id="mbg" class="mbg" onclick="if(event.target===this)App.closeM()">
+  <div id="mdl" class="mdl"><div class="mh"><h3 id="mTitle"></h3><button class="btn btn-sm" onclick="App.closeM()">✕ بستن</button></div><div id="mBody" class="mb"></div><div id="mFoot" class="mf"></div></div>
+</div>
+<div id="toasts" class="toasts"></div>
+<input type="file" id="jsonFile" accept=".json" style="display:none" />
+
+<script type="text/plain" id="gasTpl">
+const SHEET_NAME = 'AI_Command_DB';
+const CHUNK_SIZE = 40000;
+
+function getSheet_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(SHEET_NAME);
+  if (!sh) { sh = ss.insertSheet(SHEET_NAME); sh.getRange('A1:C1').setValues([['DataChunk','UpdatedAt','LastAuthor']]); }
+  return sh;
+}
+function doGet() {
+  try {
+    const sh = getSheet_(), lr = sh.getLastRow();
+    if (lr < 2) return out_({ ok: true, empty: true, data: null });
+    const raw = sh.getRange(2, 1, lr - 1, 1).getValues().map(r => r[0] || '').join('');
+    return out_({ ok: true, empty: !raw, data: raw ? JSON.parse(raw) : null, updatedAt: sh.getRange('B2').getValue(), lastAuthor: sh.getRange('C2').getValue() });
+  } catch (e) { return out_({ ok: false, error: e.message }); }
+}
+function doPost(e) {
+  const lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(15000);
+    const body = JSON.parse(e.postData.contents);
+    if (!body || !body.data) return out_({ ok: false, error: 'داده‌ای ارسال نشده است.' });
+    const sh = getSheet_(), str = JSON.stringify(body.data), chunks = [];
+    for (let i = 0; i < str.length; i += CHUNK_SIZE) chunks.push([str.slice(i, i + CHUNK_SIZE)]);
+    if (sh.getLastRow() > 1) sh.getRange(2, 1, sh.getLastRow() - 1, 3).clearContent();
+    if (chunks.length) sh.getRange(2, 1, chunks.length, 1).setValues(chunks);
+    const now = new Date().toISOString();
+    sh.getRange('B2').setValue(now); sh.getRange('C2').setValue(body.author || 'عضو تیم');
+    return out_({ ok: true, updatedAt: now });
+  } catch (err) { return out_({ ok: false, error: err.message }); } finally { lock.releaseLock(); }
+}
+function out_(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
+</script>
+
+<script>
+(() => {
+'use strict';
+const KEY = 'ilm_ai_cmd_v2';
+const $ = id => document.getElementById(id);
+const uid = p => p + '_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 6);
+const now = () => new Date().toISOString();
+const esc = s => s == null ? '' : String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const fDate = d => { if (!d) return '—'; try { return new Intl.DateTimeFormat('fa-IR',{year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(d)); } catch { return d.slice(0,10); } };
+const fDT = d => { if (!d) return '—'; try { return new Intl.DateTimeFormat('fa-IR',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).format(new Date(d)); } catch { return d; } };
+const pTags = s => (s || '').split(/[\s,،]+/).map(t => t.trim()).filter(Boolean).map(t => t.startsWith('#') ? t : '#' + t);
+const nextV = v => { const m = (v || '').match(/^v?(\d+)\.(\d+)$/i); return m ? `v${m[1]}.${+m[2]+1}` : (v ? v + '.1' : 'v1.1'); };
+
+function copy(txt, msg = 'کپی شد', act = null) {
+  const ok = () => App.toast(msg, 'ok', act);
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(txt).then(ok).catch(() => fbCopy(txt, ok));
+  else fbCopy(txt, ok);
+}
+function fbCopy(txt, cb) {
+  const t = document.createElement('textarea'); t.value = txt; t.style.position = 'fixed'; t.style.opacity = '0';
+  document.body.appendChild(t); t.select(); try { document.execCommand('copy'); cb(); } catch { App.toast('خطا در کپی خودکار', 'er'); }
+  document.body.removeChild(t);
+}
+function dl(name, content, mime) {
+  const u = URL.createObjectURL(new Blob([content], { type: mime })), a = document.createElement('a');
+  a.href = u; a.download = name; document.body.appendChild(a); a.click(); document.body.removeChild(a); setTimeout(() => URL.revokeObjectURL(u), 900);
+}
+
+function defaults() {
+  const t1='2026-02-12T09:00:00Z', t2='2026-02-18T11:20:00Z', t3='2026-02-24T14:10:00Z';
+  return {
+    theme: 'light', userName: 'عضو تیم علمی',
+    stages: [
+      { id:'s1', name:'صوت به متن' }, { id:'s2', name:'روان‌سازی متن' }, { id:'s3', name:'تیترگذاری متن' },
+      { id:'s4', name:'روان‌سازی و تیترگذاری (ترکیبی)' }, { id:'s5', name:'تقریرنویسی' }, { id:'s6', name:'تقریر تجمیعی' }
+    ],
+    prompts: [
+      { id:'p1', title:'پیاده‌سازی دقیق صوت علمی فارسی با حفظ اصطلاحات', stageId:'s1', version:'v1.2', model:'Gemini 2.5 Flash', temperature:0.1, topP:0.85,
+        notes:'برای صوت‌های زیر ۴۵ دقیقه عالی است. اصطلاحات تخصصی و عربی دقیق حفظ می‌شوند.', driveUrl:'https://drive.google.com/', tags:['#صوت_به_متن','#دقت_اصطلاحات'],
+        text:'نقش: متخصص پیاده‌سازی متون علمی فارسی.\nوظیفه: فایل صوتی پیوست را کلمه‌به‌کلمه و بدون خلاصه‌سازی به متن فارسی تبدیل کن.\nقوانین:\n۱. اصطلاحات تخصصی، آیات و عبارات عربی را دقیق و داخل «...» بنویس.\n۲. در تغییر بحث پاراگراف جدید باز کن.\n۳. کلمات نامفهوم را به شکل [نامفهوم - دقیقه:ثانیه] درج کن.',
+        history:[{ version:'v1.0', savedAt:t1, notes:'نسخه اولیه ساده', text:'فایل صوتی زیر را دقیق به متن فارسی تبدیل کن و چیزی حذف نکن.' }], isSample:true, updatedAt:t3 },
+      { id:'p2', title:'روان‌سازی و تیترگذاری ترکیبی (ویرایش میانی)', stageId:'s4', version:'v2.0', model:'Gemini 2.5 Pro', temperature:0.3, topP:0.9,
+        notes:'حالت ترکیبی سرعت کار تیم را دو برابر کرد.', driveUrl:'https://drive.google.com/', tags:['#روان‌سازی','#تیترگذاری','#ترکیبی'],
+        text:'نقش: ویراستار ارشد متون علمی فارسی.\nلایه ۱ (روان‌سازی وفادارانه): تبدیل گفتار به نثر علمی معیار بدون حذف هیچ استدلال یا مثالی + اصلاح نیم‌فاصله و علائم نگارشی.\nلایه ۲ (تیترگذاری): تقسیم منطقی به تیترهای H2 و H3 + افزودن چکیده سه‌خطی در ابتدای جلسه.',
+        history:[{ version:'v1.0', savedAt:t1, notes:'قبل از اضافه شدن چکیده سه‌خطی', text:'متن زیر را روان و علمی کن و برای بخش‌هایش تیتر مناسب بگذار.' }], isSample:true, updatedAt:t3 },
+      { id:'p3', title:'تقریرنویسی علمی و ساختاریافته', stageId:'s5', version:'v1.3', model:'Gemini 2.5 Pro', temperature:0.35, topP:0.9,
+        notes:'استدلال‌ها را با ساختار مدعا، دلیل، اشکال و جمع‌بندی مرتب می‌کند.', driveUrl:'', tags:['#تقریرنویسی','#پژوهش'],
+        text:'نقش: محقق و تقریرنویس علمی.\nمتن ویراسته جلسه را به تقریر منسجم و مستند تبدیل کن:\n۱. ساختار استدلال (طرح مسئله، ادله، اشکال و پاسخ استاد) را شفاف بچین.\n۲. هیچ دیدگاهی از خودت اضافه نکن.\n۳. در پایان، بخش «واژگان کلیدی جلسه» را فهرست کن.',
+        history:[], isSample:true, updatedAt:t2 },
+      { id:'p4', title:'تقریر تجمیعی چندجلسه‌ای (تدوین فصل)', stageId:'s6', version:'v1.0', model:'Gemini 2.5 Pro', temperature:0.25, topP:0.88,
+        notes:'برای ادغام ۳ تا ۵ جلسه هم‌موضوع و حذف مرورهای تکراری ابتدای جلسات.', driveUrl:'', tags:['#تقریر_تجمیعی','#فصل‌بندی'],
+        text:'نقش: تدوین‌گر کتاب علمی.\nتقریر چند جلسه متوالی زیر را ادغام کن، مرورهای تکراری ابتدای جلسات را حذف کن، پیوستگی استدلال را حفظ نما و در پایان «نقشه مفهومی متنی فصل» را ارائه بده.',
+        history:[], isSample:true, updatedAt:t2 }
+    ],
+    notes: [
+      { id:'n1', title:'کاهش Temperature برای حذف تخیل مدل در اصطلاحات تخصصی', author:'حسین رضایی', date:'2026-02-22', tags:['#پرامپت_تقریر','#نکات_فنی'], stageId:'s5', promptId:'p3',
+        content:'وقتی Temperature بالای 0.6 بود مدل گاهی نام کتاب یا ارجاع اضافه می‌کرد. با گذاشتن آن روی 0.25 تا 0.35 وفاداری به متن استاد صددرصد شد.', isSample:true, updatedAt:t3 },
+      { id:'n2', title:'بهترین روش برش فایل‌های صوتی طولانی قبل از ارسال', author:'مریم کریمی', date:'2026-02-19', tags:['#نرم_افزار','#صوت_به_متن'], stageId:'s1', promptId:'p1',
+        content:'فایل‌های بالای ۱ ساعت را با Audacity یا FFmpeg روی نقاط سکوت به قطعات ۲۵ دقیقه‌ای MP3 (64kbps Mono) تقسیم کنید تا انتهای صوت خلاصه نشود.', isSample:true, updatedAt:t2 }
+    ],
+    tasks: [
+      { id:'t1', title:'جلسه ۱۴ درس روش‌شناسی پژوهش (استاد محمودی)', type:'جلسه علمی', assignee:'مریم کریمی', stageId:'s4', promptId:'p2', driveUrl:'https://drive.google.com/',
+        statusNote:'متن خام پیاده شد؛ در حال اجرای پرامپت ترکیبی و کنترل نیم‌فاصله‌ها.', completedStages:['s1'], isSample:true, updatedAt:t3 },
+      { id:'t2', title:'جلسه ۱۵ درس روش‌شناسی پژوهش (استاد محمودی)', type:'جلسه علمی', assignee:'حسین رضایی', stageId:'s1', promptId:'p1', driveUrl:'https://drive.google.com/',
+        statusNote:'صوت دریافت و دو تکه شد؛ آماده پیاده‌سازی.', completedStages:[], isSample:true, updatedAt:t3 },
+      { id:'t3', title:'فصل اول تقریر تجمیعی فلسفه تکنولوژی (جلسات ۱ تا ۴)', type:'جلسه علمی', assignee:'مهدی صادقی', stageId:'s6', promptId:'p4', driveUrl:'https://drive.google.com/',
+        statusNote:'تقریر ۴ جلسه آماده است؛ مرحله ادغام نهایی در حال انجام.', completedStages:['s1','s2','s3','s4','s5'], isSample:true, updatedAt:t2 },
+      { id:'t4', title:'ایده: ابزار خودکار برش صوت روی سکوت و نام‌گذاری فایل‌ها', type:'ایده', assignee:'علی احمدی', stageId:'s1', promptId:'', driveUrl:'',
+        statusNote:'در حال بررسی اولیه با FFmpeg.', completedStages:[], isSample:true, updatedAt:t1 }
+    ],
+    workflows: [
+      { id:'w1', title:'فرآیند استاندارد جلسات درس استاد محمودی (مسیر سریع)', target:'گروه علوم انسانی', description:'مسیر پیشنهادی تبدیل صوت هفتگی به تقریر نهایی در ۳ گام.',
+        steps:[{ stageId:'s1', promptId:'p1', note:'برش صوت بالای ۴۰ دقیقه + اجرا با Flash' },{ stageId:'s4', promptId:'p2', note:'اجرای پرامپت ترکیبی + بازبینی ۵ دقیقه‌ای' },{ stageId:'s5', promptId:'p3', note:'تولید تقریر نهایی و آپلود در پوشه درایو' }], isSample:true, updatedAt:t3 }
+    ],
+    resources: [
+      { id:'r1', title:'اصول کلیدی پرامپت‌نویسی برای متون علمی فارسی', category:'اصول پرامپت‌نویسی',
+        summary:'۱) تعریف نقش دقیق، ۲) خط قرمز عدم افزودن مطلب خارج از متن، ۳) نمونه خروجی مطلوب (Few-Shot)، ۴) تعیین ساختار تیتر و واژه‌نامه.',
+        driveUrl:'https://drive.google.com/', linkedPromptIds:['p2','p3'], linkedNoteIds:['n1'], isSample:true, updatedAt:t3 }
+    ],
+    api: { provider:'gemini', geminiKey:'', geminiModel:'gemini-2.5-flash', geminiCustom:'', geminiModels:['gemini-2.5-pro','gemini-2.5-flash','gemini-2.5-flash-lite','gemini-2.0-flash'], openaiBase:'https://openrouter.ai/api/v1', openaiKey:'', openaiModel:'google/gemini-2.5-flash', temp:0.3, topP:0.9 },
+    tokenLogs: [],
+    sync: { gasUrl:'', lastAt:null, lastBy:'' },
+    lab: { mode:'api', pid:'', cur:'', ideal:'', ai:'', hint:'', analysis:'', suggested:'', meta:'', iters:[] }
+  };
+}
+
+let st = (() => {
+  try {
+    const raw = localStorage.getItem(KEY); if (!raw) return defaults();
+    const p = JSON.parse(raw), d = defaults();
+    return { ...d, ...p, api:{...d.api,...(p.api||{})}, sync:{...d.sync,...(p.sync||{})}, lab:{...d.lab,...(p.lab||{})} };
+  } catch { return defaults(); }
+})();
+
+let tab = 'prompts', sSub = 'api', tView = 'kanban', fileHandle = null, wfDraft = [], searchActs = [];
+const flt = { pq:'', ps:'', pt:'', nq:'', ns:'', nt:'', tq:'', ta:'', tt:'', ts:'', rq:'', rc:'' };
+
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); syncUI(); } catch { App.toast('فضای مرورگر پر شده است','er'); } };
+const sName = id => (st.stages.find(s => s.id === id) || {}).name || 'نامشخص';
+const pById = id => st.prompts.find(p => p.id === id) || null;
+const nById = id => st.notes.find(n => n.id === id) || null;
+const hasSample = () => [st.prompts, st.notes, st.tasks, st.workflows, st.resources].some(a => a.some(x => x.isSample));
+const tPct = t => { if (!st.stages.length) return 0; const v = new Set(st.stages.map(s=>s.id)); return Math.round(((t.completedStages||[]).filter(id=>v.has(id)).length / st.stages.length) * 100); };
+
+const NAV = [
+  ['prompts','خزانه پرامپت‌ها','اصلی',()=>st.prompts.length,'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'],
+  ['notes','دفترچه تجربیات','اصلی',()=>st.notes.length,'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>'],
+  ['pipeline','خط تولید و کارها','اصلی',()=>st.tasks.length,'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'],
+  ['workflows','فرآیندها و نقشه‌راه','عملیات',()=>st.workflows.length,'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>'],
+  ['lab','کارگاه اصلاح پرامپت','عملیات',()=>null,'<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/>'],
+  ['academy','آکادمی و منابع','عملیات',()=>st.resources.length,'<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>'],
+  ['settings','تنظیمات، API و همگام‌سازی','سیستم',()=>null,'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>'],
+  ['help','راهنما و استقرار تیمی','سیستم',()=>null,'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>']
+];
+
+function syncUI() {
+  $('uLbl').textContent = '👤 ' + (st.userName || 'عضو تیم');
+  $('sTxt').textContent = st.sync.gasUrl ? (st.sync.lastAt ? 'همگام: ' + fDT(st.sync.lastAt) : 'گوگل شیت آماده') : 'ذخیره محلی فعال';
+}
+
+function renderNav() {
+  let g = '', h = '';
+  for (const [id, lbl, grp, fn, ico] of NAV) {
+    if (grp !== g) { h += `<div class="nav-lbl">${grp}</div>`; g = grp; }
+    const c = fn();
+    h += `<button class="nav-btn ${tab===id?'active':''}" onclick="App.go('${id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${ico}</svg><span>${lbl}</span>${c!==null?`<span class="nav-cnt">${c}</span>`:''}</button>`;
+  }
+  $('nav').innerHTML = h;
+}
+
+function render() {
+  renderNav(); syncUI();
+  $('sBan').innerHTML = hasSample() ? `<div class="banner"><div><strong>💡 داده‌های نمونه علمی فعال است:</strong> برای آشنایی سریع قرار داده شده‌اند و با یک کلیک پاک می‌شوند.</div><button class="btn btn-d btn-sm" onclick="App.clearSample()">🗑 پاک کردن داده‌های نمونه</button></div>` : '';
+  const views = { prompts:vPrompts, notes:vNotes, pipeline:vPipe, workflows:vWf, lab:vLab, academy:vAcad, settings:vSet, help:vHelp };
+  $('root').innerHTML = (views[tab] || vPrompts)();
+}
+
+/* ---------- Views ---------- */
+function vPrompts() {
+  const tags = [...new Set(st.prompts.flatMap(p=>p.tags||[]))];
+  const list = st.prompts.filter(p => {
+    const q = flt.pq.trim().toLowerCase();
+    return (!q || (p.title+' '+p.text+' '+p.notes+' '+p.model+' '+(p.tags||[]).join(' ')).toLowerCase().includes(q))
+      && (!flt.ps || p.stageId===flt.ps) && (!flt.pt || (p.tags||[]).includes(flt.pt));
+  });
+  return `
+  <div class="ph"><div><h2>خزانه و کتابخانه پرامپت‌ها</h2><p>مخزن پرامپت‌های استاندارد مرکز با تاریخچه نسخه‌ها، تنظیمات مدل و ارسال سریع به ایتا</p></div>
+    <div class="row"><button class="btn" onclick="App.expDoc('md','prompts')">⬇ Markdown</button><button class="btn" onclick="App.expDoc('doc','prompts')">📄 Word</button><button class="btn btn-p" onclick="App.mPrompt()">+ پرامپت جدید</button></div></div>
+  <div class="fbar">
+    <input class="inp" style="flex:1;min-width:190px" placeholder="جستجو در عنوان، متن، مدل یا تگ..." value="${esc(flt.pq)}" oninput="App.flt('pq',this.value)" />
+    <select class="sel" onchange="App.flt('ps',this.value)"><option value="">همه مراحل</option>${st.stages.map(s=>`<option value="${s.id}" ${flt.ps===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select>
+    <select class="sel" onchange="App.flt('pt',this.value)"><option value="">همه تگ‌ها</option>${tags.map(t=>`<option value="${esc(t)}" ${flt.pt===t?'selected':''}>${esc(t)}</option>`).join('')}</select>
+  </div>
+  ${!list.length ? `<div class="empty">پرامپتی یافت نشد.<br><br><button class="btn btn-p" onclick="App.mPrompt()">+ ثبت پرامپت</button></div>` : `<div class="grid">${list.map(p=>`
+    <article class="card">
+      <div class="ch"><div><div class="ct">${esc(p.title)}</div>
+        <div class="row" style="margin-top:6px"><span class="b b-a">${esc(sName(p.stageId))}</span><span class="b b-i">${esc(p.version||'v1.0')}</span>${p.model?`<span class="b">🤖 ${esc(p.model)}</span>`:''}<span class="b">T:${p.temperature??.3} | P:${p.topP??.9}</span></div></div></div>
+      ${p.notes?`<div style="font-size:12.5px;color:var(--t2)">💡 ${esc(p.notes)}</div>`:''}
+      <div class="pre">${esc(p.text)}</div>
+      <div class="row">${(p.tags||[]).map(t=>`<span class="b" style="cursor:pointer" onclick="App.flt('pt','${esc(t)}')">${esc(t)}</span>`).join('')}${p.driveUrl?`<a class="b b-ok" href="${esc(p.driveUrl)}" target="_blank">📁 درایو ↗</a>`:''}</div>
+      <div class="cf">
+        <div class="row"><button class="btn btn-p btn-xs" onclick="App.cpP('${p.id}')">📋 کپی</button><button class="btn btn-s btn-xs" onclick="App.cpPEitaa('${p.id}')">✈️ ایتا</button><button class="btn btn-xs" onclick="App.mVers('${p.id}')">🕒 نسخه‌ها (${(p.history||[]).length+1})</button><button class="btn btn-xs" onclick="App.toLab('${p.id}')">🧪 کارگاه</button></div>
+        <div class="row"><button class="btn btn-xs" onclick="App.mPrompt('${p.id}')">ویرایش</button><button class="btn btn-d btn-xs" onclick="App.delP('${p.id}')">حذف</button></div>
+      </div>
+    </article>`).join('')}</div>`}`;
+}
+
+function vNotes() {
+  const tags = [...new Set(st.notes.flatMap(n=>n.tags||[]))];
+  const list = st.notes.filter(n => {
+    const q = flt.nq.trim().toLowerCase();
+    return (!q || (n.title+' '+n.content+' '+n.author+' '+(n.tags||[]).join(' ')).toLowerCase().includes(q))
+      && (!flt.ns || n.stageId===flt.ns) && (!flt.nt || (n.tags||[]).includes(flt.nt));
+  });
+  return `
+  <div class="ph"><div><h2>دفترچه تجربیات کاری و فنی</h2><p>ثبت یافته‌های تیم درباره مدل‌ها، پرامپت‌ها و نرم‌افزارها با اتصال هوشمند به ایتا</p></div>
+    <div class="row"><button class="btn" onclick="App.expDoc('md','notes')">⬇ Markdown</button><button class="btn btn-p" onclick="App.mNote()">+ ثبت تجربه جدید</button></div></div>
+  <div class="qimp">
+    <div class="row" style="justify-content:space-between;margin-bottom:6px"><strong>📥 ورود سریع از ایتا (Quick Import)</strong><span class="hint">پیام کپی‌شده از گروه ایتا را پیست کنید تا فوری تبدیل به تجربه یا پرامپت شود</span></div>
+    <textarea id="qImpTxt" class="ta" rows="3" placeholder="متن پیام کپی‌شده از ایتا را اینجا Paste کنید..."></textarea>
+    <div class="row" style="margin-top:8px"><button class="btn btn-p btn-sm" onclick="App.impEitaa('note')">📝 ثبت به عنوان تجربه</button><button class="btn btn-s btn-sm" onclick="App.impEitaa('prompt')">✨ ثبت به عنوان پرامپت</button></div>
+  </div>
+  <div class="fbar">
+    <input class="inp" style="flex:1;min-width:190px" placeholder="جستجو در تجربیات و نویسنده..." value="${esc(flt.nq)}" oninput="App.flt('nq',this.value)" />
+    <select class="sel" onchange="App.flt('ns',this.value)"><option value="">همه مراحل</option>${st.stages.map(s=>`<option value="${s.id}" ${flt.ns===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select>
+    <select class="sel" onchange="App.flt('nt',this.value)"><option value="">همه تگ‌ها</option>${tags.map(t=>`<option value="${esc(t)}" ${flt.nt===t?'selected':''}>${esc(t)}</option>`).join('')}</select>
+  </div>
+  ${!list.length ? `<div class="empty">تجربه‌ای یافت نشد.</div>` : `<div class="grid">${list.map(n=>{ const lp = n.promptId ? pById(n.promptId) : null; return `
+    <article class="card">
+      <div class="ct">${esc(n.title)}</div>
+      <div class="meta"><span>👤 ${esc(n.author||'عضو تیم')}</span><span>📅 ${fDate(n.date||n.updatedAt)}</span></div>
+      <div class="row">${n.stageId?`<span class="b b-a">${esc(sName(n.stageId))}</span>`:''}${lp?`<span class="b b-i" style="cursor:pointer" onclick="App.mPrompt('${lp.id}')">🔗 ${esc(lp.title)}</span>`:''}</div>
+      <div style="white-space:pre-wrap;font-size:13.5px;line-height:1.8">${esc(n.content)}</div>
+      <div class="row">${(n.tags||[]).map(t=>`<span class="b" style="cursor:pointer" onclick="App.flt('nt','${esc(t)}')">${esc(t)}</span>`).join('')}</div>
+      <div class="cf"><button class="btn btn-s btn-xs" onclick="App.cpNEitaa('${n.id}')">✈️ ارسال به ایتا</button><div class="row"><button class="btn btn-xs" onclick="App.mNote('${n.id}')">ویرایش</button><button class="btn btn-d btn-xs" onclick="App.delN('${n.id}')">حذف</button></div></div>
+    </article>`; }).join('')}</div>`}`;
+}
+
+function taskCard(t) {
+  const pct = tPct(t), lp = t.promptId ? pById(t.promptId) : null, idx = st.stages.findIndex(s=>s.id===t.stageId);
+  const tc = t.type==='ایده'?'b-w':(t.type==='پروژه نرم‌افزاری'?'b-i':'b-a');
+  return `<div class="card" style="padding:12px;gap:8px">
+    <div class="row" style="justify-content:space-between"><span class="b ${tc}">${esc(t.type||'جلسه علمی')}</span><span class="b b-ok">${pct}%</span></div>
+    <div style="font-weight:700;font-size:13.5px">${esc(t.title)}</div>
+    <div class="meta"><span>👤 مسئول: <strong>${esc(t.assignee||'نامشخص')}</strong></span></div>
+    <div class="pbar"><div class="pfill" style="width:${pct}%"></div></div>
+    <div class="chkbox">${st.stages.map(s=>{ const c=(t.completedStages||[]).includes(s.id); return `<label class="chk ${c?'done':''}"><input type="checkbox" ${c?'checked':''} onchange="App.chkT('${t.id}','${s.id}')"><span>${esc(s.name)}</span></label>`; }).join('')}</div>
+    ${t.statusNote?`<div style="font-size:12px;color:var(--t2);background:var(--sub);padding:6px 8px;border-radius:6px">📝 ${esc(t.statusNote)}</div>`:''}
+    <div class="row">${lp?`<button class="btn btn-s btn-xs" onclick="App.cpP('${lp.id}')">📋 پرامپت</button>`:''}${t.driveUrl?`<a class="b b-ok" href="${esc(t.driveUrl)}" target="_blank">📁 درایو ↗</a>`:''}</div>
+    <div class="cf" style="padding-top:7px">${idx>=0&&idx<st.stages.length-1?`<button class="btn btn-p btn-xs" onclick="App.nextT('${t.id}')">مرحله بعد ←</button>`:`<span class="b b-ok">✓ نهایی</span>`}
+      <div class="row"><button class="btn btn-xs" onclick="App.mTask('${t.id}')">ویرایش</button><button class="btn btn-d btn-xs" onclick="App.delT('${t.id}')">حذف</button></div></div>
+  </div>`;
+}
+
+function vPipe() {
+  const people = [...new Set(st.tasks.map(t=>t.assignee).filter(Boolean))];
+  const list = st.tasks.filter(t => {
+    const q = flt.tq.trim().toLowerCase();
+    return (!q || (t.title+' '+t.assignee+' '+t.statusNote).toLowerCase().includes(q))
+      && (!flt.ta || t.assignee===flt.ta) && (!flt.tt || t.type===flt.tt) && (!flt.ts || t.stageId===flt.ts);
+  });
+  return `
+  <div class="ph"><div><h2>خط تولید، کارهای در صف و ایده‌ها</h2><p>ردیابی دقیق جلسات، مسئول فعلی هر کار و مراحل کاملاً قابل تنظیم</p></div>
+    <div class="row">
+      <div class="msw"><button class="mbtn ${tView==='kanban'?'active':''}" onclick="App.tView('kanban')">کانبان</button><button class="mbtn ${tView==='list'?'active':''}" onclick="App.tView('list')">لیستی</button></div>
+      <button class="btn" onclick="App.mStages()">⚙️ تنظیم مراحل (${st.stages.length})</button>
+      <button class="btn btn-p" onclick="App.mTask()">+ کار / جلسه / ایده</button>
+    </div></div>
+  <div class="fbar">
+    <input class="inp" style="flex:1;min-width:180px" placeholder="جستجو در کارها و مسئولان..." value="${esc(flt.tq)}" oninput="App.flt('tq',this.value)" />
+    <select class="sel" onchange="App.flt('ta',this.value)"><option value="">همه اعضا</option>${people.map(a=>`<option value="${esc(a)}" ${flt.ta===a?'selected':''}>👤 ${esc(a)}</option>`).join('')}</select>
+    <select class="sel" onchange="App.flt('tt',this.value)"><option value="">همه نوع‌ها</option>${['جلسه علمی','پروژه نرم‌افزاری','ایده'].map(x=>`<option ${flt.tt===x?'selected':''}>${x}</option>`).join('')}</select>
+  </div>
+  ${tView==='kanban' ? `<div class="kanban">${st.stages.map((s,i)=>{ const ct = list.filter(t=>t.stageId===s.id); return `
+    <div class="kcol"><div class="kch"><span><span class="b b-a">${i+1}</span> ${esc(s.name)}</span><span class="b">${ct.length}</span></div>
+      ${ct.length ? ct.map(taskCard).join('') : `<div style="text-align:center;padding:20px 6px;color:var(--t3);font-size:12px">خالی</div>`}
+      <button class="btn btn-sm" style="width:100%;border-style:dashed" onclick="App.mTask(null,'${s.id}')">+ افزودن</button></div>`; }).join('')}</div>`
+  : `<div class="twrap"><table><thead><tr><th>عنوان</th><th>نوع</th><th>مسئول</th><th>مرحله فعلی</th><th>پیشرفت</th><th>یادداشت</th><th>عملیات</th></tr></thead><tbody>
+      ${list.map(t=>`<tr><td><strong>${esc(t.title)}</strong></td><td><span class="b">${esc(t.type)}</span></td><td>${esc(t.assignee||'—')}</td>
+        <td><select class="sel" style="padding:4px 7px;font-size:12px" onchange="App.mvT('${t.id}',this.value)">${st.stages.map(s=>`<option value="${s.id}" ${t.stageId===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select></td>
+        <td>${tPct(t)}%</td><td style="font-size:12px;color:var(--t2)">${esc(t.statusNote||'—')}</td>
+        <td style="white-space:nowrap"><button class="btn btn-xs" onclick="App.mTask('${t.id}')">ویرایش</button> <button class="btn btn-d btn-xs" onclick="App.delT('${t.id}')">حذف</button></td></tr>`).join('') || `<tr><td colspan="7" style="text-align:center;padding:20px">موردی یافت نشد</td></tr>`}
+    </tbody></table></div>`}`;
+}
+
+function vWf() {
+  return `
+  <div class="ph"><div><h2>نقشه‌راه و فرآیندهای کاری (Workflows / SOPs)</h2><p>تعریف مسیر استاندارد جلسات برای اساتید و پروژه‌های مختلف متصل به پرامپت‌های خزانه</p></div>
+    <div class="row"><button class="btn" onclick="App.expDoc('doc','workflows')">📄 Word</button><button class="btn btn-p" onclick="App.mWf()">+ فرآیند جدید</button></div></div>
+  ${!st.workflows.length ? `<div class="empty">فرآیندی تعریف نشده است.</div>` : `<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(440px,1fr))">${st.workflows.map(w=>`
+    <article class="card">
+      <div class="ch"><div><div class="ct">${esc(w.title)}</div>${w.target?`<span class="b b-i" style="margin-top:4px">🎯 ${esc(w.target)}</span>`:''}</div>
+        <div class="row"><button class="btn btn-xs" onclick="App.mWf('${w.id}')">ویرایش</button><button class="btn btn-d btn-xs" onclick="App.delW('${w.id}')">حذف</button></div></div>
+      ${w.description?`<p style="font-size:13px;color:var(--t2)">${esc(w.description)}</p>`:''}
+      <div style="display:flex;flex-direction:column;gap:8px">${(w.steps||[]).map((s,i)=>{ const p=s.promptId?pById(s.promptId):null; return `
+        <div class="wstep"><div class="snum">${i+1}</div><div style="flex:1">
+          <div class="row" style="justify-content:space-between"><strong>${esc(sName(s.stageId))}</strong>${p?`<div class="row"><span class="b b-a">${esc(p.title)}</span><button class="btn btn-p btn-xs" onclick="App.cpP('${p.id}')">📋 کپی</button></div>`:''}</div>
+          ${s.note?`<div style="font-size:12px;color:var(--t2);margin-top:3px">${esc(s.note)}</div>`:''}
+        </div></div>`; }).join('')}</div>
+    </article>`).join('')}</div>`}`;
+}
+
+function vLab() {
+  const l = st.lab, okKey = st.api.provider==='gemini' ? !!st.api.geminiKey : !!st.api.openaiKey;
+  const mLbl = st.api.provider==='gemini' ? (st.api.geminiCustom || st.api.geminiModel) : st.api.openaiModel;
+  return `
+  <div class="ph"><div><h2>کارگاه اصلاح و مهندسی پرامپت</h2><p>تحلیل تفاوت خروجی فعلی و خروجی مطلوب تیم (حالت زنده API یا تولید ابر-پرامپت آفلاین)</p></div>
+    <div class="msw"><button class="mbtn ${l.mode==='api'?'active':''}" onclick="App.labSet('mode','api',1)">⚡ متصل به API (زنده)</button><button class="mbtn ${l.mode==='offline'?'active':''}" onclick="App.labSet('mode','offline',1)">📋 آفلاین (ابر-پرامپت)</button></div></div>
+  <div class="fbar" style="justify-content:space-between">
+    <div class="row"><select class="sel" onchange="App.labLoad(this.value)"><option value="">-- بارگذاری پرامپت از خزانه --</option>${st.prompts.map(p=>`<option value="${p.id}" ${l.pid===p.id?'selected':''}>${esc(p.title)} (${esc(p.version)})</option>`).join('')}</select>
+      <button class="btn btn-sm" onclick="App.labClr()">پاک‌سازی فرم</button></div>
+    ${l.mode==='api' ? `<div class="row"><span class="b ${okKey?'b-ok':'b-w'}">${okKey?'🟢 '+esc(mLbl):'🟠 API تنظیم نشده'}</span><button class="btn btn-xs" onclick="App.go('settings','api')">تنظیم API</button></div>` : `<span class="b b-i">بدون نیاز به API</span>`}
+  </div>
+  <div class="lab3">
+    <div class="card"><strong>۱. پرامپت فعلی</strong><textarea class="ta" rows="9" placeholder="پرامپت فعلی..." oninput="App.labSet('cur',this.value)">${esc(l.cur)}</textarea></div>
+    <div class="card"><strong>۲. نمونه خروجی مطلوب (مرجع تیم)</strong><textarea class="ta" rows="9" placeholder="نمونه متن استاندارد و ایده‌آل تیم..." oninput="App.labSet('ideal',this.value)">${esc(l.ideal)}</textarea></div>
+    <div class="card"><strong>۳. خروجی فعلی هوش مصنوعی</strong><textarea class="ta" rows="9" placeholder="خروجی فعلی که نیاز به اصلاح دارد..." oninput="App.labSet('ai',this.value)">${esc(l.ai)}</textarea></div>
+  </div>
+  <div class="card" style="margin-bottom:14px"><div class="row">
+    <input class="inp" style="flex:1;min-width:220px" placeholder="تمرکز اضافی برای این دور اصلاح (اختیاری)..." value="${esc(l.hint||'')}" oninput="App.labSet('hint',this.value)" />
+    ${l.mode==='api' ? `<button id="labBtn" class="btn btn-p" onclick="App.runLab()">⚡ تحلیل و پیشنهاد پرامپت اصلاح‌شده</button>` : `<button class="btn btn-p" onclick="App.genMeta()">📋 تولید و کپی ابر-پرامپت ممیزی</button>`}
+  </div></div>
+  ${l.mode==='api' && (l.analysis||l.suggested) ? `<div class="card" style="border-color:var(--ac);margin-bottom:14px">
+    <div class="ch"><div class="ct">🔍 نتیجه تحلیل (دور ${l.iters.length||1})</div>
+      <div class="row"><button class="btn btn-sm" onclick="App.cpLab()">📋 کپی پرامپت</button><button class="btn btn-s btn-sm" onclick="App.labNext()">↻ انتقال برای دور بعدی تست</button><button class="btn btn-p btn-sm" onclick="App.labSave()">💾 ذخیره در خزانه</button></div></div>
+    <div class="pre" style="max-height:300px">${esc(l.analysis)}</div>
+    <label style="font-weight:700;font-size:12.5px">پرامپت پیشنهادی اصلاح‌شده:</label>
+    <textarea class="ta" rows="7" oninput="App.labSet('suggested',this.value)">${esc(l.suggested)}</textarea>
+  </div>` : ''}
+  ${l.mode==='offline' && l.meta ? `<div class="card" style="border-color:var(--ac)"><div class="ch"><div class="ct">📋 ابر-پرامپت ممیزی آماده</div><button class="btn btn-p btn-sm" onclick="App.cpMeta()">📋 کپی</button></div><textarea class="ta" rows="11" readonly>${esc(l.meta)}</textarea></div>` : ''}`;
+}
+
+function vAcad() {
+  const cats = ['اصول پرامپت‌نویسی','جزوه آموزشی','راهنمای ابزار','استاندارد مرکز'];
+  const list = st.resources.filter(r => (!flt.rq || (r.title+' '+r.summary).toLowerCase().includes(flt.rq.toLowerCase())) && (!flt.rc || r.category===flt.rc));
+  return `
+  <div class="ph"><div><h2>کارگاه آموزشی و آرشیو منابع (Academy)</h2><p>نکات پرامپت‌نویسی، جزوه‌های گوگل درایو و ارجاع مستقیم به پرامپت‌ها و تجربیات</p></div>
+    <button class="btn btn-p" onclick="App.mRes()">+ منبع آموزشی جدید</button></div>
+  <div class="fbar">
+    <input class="inp" style="flex:1;min-width:190px" placeholder="جستجو در منابع..." value="${esc(flt.rq)}" oninput="App.flt('rq',this.value)" />
+    <select class="sel" onchange="App.flt('rc',this.value)"><option value="">همه دسته‌ها</option>${cats.map(c=>`<option ${flt.rc===c?'selected':''}>${c}</option>`).join('')}</select>
+  </div>
+  <div class="grid">${list.map(r=>`<article class="card">
+    <div><span class="b b-a" style="margin-bottom:5px">${esc(r.category)}</span><div class="ct">${esc(r.title)}</div></div>
+    <div style="white-space:pre-wrap;font-size:13px;color:var(--t2)">${esc(r.summary)}</div>
+    <div class="row">${r.driveUrl?`<a class="b b-ok" href="${esc(r.driveUrl)}" target="_blank">📁 فایل در گوگل درایو ↗</a>`:''}</div>
+    <div class="row">${(r.linkedPromptIds||[]).map(id=>{const p=pById(id);return p?`<button class="btn btn-s btn-xs" onclick="App.jumpP('${p.id}')">✨ ${esc(p.title)}</button>`:'';}).join('')}
+      ${(r.linkedNoteIds||[]).map(id=>{const n=nById(id);return n?`<button class="btn btn-xs" onclick="App.jumpN('${n.id}')">📝 ${esc(n.title)}</button>`:'';}).join('')}</div>
+    <div class="cf"><span class="hint">${fDate(r.updatedAt)}</span><div class="row"><button class="btn btn-xs" onclick="App.mRes('${r.id}')">ویرایش</button><button class="btn btn-d btn-xs" onclick="App.delR('${r.id}')">حذف</button></div></div>
+  </article>`).join('') || `<div class="empty">منبعی یافت نشد.</div>`}</div>`;
+}
+
+function vSet() {
+  const a = st.api, sy = st.sync, lg = st.tokenLogs || [];
+  const sIn = lg.reduce((s,x)=>s+(x.inT||0),0), sOut = lg.reduce((s,x)=>s+(x.outT||0),0), sTot = lg.reduce((s,x)=>s+(x.tot||0),0);
+  return `
+  <div class="ph"><div><h2>تنظیمات، API، پایش توکن و همگام‌سازی</h2><p>مدیریت هوش مصنوعی، همگام‌سازی تیمی گوگل شیت، بکاپ JSON و خروجی Word/Markdown</p></div></div>
+  <div class="stabs">
+    <button class="stbtn ${sSub==='api'?'active':''}" onclick="App.sSub('api')">🤖 اتصال API و توکن</button>
+    <button class="stbtn ${sSub==='sync'?'active':''}" onclick="App.sSub('sync')">☁️ همگام‌سازی گوگل شیت</button>
+    <button class="stbtn ${sSub==='backup'?'active':''}" onclick="App.sSub('backup')">💾 بکاپ، فایل محلی و Word</button>
+    <button class="stbtn ${sSub==='profile'?'active':''}" onclick="App.sSub('profile')">👤 پروفایل و ریست</button>
+  </div>
+  ${sSub==='api' ? `<div class="card" style="margin-bottom:16px">
+    <div class="row" style="justify-content:space-between"><strong>تنظیمات سرویس‌دهنده API</strong>
+      <div class="msw"><button class="mbtn ${a.provider==='gemini'?'active':''}" onclick="App.apiSet('provider','gemini',1)">Google Gemini</button><button class="mbtn ${a.provider==='openai'?'active':''}" onclick="App.apiSet('provider','openai',1)">OpenAI / OpenRouter</button></div></div>
+    ${a.provider==='gemini' ? `<div class="fg2">
+      <div class="fg"><label>کلید Google Gemini API</label><input class="inp" type="password" dir="ltr" placeholder="AIzaSy..." value="${esc(a.geminiKey)}" oninput="App.apiSet('geminiKey',this.value)" /></div>
+      <div class="fg"><label>مدل جمنای</label><div class="row"><select class="sel" style="flex:1" dir="ltr" onchange="App.apiSet('geminiModel',this.value)">${(a.geminiModels||[]).map(m=>`<option ${a.geminiModel===m?'selected':''}>${esc(m)}</option>`).join('')}</select><button id="fModBtn" class="btn btn-s btn-sm" onclick="App.fetchModels()">🔄 دریافت مدل‌ها</button></div></div>
+      <div class="fg"><label>مدل دلخواه (اختیاری)</label><input class="inp" dir="ltr" value="${esc(a.geminiCustom||'')}" placeholder="نام مدل سفارشی..." oninput="App.apiSet('geminiCustom',this.value)" /></div>
+      <div class="fg2"><div class="fg"><label>Temperature</label><input class="inp" type="number" step=".05" min="0" max="2" value="${a.temp}" oninput="App.apiSet('temp',+this.value||0)" /></div><div class="fg"><label>Top-P</label><input class="inp" type="number" step=".05" min="0" max="1" value="${a.topP}" oninput="App.apiSet('topP',+this.value||.9)" /></div></div>
+    </div>` : `<div class="fg2">
+      <div class="fg"><label>Base URL</label><input class="inp" dir="ltr" value="${esc(a.openaiBase)}" oninput="App.apiSet('openaiBase',this.value)" /><div class="row" style="margin-top:4px"><button class="btn btn-xs" onclick="App.apiSet('openaiBase','https://openrouter.ai/api/v1',1)">OpenRouter</button><button class="btn btn-xs" onclick="App.apiSet('openaiBase','https://api.openai.com/v1',1)">OpenAI</button></div></div>
+      <div class="fg"><label>API Key</label><input class="inp" type="password" dir="ltr" placeholder="sk-..." value="${esc(a.openaiKey)}" oninput="App.apiSet('openaiKey',this.value)" /></div>
+      <div class="fg"><label>Model ID</label><input class="inp" dir="ltr" value="${esc(a.openaiModel)}" oninput="App.apiSet('openaiModel',this.value)" /></div>
+      <div class="fg2"><div class="fg"><label>Temperature</label><input class="inp" type="number" step=".05" min="0" max="2" value="${a.temp}" oninput="App.apiSet('temp',+this.value||0)" /></div><div class="fg"><label>Top-P</label><input class="inp" type="number" step=".05" min="0" max="1" value="${a.topP}" oninput="App.apiSet('topP',+this.value||.9)" /></div></div>
+    </div>`}
+    <div style="background:var(--sub);border:1px solid var(--bd);border-radius:9px;padding:11px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <div id="testRes" class="row" style="font-size:13px"><span class="dot w"></span><span>برای بررسی صحت کلید و سرعت پاسخ، تست زنده بزنید.</span></div>
+      <button id="testBtn" class="btn btn-p btn-sm" onclick="App.testApi()">📡 تست اتصال زنده</button>
+    </div>
+    <p class="hint">💡 کلید رایگان جمنای را از <strong>aistudio.google.com</strong> (بخش Get API key) بگیرید. کلید فقط در مرورگر خودتان می‌ماند.</p>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ct">📊 پایش و تاریخچه مصرف توکن</div>${lg.length?`<button class="btn btn-d btn-xs" onclick="App.clrTok()">پاک کردن تاریخچه</button>`:''}</div>
+    <div class="kpis"><div class="kpi"><small>تعداد درخواست</small><b>${lg.length}</b></div><div class="kpi"><small>توکن ورودی</small><b>${sIn.toLocaleString('fa-IR')}</b></div><div class="kpi"><small>توکن خروجی</small><b>${sOut.toLocaleString('fa-IR')}</b></div><div class="kpi"><small>جمع کل مصرف</small><b style="color:var(--act)">${sTot.toLocaleString('fa-IR')}</b></div></div>
+    <div class="twrap"><table><thead><tr><th>تاریخ و ساعت</th><th>عملیات</th><th>مدل</th><th>ورودی</th><th>خروجی</th><th>جمع</th></tr></thead><tbody>
+      ${lg.length ? [...lg].reverse().map(x=>`<tr><td>${fDT(x.at)}</td><td>${esc(x.pur)}</td><td dir="ltr" style="text-align:right">${esc(x.mod)}</td><td>${x.inT}</td><td>${x.outT}</td><td><b>${x.tot}</b></td></tr>`).join('') : `<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--t3)">هنوز درخواستی ثبت نشده است.</td></tr>`}
+    </tbody></table></div>
+  </div>` : ''}
+  ${sSub==='sync' ? `<div class="card">
+    <div class="ch"><div class="ct">☁️ همگام‌سازی آنلاین تیمی با Google Sheets</div><button class="btn btn-s btn-sm" onclick="App.go('help')">آموزش و کد Code.gs</button></div>
+    <div class="fg2">
+      <div class="fg"><label>لینک وب‌اپ Google Apps Script</label><input class="inp" dir="ltr" placeholder="https://script.google.com/macros/s/.../exec" value="${esc(sy.gasUrl||'')}" oninput="App.syncSet(this.value)" /></div>
+      <div class="fg"><label>نام شما در تیم</label><input class="inp" value="${esc(st.userName||'')}" oninput="App.uName(this.value)" /></div>
+    </div>
+    <div style="background:var(--sub);padding:11px 13px;border-radius:9px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:9px">
+      <div style="font-size:13px"><b>آخرین همگام‌سازی:</b> ${sy.lastAt ? fDT(sy.lastAt)+' ('+esc(sy.lastBy||'')+')' : 'انجام نشده'}</div>
+      <div class="row"><button class="btn btn-p btn-sm" onclick="App.syncSmart()">🔄 همگام‌سازی هوشمند</button><button class="btn btn-sm" onclick="App.syncPull()">⬇️ دریافت (Pull)</button><button class="btn btn-s btn-sm" onclick="App.syncPush()">⬆️ ارسال (Push)</button></div>
+    </div>
+    <p class="hint">همگام‌سازی هوشمند ابتدا نسخه تیم را می‌گیرد، موارد جدید شما و همکاران را بدون حذف ادغام می‌کند و سپس روی شیت ذخیره می‌نماید.</p>
+  </div>` : ''}
+  ${sSub==='backup' ? `<div class="grid">
+    <div class="card"><div class="ct">📦 پشتیبان‌گیری و انتقال JSON</div>
+      <button class="btn btn-p" onclick="App.expJson()">⬇️ دانلود کامل دیتابیس (.json)</button>
+      <div class="fg" style="margin:4px 0"><label><input type="radio" name="jMode" value="merge" checked> ادغام هوشمند (حفظ موارد جدید)</label><label><input type="radio" name="jMode" value="replace"> جایگزینی کامل</label></div>
+      <button class="btn" onclick="$('jsonFile').click()">⬆️ بارگذاری فایل JSON</button></div>
+    <div class="card"><div class="ct">💻 ذخیره/بازخوانی مستقیم فایل محلی</div><p class="hint">برای ذخیره مستقیم روی یک فایل مشخص در کامپیوتر یا پوشه اشتراکی شبکه.</p>
+      <div class="row"><button class="btn btn-s" onclick="App.saveFile()">💾 ذخیره روی فایل محلی</button><button class="btn" onclick="App.openFile()">📂 بازخوانی از فایل</button></div>
+      <span class="hint">${fileHandle?'✅ متصل به: '+esc(fileHandle.name):'فایلی انتخاب نشده'}</span></div>
+    <div class="card"><div class="ct">📑 خروجی مستندسازی (Word فارسی و Markdown)</div>
+      <select id="docScope" class="sel"><option value="all">کل مستندات (پرامپت + تجربه + فرآیند)</option><option value="prompts">فقط پرامپت‌ها</option><option value="notes">فقط تجربیات</option><option value="workflows">فقط فرآیندها</option></select>
+      <div class="row"><button class="btn btn-p" onclick="App.expDoc('doc',$('docScope').value)">📄 Word فارسی (.doc)</button><button class="btn" onclick="App.expDoc('md',$('docScope').value)">⬇ Markdown (.md)</button></div></div>
+  </div>` : ''}
+  ${sSub==='profile' ? `<div class="card" style="max-width:560px"><div class="ct">👤 پروفایل و مدیریت داده‌ها</div>
+    <div class="fg"><label>نام کاربر فعلی</label><input class="inp" value="${esc(st.userName||'')}" oninput="App.uName(this.value)" /></div>
+    <div class="row"><button class="btn btn-d" onclick="App.clearSample()">🗑 پاک کردن داده‌های نمونه</button><button class="btn" onclick="App.reSample()">♻️ بازگردانی نمونه</button><button class="btn btn-d" onclick="App.resetAll()">⚠️ ریست کامل سامانه</button></div></div>` : ''}`;
+}
+
+function vHelp() {
+  const gas = $('gasTpl').textContent.trim();
+  return `
+  <div class="ph"><div><h2>راهنمای جامع استفاده و استقرار رایگان</h2><p>آموزش مرحله‌به‌مرحله کار با سامانه، GitHub Pages، گوگل شیت و گوگل جمنای</p></div></div>
+  <div class="hsec"><h3>۱. راهنمای سریع بخش‌ها</h3><ol class="hlist">
+    <li><strong>خزانه پرامپت‌ها:</strong> هر پرامپت را با مدل و تنظیماتش ذخیره کنید. در هر ویرایش، نسخه قبلی خودکار در «نسخه‌ها» بایگانی و قابل مقایسه می‌شود.</li>
+    <li><strong>دفترچه تجربیات و ایتا:</strong> با «ارسال به ایتا» متن مرتب کپی و لینک ایتا وب باز می‌شود. در «ورود سریع از ایتا» پیام‌های گروه را پیست و فوری ذخیره کنید.</li>
+    <li><strong>خط تولید و کارها:</strong> از دکمه «تنظیم مراحل» می‌توانید مراحل را اضافه، حذف، جابه‌جا یا ادغام کنید.</li>
+    <li><strong>کارگاه اصلاح پرامپت:</strong> با API به صورت زنده و چرخه‌ای، و بدون API با تولید ابر-پرامپت ممیزی کار می‌کند.</li>
+  </ol></div>
+  <div class="hsec"><h3>۲. انتشار رایگان روی GitHub Pages (مناسب مبتدی)</h3><ol class="hlist">
+    <li>در سایت <strong>github.com</strong> ثبت‌نام کنید و از دکمه <strong>+</strong> بالا گزینه <strong>New repository</strong> را بزنید.</li>
+    <li>یک نام انگلیسی (مثلاً <code>ai-center</code>) بنویسید، حالت را روی <strong>Public</strong> بگذارید و <strong>Create repository</strong> را بزنید.</li>
+    <li>روی لینک <strong>uploading an existing file</strong> کلیک کرده، همین فایل <code>index.html</code> را رها کنید و دکمه سبز <strong>Commit changes</strong> را بزنید.</li>
+    <li>به تب <strong>Settings ← Pages</strong> بروید، زیر Branch گزینه <strong>main</strong> را انتخاب و <strong>Save</strong> کنید. بعد از ۲ دقیقه لینک رایگان شما آماده است!</li>
+  </ol></div>
+  <div class="hsec"><h3>۳. همگام‌سازی زنده تیمی با Google Sheets (همراه کد آماده)</h3><ol class="hlist" style="margin-bottom:12px">
+    <li>در <strong>sheets.google.com</strong> یک شیت خالی بسازید و از منو وارد <strong>Extensions ← Apps Script</strong> شوید.</li>
+    <li>کد پیش‌فرض را پاک کرده، کد زیر را پیست و ذخیره کنید.</li>
+    <li>بالای صفحه روی <strong>Deploy ← New deployment</strong> بزنید، نوع را <strong>Web app</strong> انتخاب کنید.</li>
+    <li>گزینه <strong>Execute as</strong> را روی <strong>Me</strong> و <strong>Who has access</strong> را روی <strong>Anyone</strong> بگذارید و Deploy بزنید (در پنجره دسترسی روی Advanced ← Go to... ← Allow بزنید).</li>
+    <li>لینک <strong>Web app URL</strong> را کپی کرده و در بخش <strong>تنظیمات ← همگام‌سازی گوگل شیت</strong> وارد کنید.</li>
+  </ol>
+  <div class="row" style="justify-content:space-between;margin-bottom:6px"><strong>کد کامل Google Apps Script (Code.gs):</strong><button class="btn btn-p btn-sm" onclick="App.cpGas()">📋 کپی کد Code.gs</button></div>
+  <div class="cbox">${esc(gas)}</div></div>
+  <div class="hsec"><h3>۴. اتصال API گوگل جمنای</h3><ol class="hlist">
+    <li>با فیلترشکن به <strong>aistudio.google.com</strong> بروید و از <strong>Get API key ← Create API key</strong> کلید رایگان بگیرید.</li>
+    <li>کلید را در بخش <strong>تنظیمات ← اتصال API</strong> وارد کرده، «دریافت مدل‌ها» و سپس «تست اتصال زنده» را بزنید.</li>
+  </ol></div>`;
+}
+
+/* ---------- Merge & API Helpers ---------- */
+const mergeArr = (loc=[], rem=[]) => {
+  const m = new Map(); loc.forEach(x=>x?.id&&m.set(x.id,x));
+  rem.forEach(x=>{ if(!x?.id) return; const o=m.get(x.id); if(!o || new Date(x.updatedAt||0)>=new Date(o.updatedAt||0)) m.set(x.id,x); });
+  return [...m.values()];
+};
+const teamPayload = () => ({ stages:st.stages, prompts:st.prompts, notes:st.notes, tasks:st.tasks, workflows:st.workflows, resources:st.resources });
+function mergeTeam(rem) {
+  if (!rem) return;
+  if (rem.stages?.length) { const sm = new Map(st.stages.map(s=>[s.id,s])); rem.stages.forEach(s=>sm.set(s.id,s)); st.stages=[...sm.values()]; }
+  ['prompts','notes','tasks','workflows','resources'].forEach(k => st[k] = mergeArr(st[k], rem[k]||[]));
+}
+
+async function callAI(prompt, pur) {
+  const a = st.api, t0 = performance.now();
+  if (a.provider === 'gemini') {
+    if (!a.geminiKey) throw new Error('کلید Gemini وارد نشده است.');
+    const mod = (a.geminiCustom||'').trim() || a.geminiModel || 'gemini-2.5-flash';
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(mod)}:generateContent?key=${encodeURIComponent(a.geminiKey.trim())}`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ contents:[{role:'user',parts:[{text:prompt}]}], generationConfig:{temperature:+a.temp||.3, topP:+a.topP||.9} })
+    });
+    const d = await r.json().catch(()=>({})); if (!r.ok) throw new Error(d.error?.message || 'HTTP '+r.status);
+    const txt = d.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('') || '';
+    const inT = d.usageMetadata?.promptTokenCount||0, outT = d.usageMetadata?.candidatesTokenCount||0, tot = d.usageMetadata?.totalTokenCount||(inT+outT);
+    st.tokenLogs.push({ at:now(), pur, mod, inT, outT, tot }); save();
+    return { txt, mod, tot, ms:Math.round(performance.now()-t0) };
+  } else {
+    if (!a.openaiKey) throw new Error('کلید OpenAI/OpenRouter وارد نشده است.');
+    const base = (a.openaiBase||'https://openrouter.ai/api/v1').replace(/\/+$/,''), mod = (a.openaiModel||'gpt-4o-mini').trim();
+    const r = await fetch(`${base}/chat/completions`, {
+      method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+a.openaiKey.trim()},
+      body:JSON.stringify({ model:mod, messages:[{role:'user',content:prompt}], temperature:+a.temp||.3, top_p:+a.topP||.9 })
+    });
+    const d = await r.json().catch(()=>({})); if (!r.ok) throw new Error(d.error?.message || 'HTTP '+r.status);
+    const txt = d.choices?.[0]?.message?.content || '';
+    const inT = d.usage?.prompt_tokens||0, outT = d.usage?.completion_tokens||0, tot = d.usage?.total_tokens||(inT+outT);
+    st.tokenLogs.push({ at:now(), pur, mod, inT, outT, tot }); save();
+    return { txt, mod, tot, ms:Math.round(performance.now()-t0) };
+  }
+}
+
+function openM(title, body, foot, lg=false) {
+  $('mdl').className = 'mdl' + (lg?' lg':''); $('mTitle').textContent = title;
+  $('mBody').innerHTML = body; $('mFoot').innerHTML = foot; $('mbg').classList.add('open');
+}
+
+/* ---------- Public Controller ---------- */
+window.App = {
+  init() {
+    this.theme(st.theme||'light', 1); render();
+    document.addEventListener('click', e => { if (!e.target.closest('.gsearch')) $('gsRes').classList.remove('open'); });
+    $('jsonFile').addEventListener('change', e => {
+      const f = e.target.files[0]; if (!f) return;
+      const rd = new FileReader();
+      rd.onload = () => {
+        try {
+          const p = JSON.parse(rd.result), mode = document.querySelector('input[name="jMode"]:checked')?.value || 'merge';
+          if (mode === 'replace') { if (!confirm('کل دیتابیس فعلی جایگزین شود؟')) return; st = { ...defaults(), ...p, api:st.api }; }
+          else mergeTeam(p);
+          save(); render(); this.toast(mode==='replace'?'جایگزین شد':'ادغام هوشمند انجام شد','ok');
+        } catch (err) { this.toast('فایل نامعتبر: '+err.message,'er'); }
+        e.target.value = '';
+      };
+      rd.readAsText(f);
+    });
+  },
+  theme(t, silent) { st.theme=t; document.documentElement.setAttribute('data-theme',t); document.querySelectorAll('[data-th]').forEach(b=>b.classList.toggle('active',b.dataset.th===t)); if(!silent) save(); },
+  side(o) { $('side').classList.toggle('open',o); $('ovl').classList.toggle('open',o); },
+  go(t, sub) { tab=t; if(t==='settings'&&sub) sSub=sub; this.side(false); render(); window.scrollTo({top:0,behavior:'smooth'}); },
+  sSub(s) { sSub=s; render(); },
+  tView(v) { tView=v; render(); },
+  flt(k,v) { flt[k]=v; render(); },
+  closeM() { $('mbg').classList.remove('open'); },
+  toast(msg, type='in', act=null) {
+    const el = document.createElement('div'); el.className = 'toast '+type; el.innerHTML = `<span>${esc(msg)}</span>`;
+    if (act) { const a=document.createElement('a'); a.href=act.href; a.target='_blank'; a.className='btn btn-p btn-xs'; a.textContent=act.label; el.appendChild(a); }
+    $('toasts').appendChild(el); setTimeout(()=>el.remove(), act?5200:3000);
+  },
+
+  /* Global Search */
+  gSearch(q) {
+    const box = $('gsRes'), s = (q||'').trim().toLowerCase();
+    if (!s) { box.classList.remove('open'); return; }
+    const res = [];
+    st.prompts.forEach(p=>{ if((p.title+p.text+(p.tags||[]).join()).toLowerCase().includes(s)) res.push(['پرامپت',p.title,()=>this.jumpP(p.id)]); });
+    st.notes.forEach(n=>{ if((n.title+n.content+n.author).toLowerCase().includes(s)) res.push(['تجربه',n.title,()=>this.jumpN(n.id)]); });
+    st.tasks.forEach(t=>{ if((t.title+t.assignee+t.statusNote).toLowerCase().includes(s)) res.push(['کار',t.title,()=>{this.go('pipeline');this.mTask(t.id);}]); });
+    st.workflows.forEach(w=>{ if((w.title+w.description).toLowerCase().includes(s)) res.push(['فرآیند',w.title,()=>this.go('workflows')]); });
+    st.resources.forEach(r=>{ if((r.title+r.summary).toLowerCase().includes(s)) res.push(['منبع',r.title,()=>this.go('academy')]); });
+    searchActs = res.slice(0,9);
+    box.innerHTML = searchActs.length ? searchActs.map((x,i)=>`<div class="gs-item" onclick="App.runGS(${i})"><span>${esc(x[1])}</span><span class="b b-a">${x[0]}</span></div>`).join('') : `<div class="gs-item" style="color:var(--t3)">نتیجه‌ای یافت نشد</div>`;
+    box.classList.add('open');
+  },
+  runGS(i) { $('gsRes').classList.remove('open'); searchActs[i]?.[2](); },
+  jumpP(id) { const p=pById(id); if(p){ flt.pq=p.title; this.go('prompts'); } },
+  jumpN(id) { const n=nById(id); if(n){ flt.nq=n.title; this.go('notes'); } },
+
+  /* Prompts */
+  mPrompt(id=null, pre=null) {
+    const p = id ? pById(id) : null, d = p || { title:pre?.title||'', stageId:st.stages[0]?.id||'', version:'v1.0', model:'Gemini 2.5 Pro', temperature:.3, topP:.9, notes:pre?.notes||'', driveUrl:'', tags:pre?.tags||[], text:pre?.text||'' };
+    openM(p?'ویرایش پرامپت (نسخه قبلی ذخیره می‌شود)':'ثبت پرامپت جدید', `
+      <div class="fg2">
+        <div class="fg"><label>عنوان *</label><input id="pT" class="inp" value="${esc(d.title)}" /></div>
+        <div class="fg"><label>مرحله</label><select id="pS" class="sel">${st.stages.map(s=>`<option value="${s.id}" ${d.stageId===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select></div>
+        <div class="fg"><label>نسخه</label><input id="pV" class="inp" dir="ltr" value="${esc(p?nextV(p.version):d.version)}" /></div>
+        <div class="fg"><label>مدل پیشنهادی</label><input id="pM" class="inp" dir="ltr" value="${esc(d.model)}" /></div>
+        <div class="fg"><label>Temperature</label><input id="pTp" class="inp" type="number" step=".05" value="${d.temperature??.3}" /></div>
+        <div class="fg"><label>Top-P</label><input id="pP" class="inp" type="number" step=".05" value="${d.topP??.9}" /></div>
+        <div class="fg"><label>تگ‌ها</label><input id="pTg" class="inp" value="${esc((d.tags||[]).join(' '))}" /></div>
+        <div class="fg"><label>لینک گوگل درایو</label><input id="pDr" class="inp" dir="ltr" value="${esc(d.driveUrl||'')}" /></div>
+      </div>
+      <div class="fg"><label>توضیحات و نکات</label><input id="pN" class="inp" value="${esc(d.notes||'')}" /></div>
+      <div class="fg"><label>متن کامل پرامپت *</label><textarea id="pTx" class="ta" rows="8">${esc(d.text)}</textarea></div>`,
+      `<button class="btn" onclick="App.closeM()">انصراف</button><button class="btn btn-p" onclick="App.saveP('${id||''}')">💾 ذخیره</button>`, true);
+  },
+  saveP(id) {
+    const title=$('pT').value.trim(), text=$('pTx').value.trim(); if(!title||!text) return this.toast('عنوان و متن الزامی است','er');
+    const obj = { title, stageId:$('pS').value, version:$('pV').value.trim()||'v1.0', model:$('pM').value.trim(), temperature:+$('pTp').value||0, topP:+$('pP').value||.9, tags:pTags($('pTg').value), driveUrl:$('pDr').value.trim(), notes:$('pN').value.trim(), text, isSample:false, updatedAt:now() };
+    if (id) {
+      const o = pById(id);
+      if (o && (o.text!==text || o.version!==obj.version)) (o.history=o.history||[]).unshift({ version:o.version, savedAt:o.updatedAt||now(), notes:o.notes||'', text:o.text });
+      Object.assign(o, obj);
+    } else st.prompts.unshift({ id:uid('p'), ...obj, history:[] });
+    save(); this.closeM(); render(); this.toast('پرامپت ذخیره شد','ok');
+  },
+  delP(id) { if(confirm('پرامپت حذف شود؟')) { st.prompts=st.prompts.filter(x=>x.id!==id); save(); render(); } },
+  cpP(id) { const p=pById(id); if(p) copy(p.text, `پرامپت «${p.title}» کپی شد`); },
+  cpPEitaa(id) {
+    const p=pById(id); if(!p) return;
+    const t = [`✨ پرامپت: ${p.title}`,`📌 مرحله: ${sName(p.stageId)} | نسخه: ${p.version}`,`🤖 مدل: ${p.model||'—'} (T:${p.temperature} | P:${p.topP})`,p.notes?`💡 ${p.notes}`:'','━━━━━━━━━',p.text,'━━━━━━━━━',(p.tags||[]).join(' ')].filter(Boolean).join('\n');
+    copy(t,'فرمت ایتا کپی شد!',{label:'باز کردن ایتا ↗',href:'https://web.eitaa.com/'});
+  },
+  mVers(id) {
+    const p=pById(id), h=p?.history||[];
+    openM(`🕒 تاریخچه نسخه‌های «${p.title}»`, !h.length ? `<div class="empty">هنوز نسخه قبلی ثبت نشده است.</div>` : `
+      <div class="row" style="margin-bottom:10px"><strong>مقایسه با نسخه فعلی (${esc(p.version)}):</strong>
+        <select class="sel" onchange="App.diffV('${p.id}',this.value)">${h.map((x,i)=>`<option value="${i}">${esc(x.version)} — ${fDT(x.savedAt)}</option>`).join('')}</select></div>
+      <div id="vDiff"></div>`, `<button class="btn" onclick="App.closeM()">بستن</button>`, true);
+    if (h.length) this.diffV(p.id, 0);
+  },
+  diffV(pid, idx) {
+    const p=pById(pid), o=p.history[idx], oL=(o.text||'').split('\n'), cL=(p.text||'').split('\n'), oS=new Set(oL), cS=new Set(cL);
+    $('vDiff').innerHTML = `<div class="row" style="justify-content:space-between;margin-bottom:8px"><span class="hint">یادداشت: ${esc(o.notes||'—')}</span><button class="btn btn-s btn-xs" onclick="App.restV('${pid}',${idx})">♻️ بازگردانی این نسخه</button></div>
+      <div class="diff2"><div class="card"><b style="color:var(--er)">نسخه ${esc(o.version)}</b><div style="font-size:12.5px;max-height:290px;overflow:auto">${oL.map(l=>`<div class="${!cS.has(l)?'dd':''}">${esc(l)||'&nbsp;'}</div>`).join('')}</div></div>
+      <div class="card"><b style="color:var(--ok)">نسخه فعلی (${esc(p.version)})</b><div style="font-size:12.5px;max-height:290px;overflow:auto">${cL.map(l=>`<div class="${!oS.has(l)?'da':''}">${esc(l)||'&nbsp;'}</div>`).join('')}</div></div></div>`;
+  },
+  restV(pid, idx) {
+    const p=pById(pid), o=p.history[idx]; if(!confirm('این نسخه جایگزین نسخه فعلی شود؟')) return;
+    p.history.unshift({ version:p.version, savedAt:p.updatedAt||now(), notes:p.notes||'', text:p.text });
+    p.text=o.text; p.version=nextV(p.version); p.notes='بازگردانی از '+o.version; p.updatedAt=now();
+    save(); this.closeM(); render(); this.toast('نسخه بازگردانی شد','ok');
+  },
+  toLab(id) { const p=pById(id); if(!p) return; st.lab.pid=p.id; st.lab.cur=p.text; save(); this.go('lab'); },
+
+  /* Notes */
+  mNote(id=null, pre=null) {
+    const n=id?nById(id):null, d=n||{ title:pre?.title||'', author:pre?.author||st.userName, date:now().slice(0,10), tags:pre?.tags||[], stageId:'', promptId:'', content:pre?.content||'' };
+    openM(n?'ویرایش تجربه':'ثبت تجربه جدید', `
+      <div class="fg2">
+        <div class="fg"><label>عنوان *</label><input id="nT" class="inp" value="${esc(d.title)}" /></div>
+        <div class="fg"><label>نویسنده</label><input id="nA" class="inp" value="${esc(d.author)}" /></div>
+        <div class="fg"><label>تاریخ</label><input id="nD" class="inp" type="date" dir="ltr" value="${esc((d.date||'').slice(0,10))}" /></div>
+        <div class="fg"><label>تگ‌ها</label><input id="nTg" class="inp" value="${esc((d.tags||[]).join(' '))}" /></div>
+        <div class="fg"><label>اتصال به مرحله</label><select id="nS" class="sel"><option value="">ندارد</option>${st.stages.map(s=>`<option value="${s.id}" ${d.stageId===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select></div>
+        <div class="fg"><label>اتصال به پرامپت</label><select id="nP" class="sel"><option value="">ندارد</option>${st.prompts.map(p=>`<option value="${p.id}" ${d.promptId===p.id?'selected':''}>${esc(p.title)}</option>`).join('')}</select></div>
+      </div>
+      <div class="fg"><label>متن تجربه *</label><textarea id="nC" class="ta" rows="7">${esc(d.content)}</textarea></div>`,
+      `<button class="btn" onclick="App.closeM()">انصراف</button><button class="btn btn-p" onclick="App.saveN('${id||''}')">💾 ذخیره</button>`, true);
+  },
+  saveN(id) {
+    const title=$('nT').value.trim(), content=$('nC').value.trim(); if(!title||!content) return this.toast('عنوان و متن الزامی است','er');
+    const o={ title, author:$('nA').value.trim()||st.userName, date:$('nD').value, tags:pTags($('nTg').value), stageId:$('nS').value, promptId:$('nP').value, content, isSample:false, updatedAt:now() };
+    if(id) Object.assign(nById(id), o); else st.notes.unshift({ id:uid('n'), ...o });
+    save(); this.closeM(); render(); this.toast('تجربه ذخیره شد','ok');
+  },
+  delN(id) { if(confirm('تجربه حذف شود؟')) { st.notes=st.notes.filter(x=>x.id!==id); save(); render(); } },
+  cpNEitaa(id) {
+    const n=nById(id); if(!n) return;
+    const t=[`📝 تجربه تیمی: ${n.title}`,`👤 ${n.author||'عضو تیم'} | 📅 ${fDate(n.date||n.updatedAt)}`,n.stageId?`📌 ${sName(n.stageId)}`:'','━━━━━━━━━',n.content,'━━━━━━━━━',(n.tags||[]).join(' ')].filter(Boolean).join('\n');
+    copy(t,'تجربه با فرمت ایتا کپی شد!',{label:'باز کردن ایتا ↗',href:'https://web.eitaa.com/'});
+  },
+  impEitaa(type) {
+    const raw = ($('qImpTxt')?.value||'').trim(); if(!raw) return this.toast('ابتدا متن پیام را پیست کنید','wr');
+    const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean), tags=[...new Set(raw.match(/#[\u0600-\u06FF\w_]+/g)||[])];
+    const title = lines[0].replace(/^[📌📝✨💡•\-\s]+/,'').slice(0,80), body = lines.length>1 ? lines.slice(1).join('\n') : raw;
+    $('qImpTxt').value='';
+    if(type==='note') this.mNote(null,{title,tags,content:body}); else this.mPrompt(null,{title,tags,text:body,notes:'واردشده از ایتا'});
+  },
+
+  /* Tasks & Dynamic Stages */
+  mTask(id=null, defS=null) {
+    const t=id?st.tasks.find(x=>x.id===id):null, d=t||{ title:'', type:'جلسه علمی', assignee:st.userName, stageId:defS||st.stages[0]?.id||'', promptId:'', driveUrl:'', statusNote:'', completedStages:[] };
+    openM(t?'ویرایش کار / جلسه':'ثبت کار / جلسه / ایده', `
+      <div class="fg2">
+        <div class="fg"><label>نام کار / جلسه *</label><input id="tT" class="inp" value="${esc(d.title)}" /></div>
+        <div class="fg"><label>نوع</label><select id="tTy" class="sel">${['جلسه علمی','پروژه نرم‌افزاری','ایده'].map(x=>`<option ${d.type===x?'selected':''}>${x}</option>`).join('')}</select></div>
+        <div class="fg"><label>مسئول فعلی کار</label><input id="tAs" class="inp" value="${esc(d.assignee)}" /></div>
+        <div class="fg"><label>مرحله فعلی</label><select id="tS" class="sel">${st.stages.map(s=>`<option value="${s.id}" ${d.stageId===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select></div>
+        <div class="fg"><label>پرامپت مرتبط</label><select id="tP" class="sel"><option value="">ندارد</option>${st.prompts.map(p=>`<option value="${p.id}" ${d.promptId===p.id?'selected':''}>${esc(p.title)}</option>`).join('')}</select></div>
+        <div class="fg"><label>لینک گوگل درایو</label><input id="tDr" class="inp" dir="ltr" value="${esc(d.driveUrl||'')}" /></div>
+      </div>
+      <div class="fg"><label>یادداشت وضعیت</label><textarea id="tN" class="ta" rows="2">${esc(d.statusNote||'')}</textarea></div>
+      <div class="fg"><label>مراحل تکمیل‌شده:</label><div class="chkbox">${st.stages.map(s=>`<label class="chk"><input type="checkbox" class="tChk" value="${s.id}" ${(d.completedStages||[]).includes(s.id)?'checked':''}><span>${esc(s.name)}</span></label>`).join('')}</div></div>`,
+      `<button class="btn" onclick="App.closeM()">انصراف</button><button class="btn btn-p" onclick="App.saveT('${id||''}')">💾 ذخیره</button>`, true);
+  },
+  saveT(id) {
+    const title=$('tT').value.trim(); if(!title) return this.toast('عنوان کار الزامی است','er');
+    const o={ title, type:$('tTy').value, assignee:$('tAs').value.trim(), stageId:$('tS').value, promptId:$('tP').value, driveUrl:$('tDr').value.trim(), statusNote:$('tN').value.trim(), completedStages:[...document.querySelectorAll('.tChk:checked')].map(x=>x.value), isSample:false, updatedAt:now() };
+    if(id) Object.assign(st.tasks.find(x=>x.id===id), o); else st.tasks.unshift({ id:uid('t'), ...o });
+    save(); this.closeM(); render(); this.toast('کار ذخیره شد','ok');
+  },
+  delT(id) { if(confirm('حذف شود؟')) { st.tasks=st.tasks.filter(x=>x.id!==id); save(); render(); } },
+  chkT(tid,sid) { const t=st.tasks.find(x=>x.id===tid); t.completedStages=t.completedStages||[]; const i=t.completedStages.indexOf(sid); i>=0?t.completedStages.splice(i,1):t.completedStages.push(sid); t.updatedAt=now(); save(); render(); },
+  mvT(tid,sid) { const t=st.tasks.find(x=>x.id===tid); t.stageId=sid; t.updatedAt=now(); save(); render(); },
+  nextT(tid) { const t=st.tasks.find(x=>x.id===tid), i=st.stages.findIndex(s=>s.id===t.stageId); if(i>=0&&i<st.stages.length-1){ t.completedStages=[...new Set([...(t.completedStages||[]),t.stageId])]; t.stageId=st.stages[i+1].id; t.updatedAt=now(); save(); render(); } },
+
+  mStages() {
+    openM('⚙️ مدیریت پویا و ادغام مراحل خط تولید', `
+      ${st.stages.map((s,i)=>`<div class="row" style="margin-bottom:7px;background:var(--sub);padding:7px;border-radius:7px"><span class="b b-a">${i+1}</span>
+        <input class="inp" style="flex:1" value="${esc(s.name)}" onchange="App.renS('${s.id}',this.value)" />
+        <button class="btn btn-xs" ${i===0?'disabled':''} onclick="App.mvS(${i},-1)">↑</button>
+        <button class="btn btn-xs" ${i===st.stages.length-1?'disabled':''} onclick="App.mvS(${i},1)">↓</button>
+        <button class="btn btn-d btn-xs" ${st.stages.length<=1?'disabled':''} onclick="App.delS('${s.id}')">حذف</button></div>`).join('')}
+      <div class="row" style="margin-top:12px"><input id="nStg" class="inp" style="flex:1" placeholder="نام مرحله جدید..." /><button class="btn btn-p btn-sm" onclick="App.addS()">+ افزودن</button></div>
+      ${st.stages.length>=2 ? `<div style="margin-top:14px;padding:10px;background:var(--code);border:1px solid var(--bd);border-radius:8px">
+        <strong style="font-size:12.5px;display:block;margin-bottom:6px">🔀 ادغام دو مرحله (انتقال کارها و پرامپت‌ها)</strong>
+        <div class="row"><select id="mSrc" class="sel" style="flex:1">${st.stages.map(s=>`<option value="${s.id}">مبدأ: ${esc(s.name)}</option>`).join('')}</select>
+        <select id="mDst" class="sel" style="flex:1">${st.stages.map((s,i)=>`<option value="${s.id}" ${i===1?'selected':''}>مقصد: ${esc(s.name)}</option>`).join('')}</select>
+        <button class="btn btn-s btn-sm" onclick="App.mrgS()">ادغام</button></div></div>` : ''}`,
+      `<button class="btn btn-p" onclick="App.closeM()">تأیید</button>`);
+  },
+  addS() { const n=$('nStg').value.trim(); if(!n) return; st.stages.push({id:uid('s'),name:n}); save(); render(); this.mStages(); },
+  renS(id,v) { const s=st.stages.find(x=>x.id===id); if(s&&v.trim()){ s.name=v.trim(); save(); render(); } },
+  mvS(i,d) { const j=i+d; if(j<0||j>=st.stages.length) return; [st.stages[i],st.stages[j]]=[st.stages[j],st.stages[i]]; save(); render(); this.mStages(); },
+  delS(id) { if(st.stages.length<=1||!confirm('حذف شود؟')) return; st.stages=st.stages.filter(s=>s.id!==id); const fb=st.stages[0].id; st.tasks.forEach(t=>{if(t.stageId===id)t.stageId=fb;}); st.prompts.forEach(p=>{if(p.stageId===id)p.stageId=fb;}); save(); render(); this.mStages(); },
+  mrgS() {
+    const a=$('mSrc').value, b=$('mDst').value; if(a===b) return this.toast('مبدأ و مقصد یکسانند','er');
+    st.tasks.forEach(t=>{ if(t.stageId===a)t.stageId=b; if(t.completedStages)t.completedStages=[...new Set(t.completedStages.map(x=>x===a?b:x))]; });
+    st.prompts.forEach(p=>{if(p.stageId===a)p.stageId=b;}); st.notes.forEach(n=>{if(n.stageId===a)n.stageId=b;});
+    st.workflows.forEach(w=>(w.steps||[]).forEach(s=>{if(s.stageId===a)s.stageId=b;}));
+    st.stages=st.stages.filter(s=>s.id!==a); save(); render(); this.mStages(); this.toast('مراحل ادغام شدند','ok');
+  },
+
+  /* Workflows */
+  mWf(id=null) {
+    const w=id?st.workflows.find(x=>x.id===id):null;
+    wfDraft = w ? JSON.parse(JSON.stringify(w.steps||[])) : [{ stageId:st.stages[0]?.id||'', promptId:st.prompts[0]?.id||'', note:'' }];
+    openM(w?'ویرایش فرآیند':'تعریف فرآیند جدید', `
+      <div class="fg2"><div class="fg"><label>عنوان فرآیند *</label><input id="wT" class="inp" value="${esc(w?.title||'')}" /></div>
+      <div class="fg"><label>مخاطب / استاد / پروژه</label><input id="wTg" class="inp" value="${esc(w?.target||'')}" /></div></div>
+      <div class="fg"><label>توضیحات</label><textarea id="wD" class="ta" rows="2">${esc(w?.description||'')}</textarea></div>
+      <div class="row" style="justify-content:space-between;margin-bottom:6px"><strong>گام‌های فرآیند:</strong><button class="btn btn-s btn-xs" onclick="App.addWS()">+ گام جدید</button></div>
+      <div id="wEd"></div>`,
+      `<button class="btn" onclick="App.closeM()">انصراف</button><button class="btn btn-p" onclick="App.saveW('${id||''}')">💾 ذخیره</button>`, true);
+    this.rWS();
+  },
+  rWS() {
+    $('wEd').innerHTML = wfDraft.map((s,i)=>`<div style="background:var(--sub);padding:9px;border-radius:8px;margin-bottom:7px">
+      <div class="row" style="justify-content:space-between;margin-bottom:6px"><b>گام ${i+1}</b><button class="btn btn-d btn-xs" onclick="App.rmWS(${i})">حذف</button></div>
+      <div class="fg2"><select class="sel" onchange="App.upWS(${i},'stageId',this.value)">${st.stages.map(x=>`<option value="${x.id}" ${s.stageId===x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select>
+      <select class="sel" onchange="App.upWS(${i},'promptId',this.value)"><option value="">بدون پرامپت</option>${st.prompts.map(x=>`<option value="${x.id}" ${s.promptId===x.id?'selected':''}>${esc(x.title)}</option>`).join('')}</select></div>
+      <input class="inp" style="width:100%;margin-top:6px" placeholder="توضیح گام..." value="${esc(s.note||'')}" oninput="App.upWS(${i},'note',this.value)" /></div>`).join('');
+  },
+  addWS() { wfDraft.push({stageId:st.stages[0]?.id||'',promptId:'',note:''}); this.rWS(); },
+  rmWS(i) { wfDraft.splice(i,1); this.rWS(); },
+  upWS(i,k,v) { if(wfDraft[i]) wfDraft[i][k]=v; },
+  saveW(id) {
+    const title=$('wT').value.trim(); if(!title) return this.toast('عنوان فرآیند الزامی است','er');
+    const o={ title, target:$('wTg').value.trim(), description:$('wD').value.trim(), steps:wfDraft, isSample:false, updatedAt:now() };
+    if(id) Object.assign(st.workflows.find(x=>x.id===id), o); else st.workflows.unshift({id:uid('w'),...o});
+    save(); this.closeM(); render(); this.toast('فرآیند ذخیره شد','ok');
+  },
+  delW(id) { if(confirm('فرآیند حذف شود؟')) { st.workflows=st.workflows.filter(x=>x.id!==id); save(); render(); } },
+
+  /* Refinement Lab */
+  labSet(k,v,rr) { st.lab[k]=v; save(); if(rr) render(); },
+  labLoad(id) { st.lab.pid=id; const p=pById(id); if(p) st.lab.cur=p.text; save(); render(); },
+  labClr() { st.lab={ ...st.lab, pid:'', cur:'', ideal:'', ai:'', hint:'', analysis:'', suggested:'', meta:'' }; save(); render(); },
+  metaTxt(forApi) {
+    const l=st.lab;
+    return `نقش: مهندس ارشد پرامپت و ویراستار متون علمی فارسی.\nمأموریت: با مقایسه «خروجی فعلی» و «خروجی مطلوب تیم»، ایرادات «پرامپت فعلی» را استخراج کن و پرامپت اصلاح‌شده را بنویس.\n\n=== ۱. پرامپت فعلی ===\n${l.cur||'—'}\n\n=== ۲. نمونه خروجی مطلوب تیم ===\n${l.ideal||'—'}\n\n=== ۳. خروجی فعلی هوش مصنوعی ===\n${l.ai||'—'}\n${l.hint?`\n=== تمرکز ویژه ===\n${l.hint}\n`:''}\nپاسخ را در ۳ بخش بده:\n۱) تحلیل دقیق تفاوت‌ها و ایرادات پرامپت فعلی\n۲) پرامپت اصلاح‌شده کامل ${forApi?'(دقیقاً بین <<<START>>> و <<<END>>> قرار بده)':'(در یک کادر مشخص و آماده کپی)'}\n۳) پیشنهاد تنظیمات Temperature و نکته برای تست بعدی.`;
+  },
+  genMeta() { if(!st.lab.cur.trim()) return this.toast('پرامپت فعلی را وارد کنید','wr'); st.lab.meta=this.metaTxt(false); save(); render(); copy(st.lab.meta,'ابر-پرامپت ممیزی تولید و کپی شد!'); },
+  cpMeta() { copy(st.lab.meta,'ابر-پرامپت کپی شد'); },
+  async runLab() {
+    if(!st.lab.cur.trim()) return this.toast('پرامپت فعلی را وارد کنید','wr');
+    const b=$('labBtn'); if(b){b.disabled=true;b.textContent='⏳ در حال تحلیل...';}
+    try {
+      const r = await callAI(this.metaTxt(true), 'کارگاه اصلاح پرامپت');
+      st.lab.analysis = r.txt;
+      const m = r.txt.match(/<<<START>>>([\s\S]*?)<<<END>>>/);
+      st.lab.suggested = m ? m[1].trim() : r.txt.trim();
+      (st.lab.iters=st.lab.iters||[]).push({ at:now(), mod:r.mod });
+      save(); render(); this.toast(`تحلیل کامل شد (${r.ms}ms | ${r.tot} توکن)`,'ok');
+    } catch (e) { this.toast('خطای API: '+e.message,'er'); if(b){b.disabled=false;b.textContent='⚡ تحلیل و پیشنهاد پرامپت اصلاح‌شده';} }
+  },
+  cpLab() { copy(st.lab.suggested,'پرامپت اصلاح‌شده کپی شد'); },
+  labNext() { st.lab.cur=st.lab.suggested; st.lab.ai=''; save(); render(); this.toast('منتقل شد؛ نتیجه تست جدید را در کادر ۳ وارد کنید','in'); },
+  labSave() {
+    const txt=(st.lab.suggested||'').trim(); if(!txt) return;
+    const p=st.lab.pid?pById(st.lab.pid):null;
+    if (p && confirm(`به عنوان نسخه جدید (${nextV(p.version)}) روی «${p.title}» ذخیره شود؟`)) {
+      (p.history=p.history||[]).unshift({ version:p.version, savedAt:p.updatedAt||now(), notes:p.notes||'', text:p.text });
+      p.text=txt; p.version=nextV(p.version); p.notes='اصلاح‌شده در کارگاه'; p.updatedAt=now(); p.isSample=false;
+      save(); this.toast('نسخه جدید در خزانه ثبت شد','ok');
+    } else this.mPrompt(null,{ title:'پرامپت اصلاح‌شده', text:txt, notes:'ساخته‌شده در کارگاه اصلاح' });
+  },
+
+  /* Academy */
+  mRes(id=null) {
+    const r=id?st.resources.find(x=>x.id===id):null, d=r||{ title:'', category:'اصول پرامپت‌نویسی', driveUrl:'', summary:'', linkedPromptIds:[], linkedNoteIds:[] };
+    openM(r?'ویرایش منبع آموزشی':'ثبت منبع آموزشی', `
+      <div class="fg2"><div class="fg"><label>عنوان *</label><input id="rT" class="inp" value="${esc(d.title)}" /></div>
+      <div class="fg"><label>دسته</label><select id="rC" class="sel">${['اصول پرامپت‌نویسی','جزوه آموزشی','راهنمای ابزار','استاندارد مرکز'].map(c=>`<option ${d.category===c?'selected':''}>${c}</option>`).join('')}</select></div></div>
+      <div class="fg"><label>لینک گوگل درایو</label><input id="rD" class="inp" dir="ltr" value="${esc(d.driveUrl||'')}" /></div>
+      <div class="fg"><label>متن و نکات آموزشی *</label><textarea id="rS" class="ta" rows="5">${esc(d.summary)}</textarea></div>
+      <div class="fg2">
+        <div class="fg"><label>ارجاع به پرامپت‌ها</label><div class="chkbox" style="max-height:110px;overflow:auto">${st.prompts.map(p=>`<label class="chk"><input type="checkbox" class="rPC" value="${p.id}" ${(d.linkedPromptIds||[]).includes(p.id)?'checked':''}><span>${esc(p.title)}</span></label>`).join('')}</div></div>
+        <div class="fg"><label>ارجاع به تجربیات</label><div class="chkbox" style="max-height:110px;overflow:auto">${st.notes.map(n=>`<label class="chk"><input type="checkbox" class="rNC" value="${n.id}" ${(d.linkedNoteIds||[]).includes(n.id)?'checked':''}><span>${esc(n.title)}</span></label>`).join('')}</div></div>
+      </div>`,
+      `<button class="btn" onclick="App.closeM()">انصراف</button><button class="btn btn-p" onclick="App.saveR('${id||''}')">💾 ذخیره</button>`, true);
+  },
+  saveR(id) {
+    const title=$('rT').value.trim(), summary=$('rS').value.trim(); if(!title||!summary) return this.toast('عنوان و متن الزامی است','er');
+    const o={ title, category:$('rC').value, driveUrl:$('rD').value.trim(), summary, linkedPromptIds:[...document.querySelectorAll('.rPC:checked')].map(x=>x.value), linkedNoteIds:[...document.querySelectorAll('.rNC:checked')].map(x=>x.value), isSample:false, updatedAt:now() };
+    if(id) Object.assign(st.resources.find(x=>x.id===id), o); else st.resources.unshift({id:uid('r'),...o});
+    save(); this.closeM(); render(); this.toast('منبع ذخیره شد','ok');
+  },
+  delR(id) { if(confirm('حذف شود؟')) { st.resources=st.resources.filter(x=>x.id!==id); save(); render(); } },
+
+  /* API & Sync & Backup */
+  apiSet(k,v,rr) { st.api[k]=v; save(); if(rr) render(); },
+  syncSet(v) { st.sync.gasUrl=v.trim(); save(); },
+  uName(v) { st.userName=v; save(); },
+  clrTok() { if(confirm('تاریخچه توکن پاک شود؟')) { st.tokenLogs=[]; save(); render(); } },
+  async fetchModels() {
+    const k=(st.api.geminiKey||'').trim(); if(!k) return this.toast('ابتدا کلید Gemini را وارد کنید','wr');
+    const b=$('fModBtn'); if(b){b.disabled=true;b.textContent='⏳...';}
+    try {
+      const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(k)}`), d=await r.json();
+      if(!r.ok) throw new Error(d.error?.message||'HTTP '+r.status);
+      const ms=(d.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes('generateContent')).map(m=>m.name.replace(/^models\//,'')).sort((a,b)=>b.localeCompare(a));
+      if(!ms.length) throw new Error('مدلی یافت نشد');
+      st.api.geminiModels=ms; if(!ms.includes(st.api.geminiModel)) st.api.geminiModel=ms[0];
+      save(); render(); this.toast(ms.length+' مدل فعال دریافت شد','ok');
+    } catch(e) { this.toast('خطا: '+e.message,'er'); if(b){b.disabled=false;b.textContent='🔄 دریافت مدل‌ها';} }
+  },
+  async testApi() {
+    const b=$('testBtn'), box=$('testRes'); if(b){b.disabled=true;b.textContent='⏳...';}
+    try {
+      const r = await callAI('فقط کلمه متصل را بنویس.','تست اتصال زنده');
+      render();
+      const nb=$('testRes'); if(nb) nb.innerHTML=`<span class="dot"></span><b style="color:var(--ok)">متصل شد!</b> مدل: <code>${esc(r.mod)}</code> | زمان: <b>${r.ms}ms</b>`;
+      this.toast(`اتصال موفق (${r.ms}ms)`,'ok');
+    } catch(e) {
+      if(box) box.innerHTML=`<span class="dot e"></span><b style="color:var(--er)">خطا:</b> ${esc(e.message)}`;
+      if(b){b.disabled=false;b.textContent='📡 تست اتصال زنده';}
+      this.toast('اتصال برقرار نشد','er');
+    }
+  },
+  async syncPush() {
+    const u=st.sync.gasUrl; if(!u) return this.toast('لینک وب‌اپ گوگل شیت را وارد کنید','wr');
+    try {
+      const r=await fetch(u,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'save',author:st.userName,data:teamPayload()})}), j=await r.json();
+      if(!j.ok) throw new Error(j.error);
+      st.sync.lastAt=j.updatedAt||now(); st.sync.lastBy=st.userName; save(); render(); this.toast('به گوگل شیت ارسال شد!','ok');
+    } catch(e) { this.toast('خطای ارسال: '+e.message,'er'); }
+  },
+  async syncPull() {
+    const u=st.sync.gasUrl; if(!u) return this.toast('لینک وب‌اپ گوگل شیت را وارد کنید','wr');
+    try {
+      const r=await fetch(u+(u.includes('?')?'&':'?')+'t='+Date.now()), j=await r.json();
+      if(!j.ok) throw new Error(j.error); if(j.empty||!j.data) return this.toast('سرور هنوز خالی است؛ ابتدا Push بزنید','wr');
+      Object.assign(st, { stages:j.data.stages||st.stages, prompts:j.data.prompts||[], notes:j.data.notes||[], tasks:j.data.tasks||[], workflows:j.data.workflows||[], resources:j.data.resources||[] });
+      st.sync.lastAt=j.updatedAt||now(); st.sync.lastBy=j.lastAuthor||''; save(); render(); this.toast('آخرین نسخه تیم دریافت شد!','ok');
+    } catch(e) { this.toast('خطای دریافت: '+e.message,'er'); }
+  },
+  async syncSmart() {
+    const u=st.sync.gasUrl; if(!u) return this.toast('لینک وب‌اپ گوگل شیت را وارد کنید','wr');
+    try {
+      const gr=await fetch(u+(u.includes('?')?'&':'?')+'t='+Date.now()), gj=await gr.json();
+      if(!gj.ok) throw new Error(gj.error); if(!gj.empty&&gj.data) mergeTeam(gj.data);
+      const pr=await fetch(u,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'save',author:st.userName,data:teamPayload()})}), pj=await pr.json();
+      if(!pj.ok) throw new Error(pj.error);
+      st.sync.lastAt=pj.updatedAt||now(); st.sync.lastBy=st.userName; save(); render(); this.toast('همگام‌سازی هوشمند (ادغام و ذخیره) موفق بود!','ok');
+    } catch(e) { this.toast('خطای همگام‌سازی: '+e.message,'er'); }
+  },
+  cpGas() { copy($('gasTpl').textContent.trim(), 'کد کامل Code.gs کپی شد!'); },
+  expJson() { const s={...st,api:{...st.api,geminiKey:'',openaiKey:''}}; dl(`ai-backup-${now().slice(0,10)}.json`,JSON.stringify(s,null,2),'application/json;charset=utf-8'); this.toast('بکاپ JSON دانلود شد','ok'); },
+  async saveFile() {
+    const c=JSON.stringify(teamPayload(),null,2);
+    if (window.showSaveFilePicker) {
+      try {
+        if(!fileHandle) fileHandle = await showSaveFilePicker({ suggestedName:'ai-command-db.json', types:[{description:'JSON',accept:{'application/json':['.json']}}] });
+        const w = await fileHandle.createWritable(); await w.write(c); await w.close(); render(); return this.toast('در فایل محلی ذخیره شد','ok');
+      } catch(e) { if(e.name==='AbortError') return; }
+    }
+    dl('ai-command-db.json',c,'application/json;charset=utf-8');
+  },
+  async openFile() {
+    if (window.showOpenFilePicker) {
+      try {
+        const [h] = await showOpenFilePicker({ types:[{description:'JSON',accept:{'application/json':['.json']}}] });
+        fileHandle = h; mergeTeam(JSON.parse(await (await h.getFile()).text())); save(); render(); return this.toast('فایل محلی ادغام شد','ok');
+      } catch(e) { if(e.name==='AbortError') return; }
+    }
+    $('jsonFile').click();
+  },
+  expDoc(fmt, sc='all') {
+    const d=now().slice(0,10), iP=sc==='all'||sc==='prompts', iN=sc==='all'||sc==='notes', iW=sc==='all'||sc==='workflows';
+    if (fmt==='md') {
+      let m=`# مستندات اتاق فرمان هوش مصنوعی (${fDT(now())})\n\n`;
+      if(iP){ m+=`## پرامپت‌ها\n`; st.prompts.forEach((p,i)=>m+=`### ${i+1}. ${p.title} (${p.version})\nمرحله: ${sName(p.stageId)} | مدل: ${p.model||'—'}\n\`\`\`\n${p.text}\n\`\`\`\n\n`); }
+      if(iN){ m+=`## تجربیات\n`; st.notes.forEach((n,i)=>m+=`### ${i+1}. ${n.title}\nنویسنده: ${n.author} | ${fDate(n.date)}\n\n${n.content}\n\n`); }
+      if(iW){ m+=`## فرآیندها\n`; st.workflows.forEach((w,i)=>{ m+=`### ${i+1}. ${w.title}\n`; (w.steps||[]).forEach((s,j)=>m+=`${j+1}. ${sName(s.stageId)} ${s.note?'— '+s.note:''}\n`); m+='\n'; }); }
+      dl(`docs-${sc}-${d}.md`,'\uFEFF'+m,'text/markdown;charset=utf-8');
+    } else {
+      let b=`<h1>مستندات اتاق فرمان هوش مصنوعی</h1><p>تاریخ: ${fDT(now())}</p>`;
+      if(iP){ b+=`<h2>خزانه پرامپت‌ها</h2>`; st.prompts.forEach((p,i)=>b+=`<h3>${i+1}. ${esc(p.title)} (${esc(p.version)})</h3><p>مرحله: ${esc(sName(p.stageId))} | مدل: ${esc(p.model||'—')}</p><div class="bx">${esc(p.text).replace(/\n/g,'<br>')}</div>`); }
+      if(iN){ b+=`<h2>دفترچه تجربیات</h2>`; st.notes.forEach((n,i)=>b+=`<h3>${i+1}. ${esc(n.title)}</h3><p>${esc(n.author)} | ${fDate(n.date)}</p><p>${esc(n.content).replace(/\n/g,'<br>')}</p><hr>`); }
+      if(iW){ b+=`<h2>فرآیندهای کاری</h2>`; st.workflows.forEach((w,i)=>{ b+=`<h3>${i+1}. ${esc(w.title)}</h3><ol>${(w.steps||[]).map(s=>`<li><b>${esc(sName(s.stageId))}</b> ${esc(s.note||'')}</li>`).join('')}</ol>`; }); }
+      const html=`\uFEFF<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" lang="fa" dir="rtl"><head><meta charset="utf-8"><style>body{font-family:Vazirmatn,'B Nazanin',Tahoma,sans-serif;direction:rtl;text-align:right;line-height:1.8}h1,h2{color:#312e81}.bx{background:#f8fafc;border:1px solid #cbd5e1;padding:10px;margin:8px 0}</style></head><body>${b}</body></html>`;
+      dl(`docs-${sc}-${d}.doc`,html,'application/msword;charset=utf-8');
+    }
+    this.toast('فایل مستندات دانلود شد','ok');
+  },
+  clearSample() { if(!confirm('فقط داده‌های نمونه پاک شوند؟')) return; ['prompts','notes','tasks','workflows','resources'].forEach(k=>st[k]=st[k].filter(x=>!x.isSample)); save(); render(); this.toast('داده‌های نمونه پاک شدند','ok'); },
+  reSample() { mergeTeam(defaults()); save(); render(); this.toast('داده‌های نمونه اضافه شدند','in'); },
+  resetAll() { if(!confirm('تمام داده‌های سامانه پاک شود؟')) return; localStorage.removeItem(KEY); st=defaults(); save(); render(); this.toast('بازنشانی کامل انجام شد','wr'); }
+};
+document.addEventListener('DOMContentLoaded', () => App.init());
+})();
+</script>
+</body>
+</html>
